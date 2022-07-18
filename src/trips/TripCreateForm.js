@@ -19,6 +19,12 @@ export default function TripCreateForm(props) {
     event.target.reset()
   };
 
+  // const allCountries = props.countryList.map((country, index) => (
+  //   <option id={index} value={country.id}>{country.name}</option>
+  // ))
+
+  console.log(props.countryList)
+
   return (
     <div>
       <h1>Add a Trip</h1>
@@ -29,7 +35,11 @@ export default function TripCreateForm(props) {
         </div>
 
         <div>
-          {/* <label>Country</label> */}
+          <label>Country</label>
+            {/* <select id="countries" name="countries" required>
+              <option selected disabled hidden>Choose a Country</option>
+              {allCountries}
+            </select> */}
           <input type="text" name="country" placeholder="Country" onChange={handleChange}></input>
         </div>
 
