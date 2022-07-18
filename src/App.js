@@ -10,7 +10,8 @@ import {Alert} from 'react-bootstrap';
 import BrowseTrips from "./trips/BrowseTrips";
 import MyTrips from "./trips/MyTrips";
 import Favs from "./trips/Favs";
-import TripCreateForm from "./trips/TripCreateForm";
+// import TripCreateForm from "./trips/TripCreateForm";
+import Trip from "./trips/Trip";
 
 export default function App() {
   const [isAuth, setIsAuth] = useState(false);
@@ -149,7 +150,7 @@ export default function App() {
             <Route path="/browse" element={<BrowseTrips />}></Route>
             <Route path="/mytrips" element={<MyTrips />}></Route>
             <Route path="/favs" element={<Favs />}></Route> 
-            <Route path="/addtrip" element={<TripCreateForm />}></Route>
+            <Route path="/addtrip" element={<Trip />}></Route>
           </Routes>
         </div>
 
