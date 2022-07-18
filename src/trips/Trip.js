@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect }  from 'react';
 import Axios from 'axios';
 import TripCreateForm from './TripCreateForm';
 
 export default function Trip() {
+    const [countries, setCountries] = useState([]);
+
+    useEffect(() => {
+        loadCountryList()
+      }, []);
 
     const addTrip = (trip) => {
         Axios.post("trip/add", trip)
@@ -16,9 +21,27 @@ export default function Trip() {
         })
     }
 
+    const loadCountryList = () => {
+        Axios.get("country/index")
+        .then((response) => {
+            console.log(response)
+            setCountries(response.data.countries)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
+
+    console.log("COUNTRIES", countries)
+
+//   const allCountries = countries.map((country, index) => (
+//     <option key={index} value={country._id}>{country.name}</option>
+//   ))
+
   return (
     <div>
-        <TripCreateForm addTrip={addTrip} />
+        <TripCreateForm addTrip={addTrip} countries={countries}/>
     </div>
   )
 }
+

@@ -19,6 +19,18 @@ export default function TripCreateForm(props) {
     event.target.reset()
   };
 
+  const allCountries = props.countries.map((country, index) => {
+    // console.log(country.cities)
+    return <option key={index} value={country._id}>{country.name}</option>
+})
+
+
+
+  // const allCities = props.countries.cities.map((city, index) => (
+  //   <option key={index} value={city.name}>{city.name}</option>
+  // ))
+
+
   return (
     <div>
       <h1>Add a Trip</h1>
@@ -29,8 +41,10 @@ export default function TripCreateForm(props) {
         </div>
 
         <div>
-          {/* <label>Country</label> */}
-          <input type="text" name="country" placeholder="Country" onChange={handleChange}></input>
+            <select id="country" name="country" onChange={handleChange} required>
+              <option selected disabled hidden>Choose a Country</option>
+              {allCountries}
+            </select>
         </div>
 
         <div>
