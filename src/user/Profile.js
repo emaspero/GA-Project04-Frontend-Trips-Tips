@@ -23,7 +23,8 @@ export default function Profile(props) {
     .then(response => {
         console.log("Updated User Information!")
         setIsEdit(false)
-    })
+        window.location.reload()
+        })
     .catch(error => {
         console.log("Error Updating User Information !!!");
         console.log(error);

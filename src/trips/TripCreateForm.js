@@ -33,7 +33,7 @@ export default function TripCreateForm(props) {
 
   return (
     <div>
-      <h1>Add a Trip</h1>
+      <h1>ADD A TRIP</h1>
       <form onSubmit={handleSubmit} >
         <div>
           {/* <label>Title</label> */}

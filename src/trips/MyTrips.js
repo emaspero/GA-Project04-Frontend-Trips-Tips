@@ -2,6 +2,8 @@ import React from 'react'
 
 export default function MyTrips() {
   return (
-    <div>MyTrips</div>
+    <div>
+      <h1>MY TRIPS</h1>
+    </div>
   )
 }

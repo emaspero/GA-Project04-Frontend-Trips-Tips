@@ -45,7 +45,7 @@ export default function BrowseTrips() {
 
   return (
     <div>
-      <h1>Browse Trips</h1>
+      <h1>BROWSE TRIPS</h1>
       {allTrips}
     </div>
   )

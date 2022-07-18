@@ -20,7 +20,7 @@ export default function Signin(props) {
 
   return (
     <div>
-        <h1>Signin</h1>
+        <h1>SIGN IN</h1>
 
         <Container>
 
