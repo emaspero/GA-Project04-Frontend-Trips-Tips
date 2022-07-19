@@ -2,7 +2,6 @@ import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import Trip from './Trip';
-import TripEditForm from './TripEditForm';
 
 
 export default function TripDetail(props) {
@@ -40,15 +39,28 @@ export default function TripDetail(props) {
           console.log("Error loading trip information for editing")
           console.log(error)
         })
-      }
+      };
     
     const editTrip = (trip) => {
         Axios.put("../../trip/update", trip)
         .then((response) => {
           console.log("Updated trip information")
+          // add function to refresh trip detail page here?
         })
         .catch((error) => {
           console.log("Error updating trip information")
+          console.log(error)
+        })
+      };
+
+      const deleteTrip = (id) => {
+        Axios.delete(`../../trip/delete?id=${id}`)
+        .then((response) => {
+          console.log("Trip deleted successfully")
+          // where should we be redirected after deleting a trip?
+        })
+        .catch((error) => {
+          console.log("Error deleting trip")
           console.log(error)
         })
       }
@@ -59,7 +71,7 @@ export default function TripDetail(props) {
           <div>{currentTrip.city}, {currentTrip.country}</div>
           <p>{currentTrip.summary}</p>
           <button onClick={() => {editView(currentTrip._id)}}>Edit</button>
-
+          <button onClick={() => {deleteTrip(currentTrip._id)}}>Delete</button>
 
         {
             (isEdit) ?
