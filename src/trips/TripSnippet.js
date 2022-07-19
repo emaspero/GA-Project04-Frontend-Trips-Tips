@@ -23,7 +23,7 @@ export default function TripSnippet(props) {
     
     <h4>{props.title}</h4> by username-here &nbsp; {props.rating}
     <br />
-    {props.country}, {props.city}
+    {props.country.name}, {props.city}
     <p>{props.summary}</p>
     
     {/* <button onClick={() => navigate(`/trip/detail/${props._id}`)} > + see more </button> */}
