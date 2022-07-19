@@ -2,6 +2,8 @@ import React from 'react'
 
 export default function TopTen() {
   return (
-    <div>TopTen</div>
+    <div>
+      <h1>🏆 TOP TEN</h1>
+    </div>
   )
 }

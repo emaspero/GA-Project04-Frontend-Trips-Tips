@@ -20,7 +20,7 @@ export default function Signup(props) {
 
   return (
     <div>
-        <h1>Signup</h1>
+        <h1>SIGN UP</h1>
 
         <Container>
 

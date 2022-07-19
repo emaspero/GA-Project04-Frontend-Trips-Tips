@@ -12,6 +12,9 @@ import MyTrips from "./trips/MyTrips";
 import Favs from "./trips/Favs";
 // import TripCreateForm from "./trips/TripCreateForm";
 import Trip from "./trips/Trip";
+import './App.css';
+
+
 
 export default function App() {
   const [isAuth, setIsAuth] = useState(false);
@@ -106,38 +109,43 @@ export default function App() {
     <Router>
       <div>
         <nav>
-          {isAuth ? (
-            <div>
-              <Link to="/profile">Profile</Link>{" "}
-              <Link to="/logout" onClick={onLogoutHandler}>LogOut</Link>{" "}
-            </div>
-          ) : (
-            <div>
-              <Link to="/signup">SignUp</Link>{" "}
-              <Link to="/signin">SignIn</Link>{" "}
-            </div>
-          )}
+          <div className="nav-top-auth-container">
+            {isAuth ? (
+              <div>
+                <Link to="/profile" className="nav-top-auth-items-link">PROFILE</Link>{"   "}
+                <Link to="/logout" className="nav-top-auth-items-link" onClick={onLogoutHandler}>LOGOUT</Link>{"  "}
+              </div>
+            ) : (
+              <div className="nav-top-auth-items">
+                <Link to="/signup">SIGN UP</Link>{"  "}
+                <Link to="/signin">SIGN IN</Link>{"  "}
+              </div>
+            )}
+          </div>
 
-          {isAuth ? (
-            <div>
-              <Link to="/topten">Top 10 Trips</Link> {" "}
-              <Link to="/browse">Browse Trips</Link> {" "}
-              <Link to="/mytrips">My Trips</Link>{" "}
-              <Link to="/favs">Favs</Link>{" "}
-              <Link to="/addtrip">Add a Trip</Link> {" "}
-            </div>
-          ) : (
-            <div>
-              <Link to="/topten">Top 10 Trips</Link>
-              <Link to="/browse">Browse Trips</Link>
-            </div>
-          )}
-
-
-
+          <div>
+            <img src="/img/TripTips-logo.png" className="nav-logo"/>
+          </div>
+         
+          <div >
+            {isAuth ? (
+              <div className="nav-left-container">
+                <Link to="/topten" className="nav-left-items-link">TOP 10 TRIPS</Link> {"  "}
+                <Link to="/browse" className="nav-left-items-link">BROWSE TRIPS</Link> {"  "}
+                <Link to="/mytrips" className="nav-left-items-link">MY TRIPS</Link>{" "}
+                <Link to="/favs" className="nav-left-items-link">FAVS</Link>{" "}
+                <Link to="/addtrip" className="nav-left-items-link nav-add-trip" >ADD A TRIP</Link> {" "}
+              </div>
+            ) : (
+              <div className="nav-left-container">
+                <Link to="/topten" className="nav-left-items-link">TOP 10 TRIPS</Link>
+                <Link to="/browse" className="nav-left-items-link">BROWSE TRIPS</Link>
+              </div>
+            )}
+          </div>
         </nav>
 
-        <div>
+        <div className="element-container">
           <Routes>
             <Route path="/" element={<TopTen />}></Route>
             <Route path="/profile" element={<Profile currentUser={currentUser}/>}></Route>
@@ -151,6 +159,9 @@ export default function App() {
           </Routes>
         </div>
 
+      </div>
+      <div className="footer-container">
+        <footer className="footer"></footer>
       </div>
     </Router>
   );
