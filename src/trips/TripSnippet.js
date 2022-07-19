@@ -6,16 +6,16 @@ import TripDetail from './TripDetail';
 
 export default function TripSnippet(props) {
   // const navigate = useNavigate();
-  console.log("from snippet", props)
+  // console.log("from snippet", props)
   // console.log(props.trips)
   
 
-  const tripOne = props.trips.map((trip) => {
-    console.log("trp from snippet", trip)
-    return (
-      <TripDetail trip={trip} prop={props} ct={props.trip} singleTrip={props.singleTrip} />
-    )
-    })
+  // const tripOne = props.trips.map((trip) => {
+  //   // console.log("trp from snippet", trip)
+  //   return (
+  //     <TripDetail trip={trip} prop={props} ct={props.trip} singleTrip={props.singleTrip} />
+  //   )
+  //   })
 
   return (
     // <Router>
@@ -29,7 +29,7 @@ export default function TripSnippet(props) {
     {/* <button onClick={() => navigate(`/trip/detail/${props._id}`)} > + see more </button> */}
     <Link to={`/trip/detail/${props._id}`}>+ see more</Link>
     <hr />
-    {tripOne}
+    {/* {tripOne} */}
 
     {/* {/* <Routes> */}
       {/* <Switch> */}
