@@ -13,7 +13,7 @@ export default function TripSnippet(props) {
   const tripOne = props.trips.map((trip) => {
     console.log("trp from snippet", trip)
     return (
-      <TripDetail trip={trip} prop={props} ct={props.trip} singleTrip={props.singleTrip} />
+      <TripDetail trip={trip} prop={props} ct={props.trip} singleTrip={props.singleTrip} /> 
     )
     })
 
@@ -25,6 +25,7 @@ export default function TripSnippet(props) {
     <br />
     {props.country}, {props.city}
     <p>{props.summary}</p>
+    {/* <td> <button onClick={() => {props.editView(props._id)}}>Edit</button> </td> */}
     
     {/* <button onClick={() => navigate(`/trip/detail/${props._id}`)} > + see more </button> */}
     <Link to={`/trip/detail/${props._id}`}>+ see more</Link>
