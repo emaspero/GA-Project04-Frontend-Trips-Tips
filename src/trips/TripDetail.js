@@ -1,34 +1,34 @@
-import { Axios } from 'axios';
-import React, { useEffect } from 'react';
-import { BrowserRouter as useParams } from "react-router-dom";
+import Axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
 
 
 export default function TripDetail(props) {
-    // let {id} = useParams();
-    console.log("detail console log", props)
-    console.log("props trip", props.trip)
+    let {id} = useParams();
+    // console.log("detail console log", props)
+    // console.log("props trip", props.trip)
 
-    // useEffect (() => {
-    //     oneTrip()
-    // }, []);
+    const [currentTrip, setCurrentTrip] = useState({});
 
-    // const oneTrip = (id) => {
-    //     Axios.get(`trip/detail/${id}`)
+    useEffect (() => {
+        if (id) {
+          Axios.get(`../../trip/detail/${id}`)
+          .then((response) => {
+            console.log("AXIOS RESPONSE DATA: ", response.data)
+            let trip = response.data.trip
+            setCurrentTrip(trip)
+          })
+          .catch((error) => {
+              console.log(error)
+          })
+        }
+    }, [id]);
 
-    //     .then((response) => {
-    //         console.log(response.data)
-    //     })
-    //     .catch((error) => {
-    //         console.log(error)
-    //     })
-    // }; 
-
-
-  return (
-    <div>
-        {/* <h3>tripId: {id}</h3> */}
-        <h4>{props.title}</h4>
-        test
-    </div>
-  )
+    return (
+      <div>
+          <h3>tripId: {id}</h3>
+          <h4>{currentTrip.title}</h4>
+          test
+      </div>
+    )
 }
