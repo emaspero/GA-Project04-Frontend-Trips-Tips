@@ -1,8 +1,9 @@
 import React, { useState, useEffect }  from 'react';
 import Axios from 'axios';
 import TripCreateForm from './TripCreateForm';
+import TripEditForm from './TripEditForm';
 
-export default function Trip() {
+export default function Trip(props) {
     const [countries, setCountries] = useState([]);
 
     useEffect(() => {
@@ -35,7 +36,13 @@ export default function Trip() {
 
   return (
     <div>
-        <TripCreateForm addTrip={addTrip} countries={countries}/>
+        {
+            (!props.isEdit) ?
+            <TripCreateForm addTrip={addTrip} countries={countries}/>
+            :
+            <TripEditForm key={props.key} trip={props.trip} editTrip={props.editTrip} countries={countries} />
+        }
+        
     </div>
   )
 }
