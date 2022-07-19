@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import TripSnippet from './TripSnippet';
-import TripDetail from './TripDetail';
 import TripEditForm from './TripEditForm';
 
 export default function BrowseTrips() {
@@ -67,7 +66,6 @@ export default function BrowseTrips() {
   const allTrips = trips.map((trip, index) => (
     <div key={index}>
       <TripSnippet {...trip} singleTrip={singleTrip} trip={currentTrip} trips={trips} editView={editView} />
-      {/* <TripDetail {...trip}  singleTrip={singleTrip} trip={currentTrip} trips={trips} /> */}
     </div>
   ));
 
