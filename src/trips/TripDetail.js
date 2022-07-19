@@ -63,7 +63,7 @@ export default function TripDetail(props) {
 
         {
             (isEdit) ?
-            <Trip key={currentTrip._id} trip={currentTrip} editTrip={editTrip} isEdit={isEdit}/>
+            <Trip trip={currentTrip} editTrip={editTrip} isEdit={isEdit}/>
             :
             <></>
         }

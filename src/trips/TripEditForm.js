@@ -32,6 +32,7 @@ export default function TripEditForm(props) {
     props.editTrip(newTrip);
   };
 
+
   // CREATE DROPDOWN OPTIONS FOR ALL COUNTRIES IN DB
   const allCountries = props.countries.map((country, index) => {
     return <option key={index} value={country._id}>{country.name}</option>
