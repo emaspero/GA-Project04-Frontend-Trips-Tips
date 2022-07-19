@@ -2,18 +2,25 @@ import React from 'react'
 import {useState, useEffect} from 'react'
 import Axios from 'axios'
 import UserEditForm from './UserEditForm'
+import PwdEditForm from './PwdEditForm'
 
 
 
 export default function Profile(props) {
 
     const [isEdit, setIsEdit] = useState(false)
-    const [id, setId] = useState(null)
-
+    const [isPwdEdit, setIsPwdEdit] = useState(false)
 
     const editView = () => {
         setIsEdit(true)
-        console.log(isEdit)
+    }
+
+    const editPwdView = () => {
+        setIsPwdEdit(true)
+    }
+
+    const editPwd = () => {
+        console.log("Axios call goes here")
     }
 
     const editUser = (newUser) => {
@@ -45,6 +52,12 @@ export default function Profile(props) {
             </div>
         :
         <div><UserEditForm editUser={editUser} currentUser={props.currentUser}/></div>
+        }
+        <br></br>
+        {(!isPwdEdit)?
+            <button onClick={() =>{editPwdView()}}>Change password</button>
+        :
+        <div><PwdEditForm editPwd={editPwd} currentUser={props.currentUser}/></div>
         }
 
     </div>

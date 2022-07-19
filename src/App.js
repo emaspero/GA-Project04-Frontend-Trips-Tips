@@ -97,6 +97,7 @@ export default function App() {
         "lastName" : response.data.user.lastName,
         "username" : response.data.user.username,
         "emailAddress" : response.data.user.emailAddress,
+        "password" : response.data.user.password,
       })
       // console.log(currentUser)
     })
