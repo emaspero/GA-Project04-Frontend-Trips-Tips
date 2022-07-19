@@ -1,16 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 
 export default function TripCreateForm(props) {
   const [newTrip, setNewTrip] = useState({});
+  const [currentCities, setCurrentCities] = useState([])
 
+  useEffect(() => {
+    console.log("NEW TRIP: ", newTrip);
+    console.log("CURRENT CITIES: ", currentCities)
+  }, [newTrip, currentCities])
+  
   const handleChange = (event) => {
     const attributeToChange = event.target.name
-    const newValue = event.target.value 
-
+    const newValue = event.target.value
     const trip = {...newTrip}
     trip[attributeToChange] = newValue
-    console.log(trip)
+
+    console.log("TRIP: ", trip)
     setNewTrip(trip)
+
+    // IF A COUNTRY WAS SELECTED IN THE DROPDOWN, UPDATE ARRAY OF CITIES
+    if (event.target.name === "country") {
+      let selectedCountry = props.countries.find(country => country._id === event.target.value)
+      let selectedCountryCities = selectedCountry.cities
+      setCurrentCities(selectedCountryCities)
+    }
   };
 
   const handleSubmit = (event) => {
@@ -19,16 +33,15 @@ export default function TripCreateForm(props) {
     event.target.reset()
   };
 
+  // CREATE DROPDOWN OPTIONS FOR ALL COUNTRIES IN DB
   const allCountries = props.countries.map((country, index) => {
-    // console.log(country.cities)
     return <option key={index} value={country._id}>{country.name}</option>
-})
+  })
 
-
-
-  // const allCities = props.countries.cities.map((city, index) => (
-  //   <option key={index} value={city.name}>{city.name}</option>
-  // ))
+  // CREATE DROPDOWN OPTIONS FROM CITIES ARRAY OF SELECTED COUNTRY
+  const selectedCountryCities = currentCities.map((city, index) => {
+    return <option key={index} value={city}>{city}</option>
+  })
 
 
   return (
@@ -36,7 +49,6 @@ export default function TripCreateForm(props) {
       <h1>ADD A TRIP</h1>
       <form onSubmit={handleSubmit} >
         <div>
-          {/* <label>Title</label> */}
           <input type="text" name="title" placeholder="Title" onChange={handleChange}></input>
         </div>
 
@@ -48,18 +60,18 @@ export default function TripCreateForm(props) {
         </div>
 
         <div>
-          {/* <label>City</label> */}
-          <input type="text" name="city" placeholder="City" onChange={handleChange}></input>
+            <select id="city" name="city" onChange={handleChange} required>
+                <option selected disabled hidden>Choose a City</option>
+                {selectedCountryCities}
+            </select>
         </div>
 
         <div>
-          {/* <label>Summary</label> */}
-          <input type="text" name="summary" placeholder="Description" onChange={handleChange}></input>
+          <textarea name="summary" placeholder="Description" rows="4" cols="50" onChange={handleChange} />
         </div>
 
         <div>
-          {/* <label>Rating</label> */}
-          <input type="text" name="rating" placeholder="Rating" onChange={handleChange}></input>
+          <input type="text" name="rating" placeholder="Rating 0-5" onChange={handleChange}></input>
         </div>
 
         <div>

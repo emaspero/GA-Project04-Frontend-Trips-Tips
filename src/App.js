@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link, Navigate } from "react-router-dom";
 import TopTen from "./trips/TopTen";
 import Signup from "./user/Signup";
 import Signin from "./user/Signin";
@@ -152,7 +152,7 @@ export default function App() {
             <Route path="/" element={<TopTen />}></Route>
             <Route path="/profile" element={<Profile currentUser={currentUser}/>}></Route>
             <Route path="/signup" element={<Signup register={registerHandler} />}></Route>
-            <Route path="/signin" element={<Signin login={loginHandler} />}></Route>
+            <Route path="/signin" element={ isAuth ? <Navigate to="/" /> : <Signin login={loginHandler} />}></Route>
             <Route path="/topten" element={<TopTen />}></Route>
             <Route path="/browse" element={<BrowseTrips />}></Route>
             <Route path="/mytrips" element={<MyTrips />}></Route>
