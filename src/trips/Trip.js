@@ -21,6 +21,7 @@ export default function Trip() {
         })
     }
 
+    // AXIOS CALL TO GET FULL COUNTRY DATA
     const loadCountryList = () => {
         Axios.get("country/index")
         .then((response) => {
@@ -31,12 +32,6 @@ export default function Trip() {
             console.log(error)
         })
     }
-
-    console.log("COUNTRIES", countries)
-
-//   const allCountries = countries.map((country, index) => (
-//     <option key={index} value={country._id}>{country.name}</option>
-//   ))
 
   return (
     <div>
