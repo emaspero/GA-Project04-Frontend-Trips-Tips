@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import TripSnippet from './TripSnippet';
+import TripDetail from './TripDetail';
 
 export default function BrowseTrips() {
   const [trips, setTrips] = useState([]);
@@ -22,7 +23,7 @@ export default function BrowseTrips() {
   };
 
   const singleTrip = (id) => {
-    Axios.get(`trip/detail?id=${id}`)
+    Axios.get(`trip/detail/${id}`)
     .then((response) => {
         console.log("Loaded Trip information")
         console.log(response.data.trip)
@@ -38,7 +39,8 @@ export default function BrowseTrips() {
 
   const allTrips = trips.map((trip, index) => (
     <div key={index}>
-      <TripSnippet {...trip} singleTrip={singleTrip} key={currentTrip._id} trip={currentTrip} />
+      <TripSnippet {...trip} singleTrip={singleTrip} trip={currentTrip} trips={trips}/>
+      {/* <TripDetail {...trip}  singleTrip={singleTrip} trip={currentTrip} trips={trips} /> */}
     </div>
   ));
 

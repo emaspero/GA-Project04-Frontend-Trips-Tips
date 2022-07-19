@@ -13,6 +13,8 @@ import Favs from "./trips/Favs";
 // import TripCreateForm from "./trips/TripCreateForm";
 import Trip from "./trips/Trip";
 import './App.css';
+import TripDetail from "./trips/TripDetail";
+import TripSnippet from "./trips/TripSnippet";
 
 
 
@@ -96,7 +98,7 @@ export default function App() {
         "username" : response.data.user.username,
         "emailAddress" : response.data.user.emailAddress,
       })
-      console.log(currentUser)
+      // console.log(currentUser)
     })
     .catch((error) => {
       console.log(error);
@@ -156,6 +158,8 @@ export default function App() {
             <Route path="/mytrips" element={<MyTrips />}></Route>
             <Route path="/favs" element={<Favs />}></Route> 
             <Route path="/addtrip" element={<Trip />}></Route>
+            <Route path="/trip/detail/:id" element={<TripDetail />}/>
+
           </Routes>
         </div>
 
