@@ -28,7 +28,11 @@ export default function TripDetail(props) {
     }, [id]);
 
     const editView = (id) => {
-        Axios.get(`../../trip/edit?id=${id}`)
+        Axios.get(`../../trip/edit?id=${id}`, {
+          headers: {
+              "Authorization": "Bearer " + localStorage.getItem("token")
+          }
+      })
         .then((response) => {
           console.log("Loaded trip information for editing", response.data.trip)
           var trip = response.data.trip
@@ -42,7 +46,11 @@ export default function TripDetail(props) {
       };
     
     const editTrip = (trip) => {
-        Axios.put("../../trip/update", trip)
+        Axios.put("../../trip/update", trip, {
+          headers: {
+              "Authorization": "Bearer " + localStorage.getItem("token")
+          }
+      })
         .then((response) => {
           console.log("Updated trip information")
           window.location.reload()
@@ -54,7 +62,11 @@ export default function TripDetail(props) {
       };
 
       const deleteTrip = (id) => {
-        Axios.delete(`../../trip/delete?id=${id}`)
+        Axios.delete(`../../trip/delete?id=${id}`, {
+          headers: {
+              "Authorization": "Bearer " + localStorage.getItem("token")
+          }
+      })
         .then((response) => {
           console.log("Trip deleted successfully")
           // where should we be redirected after deleting a trip?
@@ -67,11 +79,20 @@ export default function TripDetail(props) {
 
     return (
       <div>
+        
           <h4>{currentTrip.title}</h4> by username-here {currentTrip.rating}
           <div>{currentTrip.city}, {currentTrip.country}</div>
           <p>{currentTrip.summary}</p>
-          <button onClick={() => {editView(currentTrip._id)}}>Edit</button>
-          <button onClick={() => {deleteTrip(currentTrip._id)}}>Delete</button>
+          {
+            props.isAuth ?
+            <div>
+            <button onClick={() => {editView(currentTrip._id)}}>Edit</button>
+            <button onClick={() => {deleteTrip(currentTrip._id)}}>Delete</button>
+            </div>
+            :
+            <></>
+          }
+          
 
         {
             (isEdit) ?

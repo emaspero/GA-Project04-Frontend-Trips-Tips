@@ -12,7 +12,11 @@ export default function Trip(props) {
       }, []);
 
     const addTrip = (trip) => {
-        Axios.post("trip/add", trip)
+        Axios.post("trip/add", trip, {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            }
+        })
 
         .then((response) => {
             console.log("Trip added successfully!")
@@ -50,8 +54,8 @@ export default function Trip(props) {
     console.log("ALL COUNTRIES: ", countries)
 
       // SET DROPDOWN OF CITIES BASED ON EXISTING TRIP
-      let selectedCountry = countries.find(country => country._id === props.trip.country);
-      console.log("SELECTED COUNTRY: ", selectedCountry)
+    //   let selectedCountry = countries.find(country => country._id === props.trip.country);
+    //   console.log("SELECTED COUNTRY: ", selectedCountry)
       // console.log("SELECTED COUNTRY NAME: ", selectedCountry.name)
       // let cities = selectedCountry.cities
       // console.log(cities)
@@ -61,7 +65,7 @@ export default function Trip(props) {
     <div>
         {
             (!props.isEdit) ?
-            <TripCreateForm addTrip={addTrip} countries={countries}/>
+            <TripCreateForm addTrip={addTrip} countries={countries} currentUser={props.currentUser}/>
             :
             <TripEditForm key={props.key} trip={props.trip} editTrip={props.editTrip} countries={countries} />
         }

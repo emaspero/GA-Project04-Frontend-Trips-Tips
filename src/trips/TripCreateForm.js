@@ -14,6 +14,7 @@ export default function TripCreateForm(props) {
     const attributeToChange = event.target.name
     const newValue = event.target.value
     const trip = {...newTrip}
+    trip["createdBy"] = props.currentUser.id
     trip[attributeToChange] = newValue
 
     console.log("TRIP: ", trip)
