@@ -6,7 +6,7 @@ export default function TripSnippet(props) {
   return (
     <>
     
-    <h4>{props.title}</h4> by username-here &nbsp; {props.rating}
+    <h4>{props.title}</h4> by {props.createdBy.username} &nbsp; {props.rating}
     <br />
     {props.country.name}, {props.city}
     <p>{props.summary}</p>
