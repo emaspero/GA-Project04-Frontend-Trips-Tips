@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import {Container, Form, Button} from 'react-bootstrap'
+// import {Container, Form, Button} from 'react-bootstrap'
 
 
 
 export default function Signup(props) {
 
-    const [newUser, setNewUser] = useState({})
+    const [newUser, setNewUser] = useState({});
+    const [fileName, setFileName] = useState("");
 
     const changeHandler = (e) => {
         const user = {...newUser};
@@ -14,7 +15,19 @@ export default function Signup(props) {
         setNewUser(user)
     }
 
+    const photoHandler = (e) => {
+        setNewUser({...newUser, profileImage: e.target.files[0]})
+    }
+
     const registerHandler = () => {
+        // const formData = new FormData()
+        // formData.set('firstName', newUser.firstName)
+        // formData.set('lastName', newUser.lastName)
+        // formData.set('username', newUser.username)
+        // formData.set('emailAddress', newUser.emailAddress)
+        // formData.set('password', newUser.password)
+        // formData.set('profileImage', newUser.profileImage)
+        // props.register(formData)
         props.register(newUser)
     }
 
@@ -22,7 +35,37 @@ export default function Signup(props) {
     <div>
         <h1>SIGN UP</h1>
 
-        <Container>
+        <form onSubmit={registerHandler} encType='multipart/form-data'>
+
+            <div>
+                <input type="text" placeholder="First Name" name="firstName" onChange={changeHandler}></input>
+            </div>
+
+            <div>
+                <input type="text" placeholder="Last Name" name="lastName" onChange={changeHandler}></input>
+            </div>
+
+            <div>
+                <input type="text" placeholder="Username"name="username" onChange={changeHandler}></input>
+            </div>
+
+            <div>
+                <input type="text" placeholder="Email Address"name="emailAddress" onChange={changeHandler}></input>
+            </div>
+            <div>
+                <input type="password" placeholder="Password" name="password" onChange={changeHandler}></input>
+            </div>
+
+            {/* <div>
+                <input type="file" accept=".png, .jpg, .jpeg" filename="profileImage" onChange={photoHandler}/>
+            </div> */}
+            <br></br>
+            <div>
+                <input type="submit" value="Register"></input>
+            </div>
+        </form>
+
+        {/* <Container>
 
             <Form.Group>
                 <Form.Label>First Name</Form.Label>
@@ -53,7 +96,7 @@ export default function Signup(props) {
 
             <Button variant="primary" onClick = {registerHandler}>Register</Button>
 
-        </Container>
+        </Container> */}
 
     </div>
   )

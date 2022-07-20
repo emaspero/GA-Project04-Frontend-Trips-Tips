@@ -19,7 +19,7 @@ export default function TripDetail(props) {
         if (id) {
           Axios.get(`../../trip/detail/${id}`)
           .then((response) => {
-            console.log("AXIOS RESPONSE DATA: ", response.data)
+            console.log("SINGLE TRIP AXIOS RESPONSE DATA: ", response.data)
             let trip = response.data.trip
             setCurrentTrip(trip)
           })
@@ -27,6 +27,7 @@ export default function TripDetail(props) {
               console.log(error)
           })
         }
+        console.log("useEffect CURRENT TRIP: ", currentTrip)
     }, [id]);
 
     const editView = (id) => {
@@ -36,7 +37,7 @@ export default function TripDetail(props) {
           }
       })
         .then((response) => {
-          console.log("Loaded trip information for editing", response.data.trip)
+          console.log("Loaded trip information for editing: ", response.data.trip)
           var trip = response.data.trip
           setIsEdit(true)
           setCurrentTrip(trip)
@@ -78,6 +79,8 @@ export default function TripDetail(props) {
           console.log(error)
         })
       }
+    
+    if (currentTrip) {
 
     return (
       <div>
@@ -103,10 +106,9 @@ export default function TripDetail(props) {
             <></>
         }
 
-      </div>
-
- 
-    )
+        </div>
+      )
+    }  
 }
 
 
