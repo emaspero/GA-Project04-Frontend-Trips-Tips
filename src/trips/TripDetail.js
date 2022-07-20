@@ -45,7 +45,7 @@ export default function TripDetail(props) {
         Axios.put("../../trip/update", trip)
         .then((response) => {
           console.log("Updated trip information")
-          // add function to refresh trip detail page here?
+          window.location.reload()
         })
         .catch((error) => {
           console.log("Error updating trip information")
