@@ -3,10 +3,12 @@ import Axios from 'axios';
 import TripSnippet from './TripSnippet';
 // import TripEditForm from './TripEditForm';
 
-export default function BrowseTrips() {
+export default function BrowseTrips(props) {
   const [trips, setTrips] = useState([]);
   const [currentTrip, setCurrentTrip] = useState("");
   // const [isEdit, setIsEdit] = useState(false);
+
+  
 
   useEffect(() => {
     loadTripList()
@@ -65,7 +67,7 @@ export default function BrowseTrips() {
 
   const allTrips = trips.map((trip, index) => (
     <div key={index}>
-      <TripSnippet {...trip} singleTrip={singleTrip} trip={currentTrip} trips={trips} />
+      <TripSnippet {...trip} singleTrip={singleTrip} trip={currentTrip} trips={trips} user={props.user} />
     </div>
   ));
 

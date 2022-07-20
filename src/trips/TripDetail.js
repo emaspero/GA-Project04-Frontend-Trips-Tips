@@ -11,7 +11,9 @@ export default function TripDetail(props) {
 
     const [currentTrip, setCurrentTrip] = useState({});
     const [isEdit, setIsEdit] = useState(false);
+    
 
+    // console.log(currentTrip.createdBy?.username)
 
     useEffect (() => {
         if (id) {
@@ -80,7 +82,7 @@ export default function TripDetail(props) {
     return (
       <div>
         
-          <h4>{currentTrip.title}</h4> by username-here {currentTrip.rating}
+          <h4>{currentTrip.title}</h4> by {currentTrip.createdBy?.username} {currentTrip.rating}
           <div>{currentTrip.city}, {currentTrip.country}</div>
           <p>{currentTrip.summary}</p>
           {
