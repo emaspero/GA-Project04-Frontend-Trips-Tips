@@ -17,7 +17,7 @@ export default function TripDetail(props) {
         if (id) {
           Axios.get(`../../trip/detail/${id}`)
           .then((response) => {
-            console.log("AXIOS RESPONSE DATA: ", response.data)
+            console.log("SINGLE TRIP AXIOS RESPONSE DATA: ", response.data)
             let trip = response.data.trip
             setCurrentTrip(trip)
           })
@@ -25,12 +25,13 @@ export default function TripDetail(props) {
               console.log(error)
           })
         }
+        console.log("useEffect CURRENT TRIP: ", currentTrip)
     }, [id]);
 
     const editView = (id) => {
         Axios.get(`../../trip/edit?id=${id}`)
         .then((response) => {
-          console.log("Loaded trip information for editing", response.data.trip)
+          console.log("Loaded trip information for editing: ", response.data.trip)
           var trip = response.data.trip
           setIsEdit(true)
           setCurrentTrip(trip)
@@ -64,26 +65,29 @@ export default function TripDetail(props) {
           console.log(error)
         })
       }
+    
+    if (currentTrip) {
+      return (
+        <div>
+            <h4>{currentTrip.title}</h4> by username-here {currentTrip.rating}
+            <div>{currentTrip.city}, {currentTrip.country}</div>
+            <p>{currentTrip.summary}</p>
+            <button onClick={() => {editView(currentTrip._id)}}>Edit</button>
+            <button onClick={() => {deleteTrip(currentTrip._id)}}>Delete</button>
 
-    return (
-      <div>
-          <h4>{currentTrip.title}</h4> by username-here {currentTrip.rating}
-          <div>{currentTrip.city}, {currentTrip.country}</div>
-          <p>{currentTrip.summary}</p>
-          <button onClick={() => {editView(currentTrip._id)}}>Edit</button>
-          <button onClick={() => {deleteTrip(currentTrip._id)}}>Delete</button>
+          {
+              (isEdit) ?
+              <Trip tripId={currentTrip._id} trip={currentTrip} editTrip={editTrip} isEdit={isEdit}/>
+              :
+              <></>
+          }
 
-        {
-            (isEdit) ?
-            <Trip key={currentTrip._id} trip={currentTrip} editTrip={editTrip} isEdit={isEdit}/>
-            :
-            <></>
-        }
+        </div>
 
-      </div>
-
- 
-    )
+  
+      )
+    }
+    
 }
 
 

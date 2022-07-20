@@ -28,7 +28,7 @@ export default function Trip(props) {
         if (!props.isEdit){
             Axios.get("country/index")
             .then((response) => {
-                console.log(response)
+                console.log("COUNTRIES FULL LIST: ", response)
                 setCountries(response.data.countries)
             })
             .catch((error) => {
@@ -37,7 +37,7 @@ export default function Trip(props) {
         } else {
             Axios.get("../../country/index")
             .then((response) => {
-                console.log(response)
+                console.log("COUNTRIES FULL LIST: ", response)
                 setCountries(response.data.countries)
             })
             .catch((error) => {
@@ -46,12 +46,12 @@ export default function Trip(props) {
         }
     }
 
-    console.log("CURRENT TRIP: ", props.trip)
-    console.log("ALL COUNTRIES: ", countries)
+    // console.log("CURRENT TRIP: ", props.trip)
+    // console.log("ALL COUNTRIES: ", countries)
 
-      // SET DROPDOWN OF CITIES BASED ON EXISTING TRIP
-      let selectedCountry = countries.find(country => country._id === props.trip.country);
-      console.log("SELECTED COUNTRY: ", selectedCountry)
+    //   // SET DROPDOWN OF CITIES BASED ON EXISTING TRIP
+    //   let selectedCountry = countries.find(country => country._id === props.trip.country);
+    //   console.log("SELECTED COUNTRY: ", selectedCountry)
       // console.log("SELECTED COUNTRY NAME: ", selectedCountry.name)
       // let cities = selectedCountry.cities
       // console.log(cities)
@@ -63,7 +63,7 @@ export default function Trip(props) {
             (!props.isEdit) ?
             <TripCreateForm addTrip={addTrip} countries={countries}/>
             :
-            <TripEditForm key={props.key} trip={props.trip} editTrip={props.editTrip} countries={countries} />
+            <TripEditForm tripId={props.tripId} trip={props.trip} editTrip={props.editTrip} countries={countries} />
         }
         
     </div>

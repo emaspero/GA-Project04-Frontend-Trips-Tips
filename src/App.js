@@ -116,6 +116,7 @@ export default function App() {
               <div>
                 <Link to="/profile" className="nav-top-auth-items-link">PROFILE</Link>{"   "}
                 <Link to="/logout" className="nav-top-auth-items-link" onClick={onLogoutHandler}>LOGOUT</Link>{"  "}
+                {/* <div to="/logout" className="nav-top-auth-items-link" onClick={onLogoutHandler}>LOGOUT</div>{"  "} */}
               </div>
             ) : (
               <div className="nav-top-auth-items">
@@ -153,6 +154,7 @@ export default function App() {
             <Route path="/profile" element={<Profile currentUser={currentUser} onLogoutHandler={onLogoutHandler}/>}></Route>
             <Route path="/signup" element={<Signup register={registerHandler} />}></Route>
             <Route path="/signin" element={ isAuth ? <Navigate to="/" /> : <Signin login={loginHandler} />}></Route>
+            {/* <Route path='/logout' element={<Navigate to="/" />} /> */}
             <Route path="/topten" element={<TopTen />}></Route>
             <Route path="/browse" element={<BrowseTrips />}></Route>
             <Route path="/mytrips" element={<MyTrips />}></Route>

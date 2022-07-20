@@ -15,7 +15,7 @@ export default function BrowseTrips() {
   const loadTripList = () => {
     Axios.get("trip/index")
     .then((response) => {
-      console.log(response);
+      console.log("RESPONSE DATA FOR TRIP INDEX: ", response);
       setTrips(response.data.trips)
     })
     .catch((error) => {
@@ -23,20 +23,20 @@ export default function BrowseTrips() {
     })
   };
 
-  const singleTrip = (id) => {
-    Axios.get(`trip/detail/${id}`)
-    .then((response) => {
-        console.log("Loaded Trip information")
-        console.log(response.data.trip)
+  // const singleTrip = (id) => {
+  //   Axios.get(`trip/detail/${id}`)
+  //   .then((response) => {
+  //       console.log("Loaded Trip information")
+  //       console.log(response.data.trip)
 
-        var trip = response.data.trip
-        setCurrentTrip(trip)
-    })
-    .catch((error) => {
-      console.log("Error loading trip information")
-      console.log(error)
-  })
-  }
+  //       var trip = response.data.trip
+  //       setCurrentTrip(trip)
+  //   })
+  //   .catch((error) => {
+  //     console.log("Error loading trip information")
+  //     console.log(error)
+  // })
+  // }
 
   // const editView = (id) => {
   //   Axios.get(`trip/edit?id=${id}`)
@@ -65,7 +65,8 @@ export default function BrowseTrips() {
 
   const allTrips = trips.map((trip, index) => (
     <div key={index}>
-      <TripSnippet {...trip} singleTrip={singleTrip} trip={currentTrip} trips={trips} />
+      <TripSnippet {...trip}/>
+      {/* <TripSnippet {...trip} singleTrip={singleTrip} currentTrip={currentTrip} trips={trips} /> */}
     </div>
   ));
 
