@@ -19,8 +19,20 @@ export default function Profile(props) {
         setIsPwdEdit(true)
     }
 
-    const editPwd = () => {
+    const editPwd = (currentUser) => {
         console.log("Axios call goes here")
+        Axios.put("auth/profile/pwdchange", currentUser, {headers : {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        }})
+        .then(response => {
+            console.log("Updated Password!")
+            setIsPwdEdit(false)
+            //props.onLogoutHandler()    
+        })
+        .catch(error => {
+            console.log("Error Updating password !!!");
+            console.log(error);
+        })
     }
 
     const editUser = (newUser) => {

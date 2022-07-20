@@ -5,6 +5,7 @@ import TripEditForm from './TripEditForm';
 
 export default function Trip(props) {
     const [countries, setCountries] = useState([]);
+    const [currentTripCities, setCurrentTripCities] = useState([]);
 
     useEffect(() => {
         loadCountryList()
@@ -24,15 +25,37 @@ export default function Trip(props) {
 
     // AXIOS CALL TO GET FULL COUNTRY DATA
     const loadCountryList = () => {
-        Axios.get("country/index")
-        .then((response) => {
-            console.log(response)
-            setCountries(response.data.countries)
-        })
-        .catch((error) => {
-            console.log(error)
-        })
+        if (!props.isEdit){
+            Axios.get("country/index")
+            .then((response) => {
+                console.log(response)
+                setCountries(response.data.countries)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+        } else {
+            Axios.get("../../country/index")
+            .then((response) => {
+                console.log(response)
+                setCountries(response.data.countries)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+        }
     }
+
+    console.log("CURRENT TRIP: ", props.trip)
+    console.log("ALL COUNTRIES: ", countries)
+
+      // SET DROPDOWN OF CITIES BASED ON EXISTING TRIP
+      let selectedCountry = countries.find(country => country._id === props.trip.country);
+      console.log("SELECTED COUNTRY: ", selectedCountry)
+      // console.log("SELECTED COUNTRY NAME: ", selectedCountry.name)
+      // let cities = selectedCountry.cities
+      // console.log(cities)
+      // setCurrentCities(cities)
 
   return (
     <div>
@@ -46,4 +69,5 @@ export default function Trip(props) {
     </div>
   )
 }
+
 
