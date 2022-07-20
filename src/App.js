@@ -15,7 +15,7 @@ import Trip from "./trips/Trip";
 import './App.css';
 import TripDetail from "./trips/TripDetail";
 import TripSnippet from "./trips/TripSnippet";
-
+import { useNavigate } from "react-router-dom";
 
 
 export default function App() {
@@ -24,6 +24,7 @@ export default function App() {
   const [message, setMessage] = useState(null);
   const [userId, setUserId] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
+
 
   useEffect(() => {
     let token = localStorage.getItem("token");
@@ -159,8 +160,8 @@ export default function App() {
             <Route path="/browse" element={<BrowseTrips />}></Route>
             <Route path="/mytrips" element={<MyTrips />}></Route>
             <Route path="/favs" element={<Favs />}></Route> 
-            <Route path="/addtrip" element={<Trip />}></Route>
-            <Route path="/trip/detail/:id" element={<TripDetail />}/>
+            <Route path="/addtrip" element={<Trip currentUser={currentUser} />}></Route>
+            <Route path="/trip/detail/:id" element={<TripDetail isAuth={isAuth} />}/>
 
           </Routes>
         </div>

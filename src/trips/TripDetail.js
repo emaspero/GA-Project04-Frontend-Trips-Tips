@@ -29,7 +29,11 @@ export default function TripDetail(props) {
     }, [id]);
 
     const editView = (id) => {
-        Axios.get(`../../trip/edit?id=${id}`)
+        Axios.get(`../../trip/edit?id=${id}`, {
+          headers: {
+              "Authorization": "Bearer " + localStorage.getItem("token")
+          }
+      })
         .then((response) => {
           console.log("Loaded trip information for editing: ", response.data.trip)
           var trip = response.data.trip
@@ -43,10 +47,14 @@ export default function TripDetail(props) {
       };
     
     const editTrip = (trip) => {
-        Axios.put("../../trip/update", trip)
+        Axios.put("../../trip/update", trip, {
+          headers: {
+              "Authorization": "Bearer " + localStorage.getItem("token")
+          }
+      })
         .then((response) => {
           console.log("Updated trip information")
-          // add function to refresh trip detail page here?
+          window.location.reload()
         })
         .catch((error) => {
           console.log("Error updating trip information")
@@ -55,7 +63,11 @@ export default function TripDetail(props) {
       };
 
       const deleteTrip = (id) => {
-        Axios.delete(`../../trip/delete?id=${id}`)
+        Axios.delete(`../../trip/delete?id=${id}`, {
+          headers: {
+              "Authorization": "Bearer " + localStorage.getItem("token")
+          }
+      })
         .then((response) => {
           console.log("Trip deleted successfully")
           // where should we be redirected after deleting a trip?
@@ -67,27 +79,34 @@ export default function TripDetail(props) {
       }
     
     if (currentTrip) {
-      return (
-        <div>
-            <h4>{currentTrip.title}</h4> by username-here {currentTrip.rating}
-            <div>{currentTrip.city}, {currentTrip.country}</div>
-            <p>{currentTrip.summary}</p>
+
+    return (
+      <div>
+        
+          <h4>{currentTrip.title}</h4> by username-here {currentTrip.rating}
+          <div>{currentTrip.city}, {currentTrip.country}</div>
+          <p>{currentTrip.summary}</p>
+          {
+            props.isAuth ?
+            <div>
             <button onClick={() => {editView(currentTrip._id)}}>Edit</button>
             <button onClick={() => {deleteTrip(currentTrip._id)}}>Delete</button>
-
-          {
-              (isEdit) ?
-              <Trip tripId={currentTrip._id} trip={currentTrip} editTrip={editTrip} isEdit={isEdit}/>
-              :
-              <></>
+            </div>
+            :
+            <></>
           }
+          
+
+        {
+            (isEdit) ?
+            <Trip key={currentTrip._id} trip={currentTrip} editTrip={editTrip} isEdit={isEdit}/>
+            :
+            <></>
+        }
 
         </div>
-
-  
       )
-    }
-    
+    }  
 }
 
 
