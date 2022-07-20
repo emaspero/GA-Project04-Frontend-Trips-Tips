@@ -3,6 +3,8 @@ import {useState, useEffect} from 'react'
 import Axios from 'axios'
 import UserEditForm from './UserEditForm'
 import PwdEditForm from './PwdEditForm'
+import { useNavigate } from 'react-router-dom'
+import './Profile.css';
 
 
 
@@ -10,6 +12,7 @@ export default function Profile(props) {
 
     const [isEdit, setIsEdit] = useState(false)
     const [isPwdEdit, setIsPwdEdit] = useState(false)
+    const navigate = useNavigate()
 
     const editView = () => {
         setIsEdit(true)
@@ -27,7 +30,8 @@ export default function Profile(props) {
         .then(response => {
             console.log("Updated Password!")
             setIsPwdEdit(false)
-            //props.onLogoutHandler()    
+            navigate('/profile')
+
         })
         .catch(error => {
             console.log("Error Updating password !!!");
@@ -60,14 +64,14 @@ export default function Profile(props) {
             <p>@{props.currentUser.username}</p>
             <p>{props.currentUser.firstName} {props.currentUser.lastName}</p>
             <p>{props.currentUser.emailAddress}</p>
-            <button onClick={() =>{editView()}}>Edit Profile</button>
+            <button onClick={() =>{editView()}}>EDIT</button>
             </div>
         :
         <div><UserEditForm editUser={editUser} currentUser={props.currentUser}/></div>
         }
         <br></br>
         {(!isPwdEdit)?
-            <button onClick={() =>{editPwdView()}}>Change password</button>
+            <button onClick={() =>{editPwdView()}}>CHANGE PASSWORD</button>
         :
         <div><PwdEditForm editPwd={editPwd} currentUser={props.currentUser}/></div>
         }

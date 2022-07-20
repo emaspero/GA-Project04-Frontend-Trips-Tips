@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes, Link, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link, Navigate  } from "react-router-dom";
 import TopTen from "./trips/TopTen";
 import Signup from "./user/Signup";
 import Signin from "./user/Signin";
@@ -16,6 +16,7 @@ import './App.css';
 import TripDetail from "./trips/TripDetail";
 import TripSnippet from "./trips/TripSnippet";
 import { useNavigate } from "react-router-dom";
+
 
 
 export default function App() {
@@ -41,10 +42,12 @@ export default function App() {
       } else if (!user) {
         localStorage.removeItem("token");
         setIsAuth(false);
-        setCurrentUser();
+        setCurrentUser(null);
+        setUser(null);
+        setUserId(null);
       }
     }
-  }, [userId]);
+  }, [userId, isAuth]);
 
   const registerHandler = (user) => {
     Axios.post("auth/signup", user)
@@ -66,6 +69,7 @@ export default function App() {
           let user = jwt_decode(response.data.token);
           setIsAuth(true);
           setUser(user);
+          setUserId(user.user.id);
           setMessage("User logged in successfully!");
         }
       })
@@ -75,18 +79,19 @@ export default function App() {
       });
   };
 
+
   const onLogoutHandler = (e) => {
-    e.preventDefault();
     localStorage.removeItem("token");
     setIsAuth(false);
     setUser(null);
     setMessage("User logged out successfully!");
+    setCurrentUser(null);
+
   };
 
-  const errMessage = message ? (
+  const alertMessage = message ? (
     <Alert variant="success">{message}</Alert>
   ) : null;
-
 
 
   const profileHandler = (userId) => {
@@ -98,6 +103,7 @@ export default function App() {
         "lastName" : response.data.user.lastName,
         "username" : response.data.user.username,
         "emailAddress" : response.data.user.emailAddress,
+        
       })
       // console.log(currentUser)
     })
@@ -116,8 +122,7 @@ export default function App() {
             {isAuth ? (
               <div>
                 <Link to="/profile" className="nav-top-auth-items-link">PROFILE</Link>{"   "}
-                <Link to="/logout" className="nav-top-auth-items-link" onClick={onLogoutHandler}>LOGOUT</Link>{"  "}
-                {/* <div to="/logout" className="nav-top-auth-items-link" onClick={onLogoutHandler}>LOGOUT</div>{"  "} */}
+                <Link to="/" className="nav-top-auth-items-link" onClick={onLogoutHandler}>LOGOUT</Link>{"  "}
               </div>
             ) : (
               <div className="nav-top-auth-items">
@@ -152,10 +157,10 @@ export default function App() {
         <div className="element-container">
           <Routes>
             <Route path="/" element={<TopTen />}></Route>
-            <Route path="/profile" element={<Profile currentUser={currentUser} onLogoutHandler={onLogoutHandler}/>}></Route>
+            <Route path="/profile" element={<Profile currentUser={currentUser} onLogoutHandler={onLogoutHandler} profileHandler={profileHandler}/>}></Route>
             <Route path="/signup" element={<Signup register={registerHandler} />}></Route>
             <Route path="/signin" element={ isAuth ? <Navigate to="/" /> : <Signin login={loginHandler} />}></Route>
-            {/* <Route path='/logout' element={<Navigate to="/" />} /> */}
+            <Route path="/logout" element={<TopTen />} ></Route>
             <Route path="/topten" element={<TopTen />}></Route>
             <Route path="/browse" element={<BrowseTrips />}></Route>
             <Route path="/mytrips" element={<MyTrips />}></Route>

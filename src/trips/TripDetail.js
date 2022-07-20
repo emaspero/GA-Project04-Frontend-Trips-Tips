@@ -84,7 +84,7 @@ export default function TripDetail(props) {
       <div>
         
           <h4>{currentTrip.title}</h4> by username-here {currentTrip.rating}
-          <div>{currentTrip.city}, {currentTrip.country}</div>
+          <div>{currentTrip.city}, {currentTrip? currentTrip.country: null}</div>
           <p>{currentTrip.summary}</p>
           {
             props.isAuth ?

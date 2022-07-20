@@ -54,6 +54,7 @@
 .nav-left-container{
   display: flex;
   flex-direction: column;
+  width: 20%;
 }
 
 .nav-left-items-link{
