@@ -1,0 +1,15 @@
+p{
+    color: #66BFBF;
+    font-size: 16px;
+}
+
+button{
+    background-color: #66BFBF;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-size: 12px;
+    padding: 5px;
+    padding-left: 10%;
+    padding-right: 10%;
+}
