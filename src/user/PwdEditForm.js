@@ -18,6 +18,7 @@ export default function UserEditForm(props) {
     
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log('newUser: ', newUser)
         props.editPwd(newUser);
         event.target.reset();
     }
@@ -30,7 +31,7 @@ export default function UserEditForm(props) {
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Current Password</label> {"  "}
-                    <input type="password" name="passwordConfirm" onChange={handleChange} value={newUser.passwordConfirm}/>
+                    <input type="password" name="currentPassword" onChange={handleChange} value={newUser.currentPassword}/>
                 </div>
 
                 <div >
