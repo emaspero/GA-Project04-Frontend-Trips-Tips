@@ -5,6 +5,7 @@ import UserEditForm from './UserEditForm'
 import PwdEditForm from './PwdEditForm'
 import { useNavigate } from 'react-router-dom'
 import './Profile.css';
+import MyTripsProfile from '../trips/MyTripsProfile'
 
 
 
@@ -75,6 +76,7 @@ export default function Profile(props) {
         :
         <div><PwdEditForm editPwd={editPwd} currentUser={props.currentUser}/></div>
         }
+        <div><MyTripsProfile currentUser={props.currentUser}></MyTripsProfile></div>
 
     </div>
 
