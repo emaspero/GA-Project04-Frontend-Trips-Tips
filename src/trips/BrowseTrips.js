@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import TripSnippet from './TripSnippet';
-// import TripEditForm from './TripEditForm';
+import TripEditForm from './TripEditForm';
 
 export default function BrowseTrips(props) {
   const [trips, setTrips] = useState([]);
