@@ -61,8 +61,6 @@ export default function Profile(props) {
     <div>
         <h1>PROFILE</h1>
 
-        {(!isEdit)?
-
         <div className='profile-container'>
 
             <div>
