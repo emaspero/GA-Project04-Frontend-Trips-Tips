@@ -112,4 +112,4 @@ export default function BrowseTrips(props) {
 
     </div>
   )
-}
+} 

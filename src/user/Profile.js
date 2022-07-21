@@ -61,7 +61,7 @@ export default function Profile(props) {
     <div>
         <h1>PROFILE</h1>
 
-        {(!isEdit)?
+        {/* {(!isEdit)? */}
 
         <div className='profile-container'>
 
@@ -93,7 +93,7 @@ export default function Profile(props) {
             <div className='profile-container-mytrips-item'><MyTripsProfile currentUser={props.currentUser}></MyTripsProfile></div>
         </div>
         
-    </div>
+    </div> 
 
   )
 }
