@@ -7,6 +7,7 @@ export default function BrowseTrips(props) {
   const [trips, setTrips] = useState([]);
   const [currentTrip, setCurrentTrip] = useState("");
   const [isEdit, setIsEdit] = useState(false);
+  const [liked, setLiked] = useState();
 
   
 
@@ -65,9 +66,41 @@ export default function BrowseTrips(props) {
     })
   }
 
+    // Like Functionality 
+    console.log(props.currentUser.id)
+    let likedBy = props.currentUser.id
+
+    const editLike = (id) => {
+      Axios.get(`../../trip/editLike?id=${id}`)
+      .then((response) => {
+        console.log("EDIT LIKE LOAD: ", response.data.trip)
+        var trip = response.data.trip
+        setCurrentTrip(trip)
+      })
+      .catch((error) => {
+        console.log("Error on editLike")
+        console.log(error)
+      })
+    }
+
+    const handleLikeChange = (e) => {
+      const trip = {...currentTrip}
+      trip["favs"] = likedBy
+      setCurrentTrip(trip)
+      editTrip(currentTrip)
+    }
+
+    const handleClick = (event) => {
+      console.log("HANDLECLICK:", event)
+      // call editLike(currentTrip._id)
+      editLike(currentTrip._id)
+      setLiked("liked")
+      handleLikeChange()
+    }
+
   const allTrips = trips.map((trip, index) => (
     <div key={index}>
-      <TripSnippet {...trip} singleTrip={singleTrip} trip={currentTrip} trips={trips} user={props.user} />
+      <TripSnippet {...trip} singleTrip={singleTrip} trip={currentTrip} trips={trips} user={props.user} handleClick={handleClick} liked={liked} likedBy={likedBy} />
     </div>
   ));
 
