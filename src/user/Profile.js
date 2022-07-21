@@ -54,12 +54,18 @@ export default function Profile(props) {
         console.log(error);
     })
 }
+    console.log(props.currentUser.profileImage)
 
 
   return (
     <div>
         <h1>PROFILE</h1>
-        <img src='/img/non-conforming-gender.png' width={"100px"}></img>
+        {(props.currentUser.profileImage)
+        ?
+        <img alt="profile" width={"100px"} src={`/img/profileImages/${props.currentUser.profileImage}`}></img>
+        :
+        <img alt="default" src='/img/non-conforming-gender.png' width={"100px"}></img>
+        }
         {(!isEdit)?
             <div>
             <p>@{props.currentUser.username}</p>
