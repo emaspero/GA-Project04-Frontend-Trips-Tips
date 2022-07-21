@@ -25,7 +25,7 @@ export default function UserEditForm(props) {
     
       return (
         <div>
-            <h2>EDIT USER</h2>
+            <h3>EDIT USER</h3>
     
         <form onSubmit={handleSubmit}>
 
