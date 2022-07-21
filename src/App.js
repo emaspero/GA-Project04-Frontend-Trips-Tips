@@ -164,7 +164,7 @@ export default function App() {
             <Route path="/logout" element={<TopTen />} ></Route>
             <Route path="/topten" element={<TopTen />}></Route>
             <Route path="/browse" element={<BrowseTrips user={user} currentUser={currentUser} />}></Route>
-            <Route path="/mytrips" element={<MyTrips />}></Route>
+            <Route path="/mytrips" element={<MyTrips user={user} currentUser={currentUser} />}></Route>
             <Route path="/favs" element={<Favs />}></Route> 
             <Route path="/addtrip" element={<Trip currentUser={currentUser} />}></Route>
             <Route path="/trip/detail/:id" element={<TripDetail isAuth={isAuth} user={user} />}/>

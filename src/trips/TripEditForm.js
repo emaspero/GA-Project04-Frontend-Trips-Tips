@@ -1,22 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 
 export default function TripEditForm(props) {
   const [newTrip, setNewTrip] = useState(props.trip);
-  const [currentCities, setCurrentCities] = useState([]);
-
-  useEffect(() => {
-    console.log("NEW TRIP: ", newTrip);
-    console.log("CURRENT CITIES: ", currentCities)
-    // setCities()
-  }, [newTrip, currentCities])
+  const [currentCities, setCurrentCities] = useState();
   
   const handleChange = (event) => {
     const attributeToChange = event.target.name
     const newValue = event.target.value
     const trip = {...newTrip}
     trip[attributeToChange] = newValue
-    console.log("TRIP: ", trip)
     setNewTrip(trip)
 
     // IF A COUNTRY WAS SELECTED IN THE DROPDOWN, UPDATE ARRAY OF CITIES
@@ -28,32 +21,20 @@ export default function TripEditForm(props) {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    props.editTrip(newTrip);
+      event.preventDefault();
+      props.editTrip(newTrip);
   };
-
 
   // CREATE DROPDOWN OPTIONS FOR ALL COUNTRIES IN DB
   const allCountries = props.countries.map((country, index) => {
     return <option key={index} value={country._id}>{country.name}</option>
   })
 
-  // CREATE DROPDOWN OPTIONS FROM CITIES ARRAY OF SELECTED COUNTRY
-  const selectedCountryCities = currentCities.map((city, index) => {
+  // // CREATE DROPDOWN OPTIONS FROM CITIES ARRAY OF SELECTED COUNTRY
+  let displayCities = currentCities ? currentCities : props.cities;
+  const selectedCountryCities = displayCities.map((city, index) => {
     return <option key={index} value={city}>{city}</option>
   })
-
-  // CREATE DROPDOWN OPTIONS FROM EXISTING TRIP COUNTRY
-  // const setCities = (event) => {
-  //   console.log("setCities - NEW TRIP: ", newTrip)
-  //   console.log("setCities - COUNTRY LIST: ", props.countries)
-  //   let selectedCountry = props.countries.find(country => country?._id === props.tripId);
-  //   console.log("EDIT FORM SELECTED COUNTRY: ", selectedCountry)
-  //   let cities = selectedCountry?.cities
-  //   console.log("EDIT FORM SELECTED COUNTRY CITIES: ", cities)
-  //   setCurrentCities(cities)
-  // }
-
 
 
   return (
