@@ -3,11 +3,12 @@ import React, { useState, useEffect } from 'react';
 
 export default function TripEditForm(props) {
   const [newTrip, setNewTrip] = useState(props.trip);
-  const [currentCities, setCurrentCities] = useState([])
+  const [currentCities, setCurrentCities] = useState([]);
 
   useEffect(() => {
     console.log("NEW TRIP: ", newTrip);
     console.log("CURRENT CITIES: ", currentCities)
+    // setCities()
   }, [newTrip, currentCities])
   
   const handleChange = (event) => {
@@ -15,7 +16,6 @@ export default function TripEditForm(props) {
     const newValue = event.target.value
     const trip = {...newTrip}
     trip[attributeToChange] = newValue
-
     console.log("TRIP: ", trip)
     setNewTrip(trip)
 
@@ -43,6 +43,18 @@ export default function TripEditForm(props) {
     return <option key={index} value={city}>{city}</option>
   })
 
+  // CREATE DROPDOWN OPTIONS FROM EXISTING TRIP COUNTRY
+  // const setCities = (event) => {
+  //   console.log("setCities - NEW TRIP: ", newTrip)
+  //   console.log("setCities - COUNTRY LIST: ", props.countries)
+  //   let selectedCountry = props.countries.find(country => country?._id === props.tripId);
+  //   console.log("EDIT FORM SELECTED COUNTRY: ", selectedCountry)
+  //   let cities = selectedCountry?.cities
+  //   console.log("EDIT FORM SELECTED COUNTRY CITIES: ", cities)
+  //   setCurrentCities(cities)
+  // }
+
+
 
   return (
     <div>
@@ -61,7 +73,7 @@ export default function TripEditForm(props) {
 
         <div>
             <select defaultValue={'DEFAULT'} id="city" name="city" onChange={handleChange} value={newTrip.city} required>
-                <option value="DEFAULT" disabled hidden>Choose a City</option>
+                {/* <option value="DEFAULT" disabled hidden>Choose a City</option> */}
                 {selectedCountryCities}
             </select>
         </div>

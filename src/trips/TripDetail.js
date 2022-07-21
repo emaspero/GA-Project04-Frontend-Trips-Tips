@@ -10,8 +10,7 @@ export default function TripDetail(props) {
     // console.log("props trip", props.trip)
 
     const [currentTrip, setCurrentTrip] = useState({});
-    const [isEdit, setIsEdit] = useState(false);
-    
+    const [isEdit, setIsEdit] = useState(false);    
 
     // console.log(currentTrip.createdBy?.username)
 
@@ -86,7 +85,7 @@ export default function TripDetail(props) {
       <div>
         
           <h4>{currentTrip.title}</h4> by {currentTrip.createdBy?.username} {currentTrip.rating}
-          <div>{currentTrip.city}, {currentTrip.country}</div>
+          <div>{currentTrip.city}, {currentTrip.country?.name}</div>
           <p>{currentTrip.summary}</p>
           {
             props.isAuth ?
@@ -101,7 +100,7 @@ export default function TripDetail(props) {
 
         {
             (isEdit) ?
-            <Trip key={currentTrip._id} trip={currentTrip} editTrip={editTrip} isEdit={isEdit}/>
+            <Trip tripId={currentTrip._id} trip={currentTrip} editTrip={editTrip} isEdit={isEdit}/>
             :
             <></>
         }
