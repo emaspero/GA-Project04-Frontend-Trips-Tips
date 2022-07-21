@@ -91,7 +91,7 @@ export default function Profile(props) {
             <div className='profile-container-mytrips-item'><MyTripsProfile currentUser={props.currentUser}></MyTripsProfile></div>
         </div>
         
-    </div>
+    </div> 
 
   )
 }

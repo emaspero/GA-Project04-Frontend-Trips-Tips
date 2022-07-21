@@ -91,3 +91,8 @@
   position: absolute;
   bottom: 0px;
 }
+
+#emptyHeart {
+  height: 20px;
+  width: auto;
+}
