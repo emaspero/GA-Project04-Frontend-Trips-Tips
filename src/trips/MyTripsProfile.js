@@ -26,12 +26,18 @@ export default function MyTripsProfile(props) {
     };
 
     const allMyTripsMap = trips.map((trip, index) => (
-        <div key={index}>{trip.title}</div>
+        <div className='mytrips-profile-container'>
+            <div key={index} className='mytrips-profile-title'>{trip.title}</div>
+            <br></br>
+            <div><img src={`./img/${trip.rating}-star.png`} alt='star' className='rating-star'></img></div>
+            <br></br>
+            <br></br>
+        </div>
     ));
 
   return (
     <div>
-        MY TRIPS
+        <h3>MY TRIPS</h3>
         {allMyTripsMap}
     </div>
   )

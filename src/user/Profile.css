@@ -13,3 +13,27 @@ button{
     padding-left: 10%;
     padding-right: 10%;
 }
+
+.mytrips-profile-title{
+    color: #FF0063;
+    
+}
+
+.rating-star{
+    height: 20px;
+}
+
+.mytrips-profile-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.profile-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.profile-container-mytrips-item{
+    margin-left: 100px;
+}
