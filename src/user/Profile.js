@@ -54,30 +54,45 @@ export default function Profile(props) {
         console.log(error);
     })
 }
+    console.log(props.currentUser.profileImage)
 
 
   return (
     <div>
         <h1>PROFILE</h1>
-        <img src='/img/non-conforming-gender.png' width={"100px"}></img>
-        {(!isEdit)?
-            <div>
-            <p>@{props.currentUser.username}</p>
-            <p>{props.currentUser.firstName} {props.currentUser.lastName}</p>
-            <p>{props.currentUser.emailAddress}</p>
-            <button onClick={() =>{editView()}}>EDIT</button>
-            </div>
-        :
-        <div><UserEditForm editUser={editUser} currentUser={props.currentUser}/></div>
-        }
-        <br></br>
-        {(!isPwdEdit)?
-            <button onClick={() =>{editPwdView()}}>CHANGE PASSWORD</button>
-        :
-        <div><PwdEditForm editPwd={editPwd} currentUser={props.currentUser}/></div>
-        }
-        <div><MyTripsProfile currentUser={props.currentUser}></MyTripsProfile></div>
 
+        {(!isEdit)?
+
+        <div className='profile-container'>
+
+            <div>
+                {(props.currentUser.profileImage)
+                ?
+                <img alt="profile" width={"100px"} src={`/img/profileImages/${props.currentUser.profileImage}`}></img>
+                :
+                 <img alt="default" src='/img/non-conforming-gender.png' width={"100px"}></img>
+                }
+                
+                {(!isEdit)?
+                    <div>
+                    <p>@{props.currentUser.username}</p>
+                    <p>{props.currentUser.firstName} {props.currentUser.lastName}</p>
+                    <p>{props.currentUser.emailAddress}</p>
+                    <button onClick={() =>{editView()}}>EDIT</button>
+                    </div>
+                :
+                <div><UserEditForm editUser={editUser} currentUser={props.currentUser}/></div>
+                }
+                <br></br>
+                {(!isPwdEdit)?
+                    <button onClick={() =>{editPwdView()}}>CHANGE PASSWORD</button>
+                :
+                <div><PwdEditForm editPwd={editPwd} currentUser={props.currentUser}/></div>
+                }
+            </div>
+            <div className='profile-container-mytrips-item'><MyTripsProfile currentUser={props.currentUser}></MyTripsProfile></div>
+        </div>
+        
     </div>
 
   )

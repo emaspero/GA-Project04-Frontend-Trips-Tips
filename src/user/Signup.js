@@ -20,15 +20,15 @@ export default function Signup(props) {
     }
 
     const registerHandler = () => {
-        // const formData = new FormData()
-        // formData.set('firstName', newUser.firstName)
-        // formData.set('lastName', newUser.lastName)
-        // formData.set('username', newUser.username)
-        // formData.set('emailAddress', newUser.emailAddress)
-        // formData.set('password', newUser.password)
-        // formData.set('profileImage', newUser.profileImage)
-        // props.register(formData)
-        props.register(newUser)
+        const formData = new FormData()
+        formData.set('firstName', newUser.firstName)
+        formData.set('lastName', newUser.lastName)
+        formData.set('username', newUser.username)
+        formData.set('emailAddress', newUser.emailAddress)
+        formData.set('password', newUser.password)
+        formData.set('profileImage', newUser.profileImage)
+        props.register(formData)
+        // props.register(newUser)
     }
 
   return (
@@ -56,9 +56,9 @@ export default function Signup(props) {
                 <input type="password" placeholder="Password" name="password" onChange={changeHandler}></input>
             </div>
 
-            {/* <div>
-                <input type="file" accept=".png, .jpg, .jpeg" filename="profileImage" onChange={photoHandler}/>
-            </div> */}
+            <div>
+                <input type="file" accept=".png, .jpg, .jpeg" name="profileImage" onChange={photoHandler}/>
+            </div>
             <br></br>
             <div>
                 <input type="submit" value="Register"></input>

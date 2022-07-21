@@ -103,6 +103,7 @@ export default function App() {
         "lastName" : response.data.user.lastName,
         "username" : response.data.user.username,
         "emailAddress" : response.data.user.emailAddress,
+        "profileImage" : response.data.user.profileImage,
         
       })
       // console.log(currentUser)
