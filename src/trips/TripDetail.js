@@ -78,15 +78,15 @@ export default function TripDetail(props) {
       }
 
         // GET FULL COUNTRY DATA *AXIOS*
-    const loadCountryList = () => {
-        Axios.get("../../country/index")
-          .then((response) => {
-              setCountries(response.data.countries)
-          })
-          .catch((error) => {
-              console.log(error)
-          })
-  }
+        const loadCountryList = () => {
+          Axios.get("../../country/index")
+            .then((response) => {
+                setCountries(response.data.countries)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+        }
 
     
     if (currentTrip) {
