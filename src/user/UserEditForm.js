@@ -15,10 +15,24 @@ export default function UserEditForm(props) {
         setNewUser(user)
         console.log("---------",newUser)
     }
+
+    const photoHandler = (e) => {
+        setNewUser({...newUser, profileImage: e.target.files[0]})
+        return null
+    }
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        props.editUser(newUser);
+        const formData = new FormData()
+        formData.set('firstName', newUser.firstName)
+        formData.set('lastName', newUser.lastName)
+        formData.set('username', newUser.username)
+        formData.set('emailAddress', newUser.emailAddress)
+        formData.set('password', newUser.password)
+        formData.set('id', newUser.id)
+        formData.set('profileImage', newUser.profileImage)
+        // props.editUser(newUser);
+        props.editUser(formData);
         event.target.reset();
     }
     
@@ -27,7 +41,7 @@ export default function UserEditForm(props) {
         <div>
             <h3>EDIT USER</h3>
     
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} encType='multipart/form-data'>
 
             <div>
                 <input type="text" name="firstName" onChange={handleChange} value={newUser.firstName}></input>
@@ -43,6 +57,10 @@ export default function UserEditForm(props) {
 
             <div>
                 <input type="text" name="emailAddress" onChange={handleChange} value={newUser.emailAddress}></input>
+            </div>
+
+            <div>
+                <input type="file" accept=".png, .jpg, .jpeg" name="profileImage" onChange={photoHandler}/>
             </div>
     
             <div>
