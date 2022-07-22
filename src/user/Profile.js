@@ -54,7 +54,7 @@ export default function Profile(props) {
         console.log(error);
     })
 }
-    console.log(props.currentUser.profileImage)
+    // console.log(props.currentUser.profileImage)
 
 
   return (
