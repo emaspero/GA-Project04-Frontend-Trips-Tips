@@ -7,7 +7,7 @@ export default function TripSnippet(props) {
 
   // Like Functionality
   // console.log(props.currentUser.id);
-  let likedBy = props.currentUser.id;
+  let likedBy = props.currentUser?.id;
 
   const editLike = (id) => {
     Axios.get(`trip/editLike?id=${id}`)
@@ -29,7 +29,10 @@ export default function TripSnippet(props) {
     console.log(trip.favs)
     // props.favs = likedBy;
     // trip = {"favs": likedBy};
-    trip["favs"] = likedBy;
+    // trip["favs"] = likedBy;
+    
+    
+
     console.log("TRIP", trip)
     props.setCurrentTrip(trip);
     props.editTrip(props.currentTrip);
