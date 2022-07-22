@@ -10,7 +10,11 @@ export default function TripSnippet(props) {
   let likedBy = props.currentUser?.id;
 
   const editLike = (id) => {
-    Axios.get(`trip/editLike?id=${id}`)
+    Axios.get(`trip/editLike?id=${id}`, {
+      headers: {
+          "Authorization": "Bearer " + localStorage.getItem("token")
+      }
+  })
       .then((response) => {
         console.log("EDIT LIKE LOAD: ", response);
         var trip = response.data.trip;
@@ -22,6 +26,18 @@ export default function TripSnippet(props) {
       });
   };
 
+  const updateLike = (trip) => {
+    console.log("UPDATE LIKE TRIP ARG", trip)
+    Axios.put("trip/updateLike", trip)
+    .then((response) => {
+      console.log("Updated like information")
+    })
+    .catch((error) => {
+      console.log("Error updating like information")
+      console.log(error)
+    })
+  }
+
   const handleLikeChange = (e) => {
     let trip = props;
     console.log("TRIP FIRST", props)
@@ -30,12 +46,11 @@ export default function TripSnippet(props) {
     // props.favs = likedBy;
     // trip = {"favs": likedBy};
     // trip["favs"] = likedBy;
-    
-    
 
     console.log("TRIP", trip)
     props.setCurrentTrip(trip);
-    props.editTrip(props.currentTrip);
+    updateLike(props);
+    console.log("CT", props)
   };
 
   const handleClick = (event) => {
