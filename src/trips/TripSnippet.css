@@ -1,0 +1,53 @@
+h4{
+    color: #FF0063;
+
+}
+
+.trip-container-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+p{
+    color: rgb(74, 74, 74);
+}
+
+
+.trip-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+/* .trip-container-left{
+
+} */
+
+/* .trip-container-right{} */
+
+
+/* .trip-container-right-img{
+
+
+} */
+
+.trip-img{
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+    margin: 20px 0;
+}
+
+.trip-see-more{
+    color: #66BFBF;
+    text-decoration: none;
+}
+
+hr{
+    background-color: rgb(177, 176, 176);
+    border: none;
+    height: 1px;
+
+}

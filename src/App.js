@@ -182,13 +182,13 @@ export default function App() {
 
         <div className="element-container">
           <Routes>
-            <Route path="/" element={<TopTen />}></Route>
+            <Route path="/" element={<TopTen />} ></Route>
             <Route path="/profile" element={<Profile currentUser={currentUser} onLogoutHandler={onLogoutHandler} profileHandler={profileHandler}/>}></Route>
             <Route path="/signup" element={<Signup register={registerHandler} />}></Route>
             <Route path="/signin" element={ isAuth ? <Navigate to="/" /> : <Signin login={loginHandler} />}></Route>
             <Route path="/logout" element={<TopTen />} ></Route>
             <Route path="/topten" element={<TopTen />}></Route>
-            <Route path="/browse" element={<BrowseTrips user={user} currentUser={currentUser} />}></Route>
+            <Route path="/browse" element={<BrowseTrips user={user} currentUser={currentUser}/>}></Route>
             <Route path="/mytrips" element={<MyTrips user={user} currentUser={currentUser} />}></Route>
             <Route path="/favs" element={<Favs />}></Route>
             <Route path="/addtrip" element={<TripCreateForm currentUser={currentUser} allCountries={allCountries} addTrip={addTrip}/>}></Route>
