@@ -34,6 +34,8 @@ export default function TripCreateForm(props) {
     event.target.reset()
   };
 
+  console.log("PROPS COUNTRIES", props.countries)
+
   // CREATE DROPDOWN OPTIONS FOR ALL COUNTRIES IN DB
   const allCountries = props.countries.map((country, index) => {
     return <option key={index} value={country._id}>{country.name}</option>

@@ -10,6 +10,7 @@ export default function TripDetail(props) {
     const [currentTrip, setCurrentTrip] = useState({});
     const [isEdit, setIsEdit] = useState(false);    
     const [countries, setCountries] = useState([]);
+    // console.log("COUNTRIES TRIPDETAIL", countries)
 
 
     useEffect (() => {
