@@ -28,7 +28,6 @@ export default function UserEditForm(props) {
         formData.set('lastName', newUser.lastName)
         formData.set('username', newUser.username)
         formData.set('emailAddress', newUser.emailAddress)
-        formData.set('password', newUser.password)
         formData.set('id', newUser.id)
         formData.set('profileImage', newUser.profileImage)
         // props.editUser(newUser);
