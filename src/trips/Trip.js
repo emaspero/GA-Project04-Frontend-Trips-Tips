@@ -1,6 +1,4 @@
 import React, { useState, useEffect }  from 'react';
-import Axios from 'axios';
-import TripCreateForm from './TripCreateForm';
 import TripEditForm from './TripEditForm';
 
 export default function Trip(props) {
@@ -14,21 +12,6 @@ export default function Trip(props) {
 
       }, [cities]);
 
-    //  ADD A TRIP
-    const addTrip = (trip) => {
-        Axios.post("trip/add", trip, {
-            headers: {
-                "Authorization": "Bearer " + localStorage.getItem("token")
-            }
-        })
-        .then((response) => {
-            console.log("Trip added successfully!")
-        })
-        .catch((error) => {
-            console.log("Error adding Trip. Please try again later.");
-            console.log(error);
-        })
-    }
 
     // GET CITIES FROM COUNTRY DATA 
 
@@ -39,13 +22,7 @@ export default function Trip(props) {
 
     return (
         <div>
-            {
-                (!props.isEdit) ?
-                <TripCreateForm addTrip={addTrip} countries={countries} currentUser={props.currentUser}/>
-                :
-                <TripEditForm tripId={props.tripId} trip={props.trip} editTrip={props.editTrip} countries={countries} cities={cities}/>
-            }
-            
+            <TripEditForm tripId={props.tripId} trip={props.trip} editTrip={props.editTrip} countries={countries} cities={cities}/>
         </div>
     )
 }

@@ -66,7 +66,7 @@ export default function Profile(props) {
             <div>
                 {(props.currentUser.profileImage)
                 ?
-                <img alt="profile" width={"100px"} src={`/img/profileImages/${props.currentUser.profileImage}`}></img>
+                <img alt="profile" width={"100px"} src={`img/profileImages/${props.currentUser.profileImage}`}></img>
                 :
                  <img alt="default" src='/img/non-conforming-gender.png' width={"100px"}></img>
                 }
