@@ -6,19 +6,16 @@ import Trip from './Trip';
 
 export default function TripDetail(props) {
     let {id} = useParams();
-    // console.log("detail console log", props)
-    // console.log("props trip", props.trip)
 
     const [currentTrip, setCurrentTrip] = useState({});
     const [isEdit, setIsEdit] = useState(false);    
+    const [countries, setCountries] = useState([]);
 
-    // console.log(currentTrip.createdBy?.username)
 
     useEffect (() => {
         if (id) {
           Axios.get(`../../trip/detail/${id}`)
           .then((response) => {
-            console.log("SINGLE TRIP AXIOS RESPONSE DATA: ", response.data)
             let trip = response.data.trip
             setCurrentTrip(trip)
           })
@@ -26,7 +23,9 @@ export default function TripDetail(props) {
               console.log(error)
           })
         }
-        console.log("useEffect CURRENT TRIP: ", currentTrip)
+
+        loadCountryList()
+
     }, [id]);
 
     const editView = (id) => {
@@ -36,7 +35,6 @@ export default function TripDetail(props) {
           }
       })
         .then((response) => {
-          console.log("Loaded trip information for editing: ", response.data.trip)
           var trip = response.data.trip
           setIsEdit(true)
           setCurrentTrip(trip)
@@ -78,6 +76,18 @@ export default function TripDetail(props) {
           console.log(error)
         })
       }
+
+        // GET FULL COUNTRY DATA *AXIOS*
+    const loadCountryList = () => {
+        Axios.get("../../country/index")
+          .then((response) => {
+              setCountries(response.data.countries)
+          })
+          .catch((error) => {
+              console.log(error)
+          })
+  }
+
     
     if (currentTrip) {
 
@@ -100,7 +110,7 @@ export default function TripDetail(props) {
 
         {
             (isEdit) ?
-            <Trip tripId={currentTrip._id} trip={currentTrip} editTrip={editTrip} isEdit={isEdit}/>
+            <Trip tripId={currentTrip._id} trip={currentTrip} editTrip={editTrip} isEdit={isEdit} countriesList={countries}/>
             :
             <></>
         }
