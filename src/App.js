@@ -10,12 +10,9 @@ import {Alert} from 'react-bootstrap';
 import BrowseTrips from "./trips/BrowseTrips";
 import MyTrips from "./trips/MyTrips";
 import Favs from "./trips/Favs";
-// import TripCreateForm from "./trips/TripCreateForm";
-import Trip from "./trips/Trip";
 import './App.css';
 import TripDetail from "./trips/TripDetail";
-import TripSnippet from "./trips/TripSnippet";
-import { useNavigate } from "react-router-dom";
+import TripCreateForm from "./trips/TripCreateForm";
 
 
 
@@ -25,6 +22,7 @@ export default function App() {
   const [message, setMessage] = useState(null);
   const [userId, setUserId] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
+  const [allCountries, setAllCountries] = useState([])
 
 
   useEffect(() => {
@@ -46,7 +44,9 @@ export default function App() {
         setUser(null);
         setUserId(null);
       }
-    }
+    };
+
+    loadCountryList()
   }, [userId, isAuth]);
 
   const registerHandler = (user) => {
@@ -78,6 +78,31 @@ export default function App() {
         setIsAuth(false);
       });
   };
+
+  const loadCountryList = () => {
+    Axios.get("../../country/index")
+      .then((response) => {
+        setAllCountries(response.data.countries)
+      })
+      .catch((error) => {
+          console.log(error)
+      })
+  }
+
+  const addTrip = (trip) => {
+    Axios.post("trip/add", trip, {
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        }
+    })
+    .then((response) => {
+        console.log("Trip added successfully!")
+    })
+    .catch((error) => {
+        console.log("Error adding Trip. Please try again later.");
+        console.log(error);
+    })
+  }
 
 
   const onLogoutHandler = (e) => {
@@ -165,8 +190,8 @@ export default function App() {
             <Route path="/topten" element={<TopTen />}></Route>
             <Route path="/browse" element={<BrowseTrips user={user} currentUser={currentUser} />}></Route>
             <Route path="/mytrips" element={<MyTrips user={user} currentUser={currentUser} />}></Route>
-            <Route path="/favs" element={<Favs />}></Route> 
-            <Route path="/addtrip" element={<Trip currentUser={currentUser} />}></Route>
+            <Route path="/favs" element={<Favs />}></Route>
+            <Route path="/addtrip" element={<TripCreateForm currentUser={currentUser} allCountries={allCountries} addTrip={addTrip}/>}></Route>
             <Route path="/trip/detail/:id" element={<TripDetail isAuth={isAuth} user={user} />}/>
 
           </Routes>

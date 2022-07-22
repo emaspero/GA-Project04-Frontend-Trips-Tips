@@ -22,7 +22,7 @@ export default function TripCreateForm(props) {
 
     // IF A COUNTRY WAS SELECTED IN THE DROPDOWN, UPDATE ARRAY OF CITIES
     if (event.target.name === "country") {
-      let selectedCountry = props.countries.find(country => country._id === event.target.value)
+      let selectedCountry = props.allCountries.find(country => country._id === event.target.value)
       let selectedCountryCities = selectedCountry.cities
       setCurrentCities(selectedCountryCities)
     }
@@ -35,7 +35,7 @@ export default function TripCreateForm(props) {
   };
 
   // CREATE DROPDOWN OPTIONS FOR ALL COUNTRIES IN DB
-  const allCountries = props.countries.map((country, index) => {
+  const allCountries = props.allCountries.map((country, index) => {
     return <option key={index} value={country._id}>{country.name}</option>
   })
 
