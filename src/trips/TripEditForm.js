@@ -53,7 +53,7 @@ export default function TripEditForm(props) {
         </div>
 
         <div>
-            <select defaultValue={'DEFAULT'} id="city" name="city" onChange={handleChange} value={newTrip.city} required>
+            <select id="city" name="city" onChange={handleChange} value={newTrip.city} required>
                 {/* <option value="DEFAULT" disabled hidden>Choose a City</option> */}
                 {selectedCountryCities}
             </select>
