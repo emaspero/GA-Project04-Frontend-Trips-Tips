@@ -2,7 +2,7 @@ import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import Trip from './Trip';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 export default function TripDetail(props) {
     let {id} = useParams();
@@ -64,6 +64,7 @@ export default function TripDetail(props) {
 
           setIsEdit(false);
           loadTripDetails();
+          // response.preventDefault();
           // props.profileHandler();
           // setCurrentUser(props.user.user);
           // window.location.reload()
