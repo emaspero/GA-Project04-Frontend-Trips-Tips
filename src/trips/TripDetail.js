@@ -7,26 +7,33 @@ import Trip from './Trip';
 export default function TripDetail(props) {
     let {id} = useParams();
 
-    const [currentTrip, setCurrentTrip] = useState({});
+    const [currentTrip, setCurrentTrip] = useState(null);
     const [isEdit, setIsEdit] = useState(false);    
     const [countries, setCountries] = useState([]);
-    // console.log("COUNTRIES TRIPDETAIL", countries)
+    const [isLiked, setIsLiked] = useState(false);
+    const [currentUser, setCurrentUser] = useState(props.user.user);
+
 
     useEffect (() => {
-        if (id) {
-          Axios.get(`../../trip/detail/${id}`)
-          .then((response) => {
-            let trip = response.data.trip
-            setCurrentTrip(trip)
-          })
-          .catch((error) => {
-              console.log(error)
-          })
-        }
-
-        loadCountryList()
+  
+      loadTripDetails(id)
 
     }, [id]);
+
+    const loadTripDetails = (id) => {
+      if (id) {
+        Axios.get(`../../trip/detail/${id}`)
+        .then((response) => {
+          let trip = response.data.trip
+          setCurrentTrip(trip)
+
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+      }
+      loadCountryList()
+    }
 
     const editView = (id) => {
         Axios.get(`../../trip/edit?id=${id}`, {
@@ -88,102 +95,89 @@ export default function TripDetail(props) {
         })
     }
 
-    // Like Functionality 
-    const editLike = (id) => {
-      Axios.get(`../../trip/editLike?id=${id}`, {
-        headers: {
-            "Authorization": "Bearer " + localStorage.getItem("token")
-        }
-    })
-        .then((response) => {
-          console.log("EDIT LIKE LOAD: ", response);
-          var trip = response.data.trip;
-          setCurrentTrip(trip);
-        })
-        .catch((error) => {
-          console.log("Error on editLike");
-          console.log(error);
-        });
-    };
-  
+    // LIKE FUNCTIONALITY
+
     const updateLike = (trip) => {
-      console.log("UPDATE LIKE TRIP ARG", trip)
-      Axios.put("../../trip/updateLike", trip, {
-        headers: {
-            "Authorization": "Bearer " + localStorage.getItem("token")
-        }
+    console.log("UPDATE LIKE TRIP ARG", trip)
+    Axios.put("../../trip/updateLike", trip, {
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      }
     })
       .then((response) => {
         console.log("Updated like information")
+        setIsLiked(true)   
+        loadTripDetails(id)   
       })
       .catch((error) => {
         console.log("Error updating like information")
         console.log(error)
       })
+      
     }
   
     const handleLikeChange = () => {
       let trip = currentTrip;
-      // console.log("TRIP FIRST", currentTrip)
-      setCurrentTrip(trip);
       updateLike(trip);
-      // console.log("CT", trip)
+      setIsLiked ? (setIsLiked(false)) : (setIsLiked(true))
     };
-  
-    const handleClick = (event) => {
-      // console.log("HANDLECLICK:", event);
-      editLike(currentTrip._id);
-      handleLikeChange();
-    };
-
-    // console.log("CURRENT TRIP ID", currentTrip.createdBy?._id)
-    // console.log("CURRENT USER", props?.currentUser?.id)
 
     let idMatch = (currentTrip.createdBy?._id === props?.currentUser?.id) ? true : false
     console.log("ID MATCH", idMatch)
-      
-    if (currentTrip) {
 
     return (
       <div>
-        
-          <h4>{currentTrip.title}</h4> by {currentTrip.createdBy?.username} {currentTrip.rating}
+        { currentUser? (
+          <div>
 
-          {currentTrip.favs && currentTrip.favs.includes(`${props.currentUser.id}`) ? (
+        { currentTrip? (
+
+          <div>
+          <h4>{currentTrip.title}</h4> 
+          <p>by {currentTrip.createdBy?.username} {currentTrip.rating}</p>
+          
+
+
+          {(currentTrip.favs.includes(`${currentUser.id}`)) ? (
             <img
               src="/img/heart_full.png"
               alt="full heart"
-              id="emptyHeart"
-              onClick={handleClick}
+              id="fullHeart"
+              onClick={handleLikeChange}
             ></img>
           ) : (
             <img
               src="/img/heart_empty.png"
               alt="empty heart"
               id="emptyHeart"
+              onClick={handleLikeChange}
             ></img>
           )}
 
           <div>{currentTrip.city}, {currentTrip.country?.name}</div>
           <p>{currentTrip.summary}</p>
-          {
-            props.isAuth && idMatch === true ?
-            <div>
-            <button onClick={() => {editView(currentTrip._id)}}>Edit</button>
-            <button onClick={() => {deleteTrip(currentTrip._id)}}>Delete</button>
-            </div>
-            :
-            <></>
+        
+          {(props.isAuth && idMatch === true) ?
+          <div>
+          <button onClick={() => {editView(currentTrip._id)}}>Edit</button>
+          <button onClick={() => {deleteTrip(currentTrip._id)}}>Delete</button>
+          </div>
+          :
+          <></>
+
           }
           
-        {
-            (isEdit) ?
-            <Trip tripId={currentTrip._id} trip={currentTrip} editTrip={editTrip} isEdit={isEdit} countriesList={countries}/>
-            :
-            <></>
-        }
-
+          {
+              (isEdit) ?
+              <Trip tripId={currentTrip._id} trip={currentTrip} editTrip={editTrip} isEdit={isEdit} countriesList={countries}/>
+              :
+              <></>
+          }
+          </div>):null}
+          </div>
+          ):null}
+        
         </div>
       )
     }  
-}
+
