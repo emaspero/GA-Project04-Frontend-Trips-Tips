@@ -122,8 +122,15 @@ export default function TripDetail(props) {
       setIsLiked ? (setIsLiked(false)) : (setIsLiked(true))
     };
 
-    let idMatch = (currentTrip.createdBy?._id === props?.currentUser?.id) ? true : false
-    console.log("ID MATCH", idMatch)
+    let idMatch = false
+    if (currentTrip) {
+      idMatch = (currentTrip.createdBy?._id === props?.currentUser?.id) ? true : false
+      console.log("ID MATCH", idMatch)
+    }
+    else{
+      console.log("no ID match")
+    }
+
 
     return (
       <div>
