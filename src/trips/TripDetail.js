@@ -2,7 +2,7 @@ import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import Trip from './Trip';
-
+import { useNavigate } from 'react-router-dom'
 
 export default function TripDetail(props) {
     let {id} = useParams();
@@ -12,6 +12,7 @@ export default function TripDetail(props) {
     const [countries, setCountries] = useState([]);
     const [isLiked, setIsLiked] = useState(false);
     const [currentUser, setCurrentUser] = useState(props.user.user);
+    const navigate = useNavigate()
 
 
     useEffect (() => {
@@ -60,7 +61,12 @@ export default function TripDetail(props) {
       })
         .then((response) => {
           console.log("Updated trip information")
-          window.location.reload()
+          setIsEdit(false);
+          loadTripDetails();
+          // props.profileHandler();
+          // setCurrentUser(props.user.user);
+          // window.location.reload()
+          // navigate(`../../mytrips`)
         })
         .catch((error) => {
           console.log("Error updating trip information")
@@ -134,8 +140,8 @@ export default function TripDetail(props) {
 
     return (
       <div>
-        { currentUser? (
-          <div>
+        {/* { currentUser? (
+          <div> */}
 
         { currentTrip? (
 
@@ -145,7 +151,7 @@ export default function TripDetail(props) {
           
 
 
-          {(currentTrip.favs.includes(`${currentUser.id}`)) ? (
+          {(currentTrip.favs.includes(`${currentUser?.id}`)) ? (
             <img
               src="/img/heart_full.png"
               alt="full heart"
@@ -182,9 +188,10 @@ export default function TripDetail(props) {
           }
           </div>):null}
           </div>
-          ):null}
+          )
+          // :null}
         
-        </div>
-      )
+        // </div>
+      // )
     }  
 

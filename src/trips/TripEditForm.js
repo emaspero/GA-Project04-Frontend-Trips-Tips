@@ -10,6 +10,9 @@ export default function TripEditForm(props) {
     const newValue = event.target.value
     const trip = {...newTrip}
     trip[attributeToChange] = newValue
+    console.log(trip)
+    console.log("Current User", props.currentUser)
+
     setNewTrip(trip)
 
     // IF A COUNTRY WAS SELECTED IN THE DROPDOWN, UPDATE ARRAY OF CITIES
@@ -20,9 +23,23 @@ export default function TripEditForm(props) {
     }
   };
 
+  const photoHandler = (e) => {
+    setNewTrip({...newTrip, image: e.target.files[0]})
+  }
+
   const handleSubmit = (event) => {
-      event.preventDefault();
-      props.editTrip(newTrip);
+      // event.preventDefault();
+      const formData = new FormData()
+      formData.set('title', newTrip.title)
+      formData.set('country', newTrip.country)
+      formData.set('city', newTrip.city)
+      formData.set('summary', newTrip.summary)
+      formData.set('rating', newTrip.rating)
+      formData.set('image', newTrip.image)
+      formData.set('id', newTrip._id)
+      // props.editTrip(newTrip);
+      props.editTrip(formData);
+
   };
 
   // CREATE DROPDOWN OPTIONS FOR ALL COUNTRIES IN DB
@@ -40,7 +57,7 @@ export default function TripEditForm(props) {
   return (
     <div>
       <h1>EDIT TRIP</h1>
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={handleSubmit} encType='multipart/form-data'>
         <div>
           <input type="text" name="title" onChange={handleChange} value={newTrip.title} ></input>
         </div>
@@ -65,6 +82,10 @@ export default function TripEditForm(props) {
 
         <div>
           <input type="text" name="rating" placeholder="Rating 0-5" onChange={handleChange} value={newTrip.rating} ></input>
+        </div>
+
+        <div>
+          <input type="file" accept=".png, .jpg, .jpeg" name="gallery" onChange={photoHandler}/>
         </div>
 
         <div>
