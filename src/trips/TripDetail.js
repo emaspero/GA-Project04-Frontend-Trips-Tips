@@ -122,6 +122,8 @@ export default function TripDetail(props) {
       setIsLiked ? (setIsLiked(false)) : (setIsLiked(true))
     };
 
+    let idMatch = (currentTrip.createdBy?._id === props?.currentUser?.id) ? true : false
+    console.log("ID MATCH", idMatch)
 
     return (
       <div>
@@ -155,13 +157,14 @@ export default function TripDetail(props) {
           <div>{currentTrip.city}, {currentTrip.country?.name}</div>
           <p>{currentTrip.summary}</p>
         
-          {(props.isAuth) ?
+          {(props.isAuth && idMatch === true) ?
           <div>
           <button onClick={() => {editView(currentTrip._id)}}>Edit</button>
           <button onClick={() => {deleteTrip(currentTrip._id)}}>Delete</button>
           </div>
           :
           <></>
+
           }
           
           {
@@ -177,5 +180,4 @@ export default function TripDetail(props) {
         </div>
       )
     }  
-
 

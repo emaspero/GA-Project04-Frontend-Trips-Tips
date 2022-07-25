@@ -6,8 +6,7 @@ import React, { useState } from 'react'
 export default function Signup(props) {
 
     const [newUser, setNewUser] = useState({});
-    const [fileName, setFileName] = useState("");
-
+    
     const changeHandler = (e) => {
         const user = {...newUser};
         user[e.target.name] = e.target.value;
@@ -28,7 +27,6 @@ export default function Signup(props) {
         formData.set('password', newUser.password)
         formData.set('profileImage', newUser.profileImage)
         props.register(formData)
-        // props.register(newUser)
     }
 
   return (
@@ -64,40 +62,6 @@ export default function Signup(props) {
                 <input type="submit" value="Register"></input>
             </div>
         </form>
-
-        {/* <Container>
-
-            <Form.Group>
-                <Form.Label>First Name</Form.Label>
-                <Form.Control name="firstName" onChange={changeHandler}></Form.Control>
-            </Form.Group>
-
-            <Form.Group>
-                <Form.Label>Last Name</Form.Label>
-                <Form.Control name="lastName" onChange={changeHandler}></Form.Control>
-            </Form.Group>
-
-            <Form.Group>
-                <Form.Label>User Name</Form.Label>
-                <Form.Control name="username" onChange={changeHandler}></Form.Control>
-            </Form.Group>
-
-            <Form.Group>
-                <Form.Label>Email Address</Form.Label>
-                <Form.Control name="emailAddress" onChange={changeHandler}></Form.Control>
-            </Form.Group>
-
-            <Form.Group>
-                <Form.Label>Password</Form.Label>
-                <Form.Control name="password" type="password" onChange={changeHandler}></Form.Control>
-            </Form.Group>
-
-            <br></br>
-
-            <Button variant="primary" onClick = {registerHandler}>Register</Button>
-
-        </Container> */}
-
     </div>
   )
 }
