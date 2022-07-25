@@ -140,7 +140,7 @@ export default function TripDetail(props) {
     // console.log("CURRENT USER", props?.currentUser?.id)
 
     let idMatch = (currentTrip.createdBy?._id === props?.currentUser?.id) ? true : false
-    // console.log("ID MATCH", idMatch)
+    console.log("ID MATCH", idMatch)
       
     if (currentTrip) {
 
