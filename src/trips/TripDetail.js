@@ -60,7 +60,8 @@ export default function TripDetail(props) {
       })
         .then((response) => {
           console.log("Updated trip information")
-          window.location.reload()
+          // window.location.reload()
+          // REDIRECT US TO THE DETAIL PAGE? IF IT REFRESHES THE USER PROFILE CRASHES.
         })
         .catch((error) => {
           console.log("Error updating trip information")
@@ -149,7 +150,7 @@ export default function TripDetail(props) {
             <img
               src="/img/heart_full.png"
               alt="full heart"
-              id="fullHeart"
+              id="heartPic"
               onClick={handleLikeChange}
             ></img>
           ) : (

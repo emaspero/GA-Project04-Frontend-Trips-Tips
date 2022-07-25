@@ -13,6 +13,7 @@ export default function TripSnippet(props) {
               <h4>{props.title}</h4>
               <div>by @{props.createdBy.username}</div>  
               <img src={`./img/${props.rating}-star.png`} alt='star' className='rating-star'></img>
+              <img src="/img/heart_full.png" alt="full heart" id="heartPic"></img>{props.favs.length}
             </div>
             <br />
             <p>{props.city}, {props.country.name}</p>
