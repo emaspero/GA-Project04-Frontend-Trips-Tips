@@ -61,12 +61,20 @@ export default function TripDetail(props) {
       })
         .then((response) => {
           console.log("Updated trip information")
+<<<<<<< HEAD
+=======
+
+>>>>>>> ab402b54adb568c9eb20523f59973fa6e8c7d69b
           setIsEdit(false);
           loadTripDetails();
           // props.profileHandler();
           // setCurrentUser(props.user.user);
           // window.location.reload()
+<<<<<<< HEAD
           // navigate(`../../browse`)
+=======
+          // navigate(`../../mytrips`)
+>>>>>>> ab402b54adb568c9eb20523f59973fa6e8c7d69b
         })
         .catch((error) => {
           console.log("Error updating trip information")
