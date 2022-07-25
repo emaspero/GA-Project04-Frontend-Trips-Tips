@@ -101,3 +101,8 @@
   height: 20px;
   width: auto;
 }
+
+/* .alert-hidden {
+  opacity: 0;
+  transition: all 250ms linear 2s;
+} */
