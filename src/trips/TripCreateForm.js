@@ -16,8 +16,6 @@ export default function TripCreateForm(props) {
     const trip = {...newTrip}
     trip["createdBy"] = props.currentUser.id
     trip[attributeToChange] = newValue
-
-    console.log("TRIP: ", trip)
     setNewTrip(trip)
 
     // IF A COUNTRY WAS SELECTED IN THE DROPDOWN, UPDATE ARRAY OF CITIES
@@ -29,24 +27,20 @@ export default function TripCreateForm(props) {
   };
 
   const photoHandler = (e) => {
-    let galleryArray = []
-    for (let i = 0; i < e.target.files.length; i++) {
-      galleryArray.push(e.target.files[i])
-    }
-    setNewTrip({...newTrip, gallery: galleryArray})
+    setNewTrip({...newTrip, image: e.target.files[0]})
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // const formData = new FormData()
-    // formData.set('title', newTrip.title)
-    // formData.set('country', newTrip.country)
-    // formData.set('city', newTrip.city)
-    // formData.set('summary', newTrip.summary)
-    // formData.set('rating', newTrip.rating)
-    // formData.set('gallery', newTrip.gallery)
-    // props.addTrip(formData)
-    props.addTrip(newTrip);
+    const formData = new FormData()
+    formData.set('title', newTrip.title)
+    formData.set('country', newTrip.country)
+    formData.set('city', newTrip.city)
+    formData.set('summary', newTrip.summary)
+    formData.set('rating', newTrip.rating)
+    formData.set('image', newTrip.image)
+    props.addTrip(formData);
+    // props.addTrip(newTrip);
     event.target.reset()
   };
 
@@ -93,9 +87,9 @@ export default function TripCreateForm(props) {
           <input type="text" name="rating" placeholder="Rating 0-5" onChange={handleChange}></input>
         </div>
 
-        {/* <div>
-          <input type="file" accept=".png, .jpg, .jpeg" name="gallery" onChange={photoHandler} multiple/>
-        </div> */}
+        <div>
+          <input type="file" accept=".png, .jpg, .jpeg" name="gallery" onChange={photoHandler}/>
+        </div>
 
         <div>
           <input type="submit" value="Add Trip"></input>
