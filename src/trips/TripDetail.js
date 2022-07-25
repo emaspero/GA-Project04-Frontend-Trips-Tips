@@ -61,12 +61,17 @@ export default function TripDetail(props) {
       })
         .then((response) => {
           console.log("Updated trip information")
+<<<<<<< HEAD
           setIsEdit(false);
           loadTripDetails();
           // props.profileHandler();
           // setCurrentUser(props.user.user);
           // window.location.reload()
           // navigate(`../../mytrips`)
+=======
+          // window.location.reload()
+          // REDIRECT US TO THE DETAIL PAGE? IF IT REFRESHES THE USER PROFILE CRASHES.
+>>>>>>> d24518fc3cd60f6b0d2c0c4f35875b5377a87a96
         })
         .catch((error) => {
           console.log("Error updating trip information")
@@ -155,7 +160,7 @@ export default function TripDetail(props) {
             <img
               src="/img/heart_full.png"
               alt="full heart"
-              id="fullHeart"
+              id="heartPic"
               onClick={handleLikeChange}
             ></img>
           ) : (
