@@ -61,6 +61,7 @@ export default function TripDetail(props) {
       })
         .then((response) => {
           console.log("Updated trip information")
+
           setIsEdit(false);
           loadTripDetails();
           // props.profileHandler();
@@ -155,7 +156,7 @@ export default function TripDetail(props) {
             <img
               src="/img/heart_full.png"
               alt="full heart"
-              id="fullHeart"
+              id="heartPic"
               onClick={handleLikeChange}
             ></img>
           ) : (
