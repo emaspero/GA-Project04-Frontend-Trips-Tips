@@ -61,7 +61,6 @@ export default function TripDetail(props) {
       })
         .then((response) => {
           console.log("Updated trip information")
-
           setIsEdit(false);
           loadTripDetails();
           // props.profileHandler();
