@@ -28,8 +28,24 @@ export default function TripCreateForm(props) {
     }
   };
 
+  const photoHandler = (e) => {
+    let galleryArray = []
+    for (let i = 0; i < e.target.files.length; i++) {
+      galleryArray.push(e.target.files[i])
+    }
+    setNewTrip({...newTrip, gallery: galleryArray})
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    // const formData = new FormData()
+    // formData.set('title', newTrip.title)
+    // formData.set('country', newTrip.country)
+    // formData.set('city', newTrip.city)
+    // formData.set('summary', newTrip.summary)
+    // formData.set('rating', newTrip.rating)
+    // formData.set('gallery', newTrip.gallery)
+    // props.addTrip(formData)
     props.addTrip(newTrip);
     event.target.reset()
   };
@@ -50,7 +66,7 @@ export default function TripCreateForm(props) {
   return (
     <div>
       <h1>ADD A TRIP</h1>
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={handleSubmit} encType='multipart/form-data'>
         <div>
           <input type="text" name="title" placeholder="Title" onChange={handleChange}></input>
         </div>
@@ -76,6 +92,10 @@ export default function TripCreateForm(props) {
         <div>
           <input type="text" name="rating" placeholder="Rating 0-5" onChange={handleChange}></input>
         </div>
+
+        {/* <div>
+          <input type="file" accept=".png, .jpg, .jpeg" name="gallery" onChange={photoHandler} multiple/>
+        </div> */}
 
         <div>
           <input type="submit" value="Add Trip"></input>
