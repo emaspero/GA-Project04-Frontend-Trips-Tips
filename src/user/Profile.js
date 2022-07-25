@@ -61,7 +61,7 @@ export default function Profile(props) {
         <h1>PROFILE</h1>
 
         <div className='profile-container'>
-
+            
             <div>
                 {(props.currentUser.profileImage)
                 ?

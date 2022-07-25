@@ -190,7 +190,7 @@ export default function App() {
             <Route path="/topten" element={<TopTen />}></Route>
             <Route path="/browse" element={<BrowseTrips user={user} currentUser={currentUser}/>}></Route>
             <Route path="/mytrips" element={<MyTrips user={user} currentUser={currentUser} />}></Route>
-            <Route path="/favs" element={<Favs />}></Route>
+            <Route path="/favs" element={<Favs user={user} currentUser={currentUser}/>}></Route>
             <Route path="/addtrip" element={<TripCreateForm currentUser={currentUser} allCountries={allCountries} addTrip={addTrip}/>}></Route>
             <Route path="/trip/detail/:id" element={<TripDetail isAuth={isAuth} user={user} currentUser={currentUser} />}/>
 
