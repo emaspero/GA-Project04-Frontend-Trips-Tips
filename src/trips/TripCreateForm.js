@@ -39,6 +39,7 @@ export default function TripCreateForm(props) {
     formData.set('summary', newTrip.summary)
     formData.set('rating', newTrip.rating)
     formData.set('image', newTrip.image)
+    formData.set('createdBy', props.currentUser.id)
     props.addTrip(formData);
     // props.addTrip(newTrip);
     event.target.reset()
