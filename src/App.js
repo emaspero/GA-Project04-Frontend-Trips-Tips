@@ -6,20 +6,22 @@ import Signin from "./user/Signin";
 import Profile from "./user/Profile";
 import Axios from "axios";
 import jwt_decode from "jwt-decode";
-import {Alert} from 'react-bootstrap';
+// import {Alert} from 'react-bootstrap';
 import BrowseTrips from "./trips/BrowseTrips";
 import MyTrips from "./trips/MyTrips";
 import Favs from "./trips/Favs";
 import './App.css';
 import TripDetail from "./trips/TripDetail";
 import TripCreateForm from "./trips/TripCreateForm";
-
+import $ from "jquery"
+// import Popup from './Popup'
 
 
 export default function App() {
   const [isAuth, setIsAuth] = useState(false);
   const [user, setUser] = useState({});
-  const [message, setMessage] = useState(null);
+  const [popup, setPopup] = useState({});
+  const [showPopup, setShowPopup] = useState(false)
   const [userId, setUserId] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
   const [allCountries, setAllCountries] = useState([])
@@ -46,8 +48,14 @@ export default function App() {
       }
     };
 
-    loadCountryList()
-  }, [userId, isAuth]);
+    loadCountryList();
+
+    console.log("POPUP: ", popup);
+
+    console.log("Show Popup: ", showPopup)
+
+    $('.alert').fadeOut(3000);
+  }, [userId, isAuth, popup, showPopup]);
 
   const registerHandler = (user) => {
     Axios.post("auth/signup", user)
@@ -70,7 +78,8 @@ export default function App() {
           setIsAuth(true);
           setUser(user);
           setUserId(user.user.id);
-          setMessage("User logged in successfully!");
+          setPopup({"type": "success", "message": "User logged in successfully!"});
+          setShowPopup(true);
         }
       })
       .catch((error) => {
@@ -97,9 +106,13 @@ export default function App() {
     })
     .then((response) => {
         console.log("Trip added successfully!")
+        setPopup({"type": "success", "message": "Trip added successfully!"});
+        setShowPopup(true);
     })
     .catch((error) => {
         console.log("Error adding Trip. Please try again later.");
+        setPopup({"type": "error", "message": "Error adding Trip. Please try again later!"});
+        setShowPopup(true);
         console.log(error);
     })
   }
@@ -109,14 +122,15 @@ export default function App() {
     localStorage.removeItem("token");
     setIsAuth(false);
     setUser(null);
-    setMessage("User logged out successfully!");
+    setPopup({"type": "success", "message": "User logged out successfully!"});
+    setShowPopup(true);
     setCurrentUser(null);
 
   };
 
-  const alertMessage = message ? (
-    <Alert variant="success">{message}</Alert>
-  ) : null;
+  // const popupMessage = message ? (
+  //   <Alert variant="success">{message}</Alert>
+  // ) : null;
 
 
   const profileHandler = (userId) => {
@@ -163,6 +177,7 @@ export default function App() {
           </div>
          
           <div >
+            
             {isAuth ? (
               <div className="nav-left-container">
                 <Link to="/topten" className="nav-left-items-link">TOP 10 TRIPS</Link> {"  "}
@@ -179,8 +194,16 @@ export default function App() {
             )}
           </div>
         </nav>
-
+        
         <div className="element-container">
+          {
+              (showPopup) ?
+              <div className={`alert ${popup.type}`}>
+                {popup.message}
+              </div> 
+              :
+              <></>
+          }
           <Routes>
             <Route path="/" element={<TopTen />} ></Route>
             <Route path="/profile" element={<Profile currentUser={currentUser} onLogoutHandler={onLogoutHandler} profileHandler={profileHandler}/>}></Route>
