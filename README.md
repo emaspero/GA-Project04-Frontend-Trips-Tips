@@ -8,7 +8,11 @@
 - Goal
     - Technologies Used
 - Approach Taken
+    - Back-end
+    - Front-end
 - Challenges and Wins
+    - Challenges
+    - Wins
     - Bugs
     - Key Learnings
 - Future Enhancements 
@@ -16,7 +20,8 @@
 ---
 
 # Project Overview
-TripTips is a MERN-Stack community application which guides User into finding their next travel experience. As a visitor the functionality is limited to viewing the Top 10 most-liked trips and browsing the existing ones, but as a registered User you can add your own travel experiences and like existing ones which will, subsequently, be stored in your "favs" page, making it easy and convenient to find them again. This is a built-from-scratch full stack project which was developed and delivered over two weeks by a group of three junior devs. 
+TripTips is a MERN-Stack community application which guides User into finding their next travel experience. As a visitor the functionality is limited to viewing the Top 10 most-liked trips and browsing the existing ones, but as a registered User you can add your own travel experiences and like existing ones which will, subsequently, be stored in your "favs" page, making it easy and convenient to find them again. This is a built-from-scratch full stack project which was developed and delivered over two weeks by a group of three junior devs.
+#### Link to the deployed app: 
 
 ## Team Members
 - Alexandra Gauthier Point - [GitHub](https://github.com/GPAlexa) | [LinkedIn](https://www.linkedin.com/in/alexandragp/)
@@ -40,16 +45,29 @@ A working full-stack, single-page application hosted on Heroku that incorporates
 - multer
 - nodemon
 - salt
+- Postman
 - Git/GitHub
 
 # Approach Taken
+Planning is of paramount importance when facing a project, especially as a Group working remotely. As a first step, upon finding and agreeing on an idea that would match our interests, we set up a Trello board and straight away started developing the wireframes, User stories and ERDs (Entity Relationship Diagrams). 
+Communication has been a focal point throughout the process. We started each day with stand-up discussions where we would evaluate the daily tasks, set an objective and shared any blockers. We often ended-up debugging collectively as a Team while screen-sharing on Zoom. The work-load has been equally shared between the members and several times a day we would regroup and push/pull the code on our dev branches on Git/GitHub.
 ## Back-end
+
 ## Front-end
 
 # Challenges and Wins
-## Challenges
-## Wins
-## Bugs
-## Key Learnings
 
+## Challenges
+
+## Wins
+
+## Bugs
+- After editing an existing trip the success pop-up message does not display on the screen.
+## Key Learnings
+This project helped each member of the Team to gain a stronger understanding of React and its unidirectional flow. While putting our theoretical knowledge into practice, we realized the importance of sketching and thinking through an application before starting to write the code. 
 # Future Enhancements 
+- Add additional sections to the initial "add a Trip" form allowing the User to share recommendations, warnings and expenses.
+- Allow Users to add comments to the existing travel experiences to start a conversation and interact with the community.
+- Implement filters in order to make it easier for Users' to find relevant experiences tailored to their interests and needs.
+- While registering, a User can add a home country that would also display the local currency.
+- Have different levels of Users, implementing an Admin tier that can deleted Users and edit/delete all User's experience to maintain a level of quality within the experiences. 
