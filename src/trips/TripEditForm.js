@@ -28,7 +28,7 @@ export default function TripEditForm(props) {
   }
 
   const handleSubmit = (event) => {
-      // event.preventDefault();
+      event.preventDefault();
       const formData = new FormData()
       formData.set('title', newTrip.title)
       formData.set('country', newTrip.country)

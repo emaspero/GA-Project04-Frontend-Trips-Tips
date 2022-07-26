@@ -206,8 +206,8 @@ export default function App() {
           }
           <Routes>
             <Route path="/" element={<TopTen />} ></Route>
-            <Route path="/profile" element={<Profile currentUser={currentUser} onLogoutHandler={onLogoutHandler} profileHandler={profileHandler}/>}></Route>
-            <Route path="/signup" element={<Signup register={registerHandler} />}></Route>
+            <Route path="/profile" element={<Profile currentUser={currentUser} isAuth={isAuth} onLogoutHandler={onLogoutHandler} profileHandler={profileHandler}/>}></Route>
+            <Route path="/signup" element={<Signup register={registerHandler}/>}></Route>
             <Route path="/signin" element={ isAuth ? <Navigate to="/" /> : <Signin login={loginHandler} />}></Route>
             <Route path="/logout" element={<TopTen />} ></Route>
             <Route path="/topten" element={<TopTen />}></Route>
