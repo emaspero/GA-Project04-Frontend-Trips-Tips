@@ -15,7 +15,7 @@ export default function TripDetail(props) {
     let navigate = useNavigate();
 
     const routeChange = () => {
-      let path = `/trip/detail/${currentTrip._id}`;
+      let path = `/mytrips`;
       navigate(path);
     }
 

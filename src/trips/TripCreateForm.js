@@ -53,7 +53,7 @@ export default function TripCreateForm(props) {
   })
 
   // CREATE DROPDOWN OPTIONS FROM CITIES ARRAY OF SELECTED COUNTRY
-  const selectedCountryCities = currentCities.map((city, index) => {
+  const selectedCountryCities = currentCities.sort().map((city, index) => {
     return <option key={index} value={city}>{city}</option>
   })
 
