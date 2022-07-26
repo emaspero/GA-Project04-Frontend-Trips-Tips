@@ -33,6 +33,7 @@ export default function TripDetail(props) {
         .then((response) => {
           let trip = response.data.trip
           setCurrentTrip(trip)
+          // props.popupHandler({"type": "success", "message": "Updated trip information!"});
 
         })
         .catch((error) => {
@@ -56,6 +57,7 @@ export default function TripDetail(props) {
         .catch((error) => {
           console.log("Error loading trip information for editing")
           console.log(error)
+          props.popupHandler({"type": "error", "message": "Error loading trip information for editing - please try again"});
         })
       };
     
@@ -68,11 +70,13 @@ export default function TripDetail(props) {
         .then((response) => {
           console.log("Updated trip information")
           setIsEdit(false);
-          loadTripDetails(id); 
+          loadTripDetails(id);
+          props.popupHandler({"type": "success", "message": "Updated trip information!"});
         })
         .catch((error) => {
           console.log("Error updating trip information")
           console.log(error)
+          props.popupHandler({"type": "error", "message": "Error updating trip information - please try again"});
         })
       };
 
@@ -85,10 +89,12 @@ export default function TripDetail(props) {
       .then((response) => {
         console.log("Trip deleted successfully")
         routeChange()
+        props.popupHandler({"type": "success", "message": "Trip deleted successfully!"});
       })
       .catch((error) => {
         console.log("Error deleting trip")
         console.log(error)
+        props.popupHandler({"type": "error", "message": "Error deleting trip - please try again"})
       })
     }
 
@@ -144,7 +150,7 @@ export default function TripDetail(props) {
 
     return (
       <div>
-        {(currentUser && currentTrip)? 
+        {(currentTrip)? 
         ((!isEdit)? 
           <div>
             <h4>{currentTrip.title}</h4> 
@@ -180,8 +186,8 @@ export default function TripDetail(props) {
 
           </div> : 
           <div>
-            <Trip tripId={currentTrip._id} trip={currentTrip} editTrip={editTrip} isEdit={isEdit} countriesList={countries}/>
-          </div>) 
+            <Trip tripId={currentTrip._id} trip={currentTrip} editTrip={editTrip} isEdit={isEdit} countriesList={countries} popupHandler={(e) => props.popupHandler(e)}/>
+          </div>)
         : 
         (<div>Loading</div>)}
       </div>

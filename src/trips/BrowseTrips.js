@@ -64,7 +64,7 @@ export default function BrowseTrips(props) {
 
   const allTrips = trips.map((trip, index) => (
     <div key={index}>
-      <TripSnippet {...trip} profileHandler={props.profileHandler} singleTrip={singleTrip} trip={currentTrip} trips={trips} user={props.user} currentUser={props.currentUser} setCurrentTrip={setCurrentTrip} currentTrip={currentTrip} editTrip={editTrip} />
+      <TripSnippet {...trip} profileHandler={props.profileHandler} singleTrip={singleTrip} trip={currentTrip} trips={trips} user={props.user} currentUser={props.currentUser} setCurrentTrip={setCurrentTrip} currentTrip={currentTrip} editTrip={editTrip} popupHandler={(e) => props.popupHandler(e)}/>
     </div>
   ));
 

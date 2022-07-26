@@ -39,7 +39,6 @@ export default function TripEditForm(props) {
       formData.set('id', newTrip._id)
       // props.editTrip(newTrip);
       props.editTrip(formData);
-
   };
 
   // CREATE DROPDOWN OPTIONS FOR ALL COUNTRIES IN DB
