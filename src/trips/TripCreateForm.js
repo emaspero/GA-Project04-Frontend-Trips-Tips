@@ -95,7 +95,7 @@ export default function TripCreateForm(props) {
         </div>
 
         <div>
-          <input className='form-inputs' type="text" name="rating" placeholder="Rating 0-5" onChange={handleChange}></input>
+          <input className='form-inputs' type="number" name="rating" placeholder="Rating 0-5" min="0" max="5" onChange={handleChange}></input>
 
         </div>
 

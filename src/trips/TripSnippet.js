@@ -26,7 +26,14 @@ export default function TripSnippet(props) {
               <div><Link to={`/trip/detail/${props._id}`} className="trip-see-more">+ see more</Link></div>
             </div>
             <div className="trip-container-right">
-              <div className="trip-container-right-img"><img src="./img/paris.jpg" alt="paris" className="trip-img"></img></div>
+              <div className="trip-container-right-img">
+              {(props.image)
+                  ?
+                  <img alt="tripimage" className="trip-img" src={props.image}></img>
+                  :
+                  <img src="./img/paris.jpg" alt="paris" className="trip-img"></img>
+              }
+              </div>
             </div>
         </div>
     ) :null}
@@ -35,3 +42,4 @@ export default function TripSnippet(props) {
     </>
   );
 }
+

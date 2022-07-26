@@ -70,8 +70,8 @@ export default function TripDetail(props) {
         .then((response) => {
           console.log("Updated trip information")
           setIsEdit(false);
-          loadTripDetails(id);
           props.popupHandler({"type": "success", "message": "Updated trip information!"});
+          loadTripDetails(id);
         })
         .catch((error) => {
           console.log("Error updating trip information")
@@ -186,7 +186,7 @@ export default function TripDetail(props) {
 
           </div> : 
           <div>
-            <Trip tripId={currentTrip._id} trip={currentTrip} editTrip={editTrip} isEdit={isEdit} countriesList={countries} popupHandler={(e) => props.popupHandler(e)}/>
+            <Trip tripId={currentTrip._id} trip={currentTrip} editTrip={editTrip} isEdit={isEdit} countriesList={countries} popupHandler={() => props.popupHandler()}/>
           </div>)
         : 
         (<div>Loading</div>)}

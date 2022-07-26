@@ -77,11 +77,11 @@ export default function TripEditForm(props) {
         </div>
 
         <div>
-          <textarea className='form-inputs' name="summary" placeholder="Description" rows="4" cols="50" onChange={handleChange} value={newTrip.summary} />
+          <textarea className='form-inputs' name="summary" placeholder="Description" rows="4" cols="50" onChange={handleChange} value={newTrip.summary} required/>
         </div>
 
         <div>
-          <input className='form-inputs' type="text" name="rating" placeholder="Rating 0-5" onChange={handleChange} value={newTrip.rating} ></input>
+          <input className='form-inputs' type="number" name="rating" placeholder="Rating 0-5" min="0" max="5" onChange={handleChange} value={newTrip.rating} required></input>
         </div>
 
         <div>

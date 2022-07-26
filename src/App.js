@@ -123,6 +123,7 @@ export default function App() {
     })
     .then((response) => {
         console.log("Trip added successfully!")
+        console.log("RESPONSE: ", response)
         popupHandler({"type": "success", "message": "Trip added successfully!"});
     })
     .catch((error) => {
@@ -233,7 +234,7 @@ export default function App() {
             <Route path="/browse" profileHandler={profileHandler} element={<BrowseTrips user={user} currentUser={currentUser}/>}></Route>
             <Route path="/mytrips" element={<MyTrips user={user} currentUser={currentUser} profileHandler={profileHandler}/>}></Route>
             <Route path="/favs" element={<Favs user={user} currentUser={currentUser}/>}></Route>
-            <Route path="/addtrip" element={<TripCreateForm currentUser={currentUser} allCountries={allCountries} addTrip={addTrip}/>}></Route>
+            <Route path="/addtrip" element={<TripCreateForm currentUser={currentUser} allCountries={allCountries} addTrip={addTrip} profileHandler={profileHandler}/>}></Route>
             <Route path="/trip/detail/:id" profileHandler={profileHandler} popupHandler={popupHandler} element={<TripDetail isAuth={isAuth} user={user} currentUser={currentUser} />}/>
 
           </Routes>
