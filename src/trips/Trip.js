@@ -20,7 +20,7 @@ export default function Trip(props) {
 
     return (
         <div>
-            <TripEditForm tripId={props.tripId} trip={props.trip} editTrip={props.editTrip} countries={countries} cities={cities} popupHandler={(e) => props.popupHandler(e)}/>
+            <TripEditForm tripId={props.tripId} trip={props.trip} editTrip={props.editTrip} countries={countries} cities={cities} popupHandler={(obj) => props.popupHandler(obj)}/>
         </div>
     )
 }
