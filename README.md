@@ -51,8 +51,15 @@ A working full-stack, single-page application hosted on Heroku that incorporates
 # Approach Taken
 Planning is of paramount importance when facing a project, especially as a Group working remotely. As a first step, upon finding and agreeing on an idea that would match our interests, we set up a Trello board and straight away started developing the wireframes, User stories and ERDs (Entity Relationship Diagrams). 
 Communication has been a focal point throughout the process. We started each day with stand-up discussions where we would evaluate the daily tasks, set an objective and shared any blockers. We often ended-up debugging collectively as a Team while screen-sharing on Zoom. The work-load has been equally shared between the members and several times a day we would regroup and push/pull the code on our dev branches on Git/GitHub.
-#### Trello Board
+#### Trello Board - [Click Here](https://trello.com/b/5k9nLgX6/ga-project-4-alex-elisabetta-marc)
 ![Trello board screenshot](/public/img/readme/Trello%20Board.png)
+#### ERDs
+![ERDs screenshot](/public/img/readme/ERDs.png)
+#### WireFrames
+![WireFrames All](/public/img/readme/WireFrames%20All.png)
+![WireFrames Home](/public/img/readme/WireFrames%20Home.png)
+![WireFrames Profile](/public/img/readme/WireFrames%20Profile.png)
+
 ## Back-end
 
 ## Front-end
