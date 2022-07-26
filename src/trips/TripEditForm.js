@@ -85,7 +85,10 @@ export default function TripEditForm(props) {
         </div>
 
         <div>
-          <input className='form-inputs' type="file" accept=".png, .jpg, .jpeg" name="gallery" onChange={photoHandler}/>
+          <label className='form-file-upload'>
+              <p><img src='/img/upload.png'></img> Upload your picture</p>
+              <input className='form-inputs' id='form-input-file' type="file" accept=".png, .jpg, .jpeg" name="gallery" onChange={photoHandler}/>
+          </label>
         </div>
 
         <div>
