@@ -14,7 +14,7 @@ import './App.css';
 import TripDetail from "./trips/TripDetail";
 import TripCreateForm from "./trips/TripCreateForm";
 import $ from "jquery"
-// import Popup from './Popup'
+import Popup from './Popup'
 
 
 export default function App() {
@@ -78,8 +78,7 @@ export default function App() {
           setIsAuth(true);
           setUser(user);
           setUserId(user.user.id);
-          setPopup({"type": "success", "message": "User logged in successfully!"});
-          setShowPopup(true);
+          popupHandler({"type": "success", "message": "User logged in successfully!"});
         }
       })
       .catch((error) => {
@@ -106,13 +105,11 @@ export default function App() {
     })
     .then((response) => {
         console.log("Trip added successfully!")
-        setPopup({"type": "success", "message": "Trip added successfully!"});
-        setShowPopup(true);
+        popupHandler({"type": "success", "message": "Trip added successfully!"});
     })
     .catch((error) => {
         console.log("Error adding Trip. Please try again later.");
-        setPopup({"type": "error", "message": "Error adding Trip. Please try again later!"});
-        setShowPopup(true);
+        popupHandler({"type": "error", "message": "Error adding Trip. Please try again later!"});
         console.log(error);
     })
   }
@@ -122,16 +119,22 @@ export default function App() {
     localStorage.removeItem("token");
     setIsAuth(false);
     setUser(null);
-    setPopup({"type": "success", "message": "User logged out successfully!"});
-    setShowPopup(true);
+    popupHandler({"type": "success", "message": "User logged out successfully!"});
     setCurrentUser(null);
 
   };
 
-  // const popupMessage = message ? (
-  //   <Alert variant="success">{message}</Alert>
-  // ) : null;
+  
+  const delay = (ms) => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
 
+  const popupHandler = async (obj) => {
+    setPopup(obj)
+    setShowPopup(true);
+    await delay(3000);
+    setShowPopup(false);
+  }
 
   const profileHandler = (userId) => {
     Axios.get(`auth/profile?id=${userId}`)
@@ -198,9 +201,7 @@ export default function App() {
         <div className="element-container">
           {
               (showPopup) ?
-              <div className={`alert ${popup.type}`}>
-                {popup.message}
-              </div> 
+              <Popup type={popup.type} message={popup.message}/>
               :
               <></>
           }
@@ -211,11 +212,11 @@ export default function App() {
             <Route path="/signin" element={ isAuth ? <Navigate to="/" /> : <Signin login={loginHandler} />}></Route>
             <Route path="/logout" element={<TopTen />} ></Route>
             <Route path="/topten" element={<TopTen />}></Route>
-            <Route path="/browse"  profileHandler={profileHandler} element={<BrowseTrips user={user} currentUser={currentUser}/>}></Route>
+            <Route path="/browse" profileHandler={profileHandler} element={<BrowseTrips user={user} currentUser={currentUser}/>}></Route>
             <Route path="/mytrips" element={<MyTrips user={user} currentUser={currentUser} />}></Route>
             <Route path="/favs" element={<Favs user={user} currentUser={currentUser}/>}></Route>
             <Route path="/addtrip" element={<TripCreateForm currentUser={currentUser} allCountries={allCountries} addTrip={addTrip}/>}></Route>
-            <Route path="/trip/detail/:id" profileHandler={profileHandler} element={<TripDetail isAuth={isAuth} user={user} currentUser={currentUser} />}/>
+            <Route path="/trip/detail/:id" profileHandler={profileHandler} popupHandler={popupHandler} element={<TripDetail isAuth={isAuth} user={user} currentUser={currentUser} />}/>
 
           </Routes>
         </div>
