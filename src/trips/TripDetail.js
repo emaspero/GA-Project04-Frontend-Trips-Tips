@@ -14,8 +14,8 @@ export default function TripDetail(props) {
     const [currentUser, setCurrentUser] = useState(props.user.user);
     let navigate = useNavigate();
 
-    const routeChange = () => {
-      let path = `/trip/detail/${currentTrip._id}`;
+    const routeChangeDelete = () => {
+      let path = `/mytrips`;
       navigate(path);
     }
 
@@ -69,7 +69,7 @@ export default function TripDetail(props) {
           setIsEdit(false);
           loadTripDetails();
           // response.preventDefault();
-          routeChange();
+          // routeChange();
           // response.preventDefault();
           // props.profileHandler();
           // setCurrentUser(props.user.user);
@@ -90,7 +90,7 @@ export default function TripDetail(props) {
     })
       .then((response) => {
         console.log("Trip deleted successfully")
-        // where should we be redirected after deleting a trip?
+        routeChangeDelete();
       })
       .catch((error) => {
         console.log("Error deleting trip")
