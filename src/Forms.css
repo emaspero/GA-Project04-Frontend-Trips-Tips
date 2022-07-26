@@ -1,0 +1,106 @@
+.form-inputs{
+    background-color: #EAF6F6;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 20px;
+    min-width: 15ch;
+    max-width: 30ch;
+    color: #66BFBF;
+    margin: 10px 0;
+    font-size: 1rem;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+::placeholder {
+    color: #66BFBF;
+    opacity: 1;
+}
+
+.submit-button{
+    background-color: #66BFBF;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-size: 20px;
+    padding: 5px;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+select {
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 5px 20px;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+    outline: none;
+    color: #66BFBF;
+  }
+
+select::-ms-expand {
+    display: none;
+}
+
+
+:root {
+    --select-border: #66BFBF;
+    --select-focus: #66BFBF;
+    --select-arrow: #FF0063;
+}
+
+.select {
+    width: 100%;
+    min-width: 15ch;
+    max-width: 20ch;
+    border-radius: 0.25em;
+    padding: 0.25em 0.5em 0.25em 0;
+    font-size: 1rem;
+    cursor: pointer;
+    line-height: 1.1;
+    background-color: #EAF6F6;
+    color: #66BFBF;
+    display: grid;
+    align-items: center;
+    position: relative;
+    margin: 20px 0;
+    
+}
+
+.select::after {
+    content: "";
+    width: 0.8em;
+    height: 0.5em;
+    background-color: var(--select-arrow);
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    justify-self: end;
+    color: #66BFBF;
+
+}
+
+select,
+.select:after {
+    grid-area: select;
+    justify-self: end;
+}
+
+
+.form-file-upload{
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;}
+
+#form-input-file{
+    display: none;
+  }

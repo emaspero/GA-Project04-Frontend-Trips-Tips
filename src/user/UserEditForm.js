@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import './../Forms.css';
+
 
 export default function UserEditForm(props) {
 
@@ -43,27 +45,27 @@ export default function UserEditForm(props) {
         <form onSubmit={handleSubmit} encType='multipart/form-data'>
 
             <div>
-                <input type="text" name="firstName" onChange={handleChange} value={newUser.firstName}></input>
+                <input className='form-inputs' type="text" name="firstName" onChange={handleChange} value={newUser.firstName}></input>
             </div>
 
             <div>
-                <input type="text" name="lastName" onChange={handleChange} value={newUser.lastName}></input>
+                <input className='form-inputs' type="text" name="lastName" onChange={handleChange} value={newUser.lastName}></input>
             </div>
 
             <div>
-                <input type="text" name="username" onChange={handleChange} value={newUser.username}></input>
+                <input className='form-inputs' type="text" name="username" onChange={handleChange} value={newUser.username}></input>
             </div>
 
             <div>
-                <input type="text" name="emailAddress" onChange={handleChange} value={newUser.emailAddress}></input>
+                <input className='form-inputs' type="text" name="emailAddress" onChange={handleChange} value={newUser.emailAddress}></input>
             </div>
 
             <div>
-                <input type="file" accept=".png, .jpg, .jpeg" name="profileImage" onChange={photoHandler}/>
+                <input className='form-inputs' type="file" accept=".png, .jpg, .jpeg" name="profileImage" onChange={photoHandler}/>
             </div>
     
             <div>
-                <input type="submit" value="Update My Info"></input>
+                <input className='submit-button' type="submit" value="Update My Info"></input>
             </div>
         </form>
         </div>

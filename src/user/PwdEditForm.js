@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import './../Forms.css';
+
 
 export default function UserEditForm(props) {
 
@@ -30,23 +32,20 @@ export default function UserEditForm(props) {
     
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Current Password</label> {"  "}
-                    <input type="password" name="currentPassword" onChange={handleChange} value={newUser.currentPassword}/>
+                    <input placeholder="Current Password" className='form-inputs' type="password" name="currentPassword" onChange={handleChange} value={newUser.currentPassword}/>
                 </div>
 
                 <div >
-                    <label>New Password</label>{"  "}
-                    <input type="password" name="newPassword" onChange={handleChange} value={newUser.newPassword}/>
+                    <input placeholder="New Password" className='form-inputs' type="password" name="newPassword" onChange={handleChange} value={newUser.newPassword}/>
                 </div>
 
                 <div >
-                    <label>Confirm New Password</label>{"  "}
-                    <input type="password" name="newPasswordConfirm" onChange={handleChange} value={newUser.newPasswordConfirmed}/>
+                    <input placeholder="Confirm New Password"className='form-inputs' type="password" name="newPasswordConfirm" onChange={handleChange} value={newUser.newPasswordConfirmed}/>
                 </div>
 
                 <br></br>
                 <div>
-                    <input type="submit" value="Update my Password"></input>
+                    <input className='submit-button' type="submit" value="Update my Password"></input>
                 </div>
             </form>
         </div>

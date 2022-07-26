@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './../Forms.css';
 
 
 export default function TripEditForm(props) {
@@ -58,17 +59,17 @@ export default function TripEditForm(props) {
       <h1>EDIT TRIP</h1>
       <form onSubmit={handleSubmit} encType='multipart/form-data'>
         <div>
-          <input type="text" name="title" onChange={handleChange} value={newTrip.title} ></input>
+          <input className='select' type="text" name="title" onChange={handleChange} value={newTrip.title} ></input>
         </div>
 
-        <div>
+        <div className='select'>
             <select id="country" name="country" onChange={handleChange} value={newTrip.country} required>
               {/* <option value="DEFAULT" disabled hidden>Choose a Country</option> */}
               {allCountries}
             </select>
         </div>
 
-        <div>
+        <div className='select'>
             <select id="city" name="city" onChange={handleChange} value={newTrip.city} required>
                 {/* <option value="DEFAULT" disabled hidden>Choose a City</option> */}
                 {selectedCountryCities}
@@ -76,19 +77,19 @@ export default function TripEditForm(props) {
         </div>
 
         <div>
-          <textarea name="summary" placeholder="Description" rows="4" cols="50" onChange={handleChange} value={newTrip.summary} />
+          <textarea className='form-inputs' name="summary" placeholder="Description" rows="4" cols="50" onChange={handleChange} value={newTrip.summary} />
         </div>
 
         <div>
-          <input type="text" name="rating" placeholder="Rating 0-5" onChange={handleChange} value={newTrip.rating} ></input>
+          <input className='form-inputs' type="text" name="rating" placeholder="Rating 0-5" onChange={handleChange} value={newTrip.rating} ></input>
         </div>
 
         <div>
-          <input type="file" accept=".png, .jpg, .jpeg" name="gallery" onChange={photoHandler}/>
+          <input className='form-inputs' type="file" accept=".png, .jpg, .jpeg" name="gallery" onChange={photoHandler}/>
         </div>
 
         <div>
-          <input type="submit" value="Edit Trip"></input>
+          <input className='submit-button' type="submit" value="Edit Trip"></input>
         </div>
       </form>
     </div>
