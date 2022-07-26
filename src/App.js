@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes, Link, Navigate  } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link, Navigate } from "react-router-dom";
 import TopTen from "./trips/TopTen";
 import Signup from "./user/Signup";
 import Signin from "./user/Signin";
@@ -15,6 +15,7 @@ import TripDetail from "./trips/TripDetail";
 import TripCreateForm from "./trips/TripCreateForm";
 import $ from "jquery"
 import Popup from './Popup'
+// import { useNavigate } from 'react-router-dom';
 
 
 export default function App() {
@@ -25,7 +26,13 @@ export default function App() {
   const [userId, setUserId] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
   const [allCountries, setAllCountries] = useState([])
+  const [isSignedUp, setIsSignedUp] = useState(false)
+  // let navigate = useNavigate();
 
+  // const routeChange = () => {
+  //     let path = `/signin`;
+  //     navigate(path);
+  //   }
 
   useEffect(() => {
     let token = localStorage.getItem("token");
@@ -61,7 +68,11 @@ export default function App() {
     Axios.post("auth/signup", user)
       .then((response) => {
         console.log("RESPONSE: ", response);
-        popupHandler({"type": "success", "message": "Successfully signed up!"});
+        // popupHandler({"type": "success", "message": "Successfully signed up!"});
+        popupHandler({"type": `${response.data.type}`, "message": `${response.data.message}`});
+        if (response.data.type === "success") {
+          setIsSignedUp(true)
+        }
       })
       .catch((error) => {
         console.log("ERROR: ", error);
@@ -72,8 +83,9 @@ export default function App() {
   const loginHandler = (cred) => {
     Axios.post("auth/signin", cred)
       .then((response) => {
+        console.log(response)
         console.log(response.data.token);
-        if (response.data.token != null) {
+        if (response.data.token) {
           // console.log("token")
           localStorage.setItem("token", response.data.token);
           let user = jwt_decode(response.data.token);
@@ -82,6 +94,9 @@ export default function App() {
           setUserId(user.user.id);
           popupHandler({"type": "success", "message": "User logged in successfully!"});
         }
+        if (response.data.type) {
+          popupHandler({"type": `${response.data.type}`, "message": `${response.data.message}`});
+        } 
       })
       .catch((error) => {
         console.log(error);
@@ -124,7 +139,7 @@ export default function App() {
     setUser(null);
     popupHandler({"type": "success", "message": "User logged out successfully!"});
     setCurrentUser(null);
-
+    setIsSignedUp(false);
   };
 
   
@@ -211,7 +226,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<TopTen />} ></Route>
             <Route path="/profile" element={<Profile currentUser={currentUser} isAuth={isAuth} onLogoutHandler={onLogoutHandler} profileHandler={profileHandler} popupHandler={popupHandler}/>}></Route>
-            <Route path="/signup" element={<Signup register={registerHandler}/>}></Route>
+            <Route path="/signup" element={ isSignedUp ? <Navigate to="/signin" /> : <Signup register={registerHandler}/> }></Route>
             <Route path="/signin" element={ isAuth ? <Navigate to="/" /> : <Signin login={loginHandler} />}></Route>
             <Route path="/logout" element={<TopTen />} ></Route>
             <Route path="/topten" element={<TopTen />}></Route>
