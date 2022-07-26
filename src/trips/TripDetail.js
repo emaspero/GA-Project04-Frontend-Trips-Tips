@@ -12,7 +12,12 @@ export default function TripDetail(props) {
     const [countries, setCountries] = useState([]);
     const [isLiked, setIsLiked] = useState(false);
     const [currentUser, setCurrentUser] = useState(props.user.user);
-    const navigate = useNavigate()
+    let navigate = useNavigate();
+
+    const routeChange = () => {
+      let path = `/trip/detail/${currentTrip._id}`;
+      navigate(path);
+    }
 
 
     useEffect (() => {
@@ -63,6 +68,8 @@ export default function TripDetail(props) {
           console.log("Updated trip information")
           setIsEdit(false);
           loadTripDetails();
+          // response.preventDefault();
+          routeChange();
           // response.preventDefault();
           // props.profileHandler();
           // setCurrentUser(props.user.user);
