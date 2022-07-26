@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function TripCreateForm(props) {
   const [newTrip, setNewTrip] = useState({});
   const [currentCities, setCurrentCities] = useState([])
+  let navigate = useNavigate();
+
+  const routeChange = () => {
+    let path = `/mytrips`;
+    navigate(path);
+  }
 
   useEffect(() => {
     console.log("NEW TRIP: ", newTrip);
@@ -41,11 +48,10 @@ export default function TripCreateForm(props) {
     formData.set('image', newTrip.image)
     formData.set('createdBy', props.currentUser.id)
     props.addTrip(formData);
-    // props.addTrip(newTrip);
-    event.target.reset()
+    routeChange()
   };
 
-  console.log("PROPS COUNTRIES", props.countries)
+  // console.log("PROPS COUNTRIES", props.countries)
 
   // CREATE DROPDOWN OPTIONS FOR ALL COUNTRIES IN DB
   const allCountries = props.allCountries.map((country, index) => {

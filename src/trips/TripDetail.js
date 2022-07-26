@@ -14,7 +14,8 @@ export default function TripDetail(props) {
     const [currentUser, setCurrentUser] = useState(props.user.user);
     let navigate = useNavigate();
 
-    const routeChangeDelete = () => {
+
+    const routeChange = () => {
       let path = `/mytrips`;
       navigate(path);
     }
@@ -67,14 +68,7 @@ export default function TripDetail(props) {
         .then((response) => {
           console.log("Updated trip information")
           setIsEdit(false);
-          loadTripDetails();
-          // response.preventDefault();
-          // routeChange();
-          // response.preventDefault();
-          // props.profileHandler();
-          // setCurrentUser(props.user.user);
-          // window.location.reload()
-          // navigate(`../../mytrips`)
+          loadTripDetails(id); 
         })
         .catch((error) => {
           console.log("Error updating trip information")
@@ -90,7 +84,7 @@ export default function TripDetail(props) {
     })
       .then((response) => {
         console.log("Trip deleted successfully")
-        routeChangeDelete();
+        routeChange()
       })
       .catch((error) => {
         console.log("Error deleting trip")
@@ -145,61 +139,52 @@ export default function TripDetail(props) {
       console.log("no ID match")
     }
 
+    console.log("IS EDIT",isEdit)
+    console.log(currentTrip)
 
     return (
       <div>
-        {/* { currentUser? (
-          <div> */}
-
-        { currentTrip? (
-
+        {(currentUser && currentTrip)? 
+        ((!isEdit)? 
           <div>
-          <h4>{currentTrip.title}</h4> 
-          <p>by {currentTrip.createdBy?.username} {currentTrip.rating}</p>
-          
+            <h4>{currentTrip.title}</h4> 
+            <div><img src={`/img/${currentTrip.rating}-star.png`} alt='star' className='rating-star'></img></div>
+            <p>by {currentTrip.createdBy.username}</p>
 
+            {(currentTrip.favs.includes(`${currentUser?.id}`)) ? (
+              <img
+                src="/img/heart_full.png"
+                alt="full heart"
+                id="heartPic"
+                onClick={handleLikeChange}
+              ></img>
+            ) : (
+              <img
+                src="/img/heart_empty.png"
+                alt="empty heart"
+                id="emptyHeart"
+                onClick={handleLikeChange}
+              ></img>
+            )}
 
-          {(currentTrip.favs.includes(`${currentUser?.id}`)) ? (
-            <img
-              src="/img/heart_full.png"
-              alt="full heart"
-              id="heartPic"
-              onClick={handleLikeChange}
-            ></img>
-          ) : (
-            <img
-              src="/img/heart_empty.png"
-              alt="empty heart"
-              id="emptyHeart"
-              onClick={handleLikeChange}
-            ></img>
-          )}
+            <div>{currentTrip.city}, {currentTrip.country?.name}</div>
+            <p>{currentTrip.summary}</p>
+      
+            {(props.isAuth && idMatch === true) ?
+              <div>
+                <button onClick={() => {editView(currentTrip._id)}}>Edit</button>
+                <button onClick={() => {deleteTrip(currentTrip._id)}}>Delete</button>
+              </div>
+            :
+            <></>}
 
-          <div>{currentTrip.city}, {currentTrip.country?.name}</div>
-          <p>{currentTrip.summary}</p>
-        
-          {(props.isAuth && idMatch === true) ?
+          </div> : 
           <div>
-          <button onClick={() => {editView(currentTrip._id)}}>Edit</button>
-          <button onClick={() => {deleteTrip(currentTrip._id)}}>Delete</button>
-          </div>
-          :
-          <></>
-
-          }
-          
-          {
-              (isEdit) ?
-              <Trip tripId={currentTrip._id} trip={currentTrip} editTrip={editTrip} isEdit={isEdit} countriesList={countries}/>
-              :
-              <></>
-          }
-          </div>):null}
-          </div>
-          )
-          // :null}
-        
-        // </div>
-      // )
-    }  
+            <Trip tripId={currentTrip._id} trip={currentTrip} editTrip={editTrip} isEdit={isEdit} countriesList={countries}/>
+          </div>) 
+        : 
+        (<div>Loading</div>)}
+      </div>
+    )  
+}
 
