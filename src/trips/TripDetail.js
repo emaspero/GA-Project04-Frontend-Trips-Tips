@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Trip from './Trip';
 import { useNavigate } from 'react-router-dom';
 
@@ -152,33 +152,40 @@ export default function TripDetail(props) {
       <div>
         {(currentTrip)? 
         ((!isEdit)? 
+        
           <div>
-            <h4>{currentTrip.title}</h4> 
-            <div><img src={`/img/${currentTrip.rating}-star.png`} alt='star' className='rating-star'></img></div>
-            <p>by {currentTrip.createdBy.username}</p>
-
-            {(currentTrip.favs.includes(`${currentUser?.id}`)) ? (
-              <img
-                src="/img/heart_full.png"
-                alt="full heart"
-                id="heartPic"
-                onClick={handleLikeChange}
-              ></img>
-            ) : (
-              <img
-                src="/img/heart_empty.png"
-                alt="empty heart"
-                id="emptyHeart"
-                onClick={handleLikeChange}
-              ></img>
-            )}
-
-            <div>{currentTrip.city}, {currentTrip.country?.name}</div>
-            <p>{currentTrip.summary}</p>
+            <div className="trip-container">
+              <div className="trip-container-left">
+                <div className="trip-container-title" >
+                  <div className="trip-container-title-left">
+                    <h4>{currentTrip.title}</h4>
+                    <div className="by-username"> {"  "} by @{currentTrip.createdBy.username}</div>
+                  </div>
+                  <div className="trip-container-title-right">
+                    <img src={`/img/${currentTrip.rating}-star.png`} alt='star' className='rating-star'></img>
+                    <img src="/img/heart_full.png" alt="full heart" id="heartPic"></img>
+                    <div className="favs-number">{currentTrip.favs.length}</div>
+                  </div>
+                </div>
+                <br />
+                <div className="trip-location">{currentTrip.city}, {currentTrip.country.name}</div>
+                <div id="trip-description">{currentTrip.summary}</div>
+              </div>
+              <div className="trip-container-right">
+                <div className="trip-container-right-img">
+                  {(currentTrip.image)
+                    ?
+                    <img alt="tripimage" className="trip-img" src={currentTrip.image}></img>
+                    :
+                    <img src="/img/paris.jpg" alt="paris" className="trip-img"></img>
+                  }
+                </div>
+              </div>
+            </div>
       
             {(props.isAuth && idMatch === true) ?
               <div>
-                <button onClick={() => {editView(currentTrip._id)}}>Edit</button>
+                <button onClick={() => {editView(currentTrip._id)}}>Edit</button> {' '}
                 <button onClick={() => {deleteTrip(currentTrip._id)}}>Delete</button>
               </div>
             :
@@ -189,7 +196,7 @@ export default function TripDetail(props) {
             <Trip tripId={currentTrip._id} trip={currentTrip} editTrip={editTrip} isEdit={isEdit} countriesList={countries} popupHandler={(e) => props.popupHandler(e)}/>
           </div>)
         : 
-        (<div>Loading</div>)}
+        (<div><img src='/img/loading.gif'/></div>)}
       </div>
     )  
 }
