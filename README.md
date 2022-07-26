@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+![General Assembly's Logo](https://camo.githubusercontent.com/603ef5eae7d28900a9678ae96c6c60a9c72f8a059c328b28cf978df999cea1f8/68747470733a2f2f692e696d6775722e636f6d2f6c7a56493364382e706e67)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# SEI Project 4: TripTips
 
-## Available Scripts
+### Table of Contents
+- Project Overview
+- Team Members
+- Goal
+- Technologies Used
+- Approach Taken
+- Challenges and Wins
+- Bugs
+- Key Learnings
+- Future Enhancements 
 
-In the project directory, you can run:
+---
 
-### `npm start`
+# Project Overview
+TripTips is a MERN-Stack community application which guides User into finding their next travel experience. As a visitor the functionality is limited to viewing the Top 10 most-liked trips and browsing the existing ones, but as a registered User you can add your own travel experiences and like existing ones which will, subsequently, be stored in your "favs" page, making it easy and convenient to find them again. This is a built-from-scratch full stack project which was developed and delivered over two weeks by a group of three junior devs. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Team Members
+- Alexandra Gauthier Point - [GitHub](https://github.com/GPAlexa) | [LinkedIn](https://www.linkedin.com/in/alexandragp/)
+- Elisabetta Maspero - [GitHub](https://github.com/emaspero) | [LinkedIn](https://www.linkedin.com/in/elisabetta-maspero/)
+- March Usher - [GitHub](https://github.com/MarcUsher/) | [LinkedIn](https://www.linkedin.com/in/marcusher/)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Goal
+A working full-stack, single-page application hosted on Heroku that incorporates the technologies of the MERN-stack. The app should have a well-styled interactive front-end, should communicate with the Express back-end via AJAX, implement a token-based authentication (including the ability of a User to sign-up, log-in and log-out) and authorization by restricting the functionality to authenticated Users. The navigation also responds to the login status. Full-CRUD data operations to be implemented as well. 
 
-### `npm test`
+## Technologies Used
+- MongoDB/Mongoose
+- Express
+- React
+- Node
+- Axios
+- jsonwebtoken
+- jQuery
+- bcrypt
+- body-parser
+- cloudinary
+- multer
+- nodemon
+- salt
+- Git/GitHub
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Approach Taken
+## Back-end
+## Front-end
 
-### `npm run build`
+# Challenges and Wins
+## Challenges
+## Wins
+## Bugs
+## Key Learnings
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Future Enhancements 
