@@ -34,14 +34,15 @@ export default function Profile(props) {
         }})
         .then(response => {
             console.log("Updated Password!")
+            console.log("RESPONSE: ", response)
             setIsPwdEdit(false)
             navigate('/profile')
             props.popupHandler({"type": "success", "message": "Updated password!"})
         })
         .catch(error => {
             console.log("Error Updating password !!!");
-            console.log(error);
-            props.popupHandler({"type": "error", "message": "Error Updating password - please try again"})
+            console.log("ERROR: ", error);
+            props.popupHandler({"type": "error", "message": `${error.response.data.message}`})
         })
     }
 
@@ -51,11 +52,18 @@ export default function Profile(props) {
     }})
     .then(response => {
         console.log("Updated User Information!")
+        console.log("RESPONSE: ", response)
         setIsEdit(false)
-        navigate('/profile')
-        props.popupHandler({"type": "success", "message": "Updated profile information!"})
+        
+        if (response.status === 200) {
+           props.popupHandler({"type": "success", "message": "Updated profile information!"});
+           navigate('/profile')
+        } else {
+            props.popupHandler({"type": `${response.data.type}`, "message": `${response.data.message}`});
+        }
         // window.location.reload()
-        })
+        }
+    )
     .catch(error => {
         console.log("Error Updating User Information !!!");
         console.log(error);

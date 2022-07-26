@@ -9,12 +9,12 @@ import './../Forms.css';
 export default function Signup(props) {
 
     const [newUser, setNewUser] = useState({});
-    let navigate = useNavigate();
+    // let navigate = useNavigate();
 
-    const routeChange = () => {
-        let path = `/signin`;
-        navigate(path);
-      }
+    // const routeChange = () => {
+    //     let path = `/signin`;
+    //     navigate(path);
+    //   }
     
     const changeHandler = (e) => {
         const user = {...newUser};
@@ -37,7 +37,8 @@ export default function Signup(props) {
         formData.set('password', newUser.password)
         formData.set('profileImage', newUser.profileImage)
         props.register(formData)
-        routeChange()
+        event.target.reset();
+        // routeChange()
     }
 
   return (
