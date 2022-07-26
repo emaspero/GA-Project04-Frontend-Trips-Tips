@@ -1,5 +1,6 @@
 h4{
     color: #FF0063;
+    padding-top: 0;
 
 }
 
@@ -7,27 +8,63 @@ h4{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: baseline;
+
     /* flex-wrap: wrap; */
 }
 
-p{
-    color: rgb(74, 74, 74);
+.by-username{
+    color: #66BFBF;
+    font-size: 12px;
+    padding-left: 10px;
 }
-
 
 .trip-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     /* flex-wrap: wrap; */
+    width: 1000px;
 
 }
 
-/* .trip-container-left{
+.trip-container-title-left{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
 
-} */
+.trip-container-title-right{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
 
-/* .trip-container-right{} */
+}
+
+.favs-number{
+    color: #FF0063;
+    font-size: 15px;
+}
+
+.trip-location{
+    color: rgb(71, 71, 71);
+    margin-bottom: 50px;
+}
+
+#trip-description{
+    color: rgb(71, 71, 71);
+    margin-bottom: 30px;
+
+}
+
+.trip-container-left{
+    width: 70%;
+    margin-right: 10%;
+}
+
+.trip-container-right{
+    margin-bottom: 50px;
+}
 
 
 /* .trip-container-right-img{
@@ -42,9 +79,12 @@ p{
     margin: 20px 0;
 }
 
+
 .trip-see-more{
     color: #66BFBF;
     text-decoration: none;
+    cursor: pointer;
+
 }
 
 hr{
@@ -52,4 +92,12 @@ hr{
     border: none;
     height: 1px;
 
+}
+
+.rating-star{
+    height: 50px;
+}
+
+#heartPic{
+    height: 50px;
 }

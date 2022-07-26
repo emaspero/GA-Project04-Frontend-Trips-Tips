@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import './../Forms.css';
+
 // import {Container, Form, Button} from 'react-bootstrap'
 
 
@@ -46,30 +48,35 @@ export default function Signup(props) {
         <form onSubmit={registerHandler} encType='multipart/form-data'>
 
             <div>
-                <input type="text" placeholder="First Name" name="firstName" onChange={changeHandler} required></input>
+                <input className='form-inputs' type="text" placeholder="First Name" name="firstName" onChange={changeHandler} required></input>
             </div>
 
             <div>
-                <input type="text" placeholder="Last Name" name="lastName" onChange={changeHandler} required></input>
+                <input className='form-inputs' type="text" placeholder="Last Name" name="lastName" onChange={changeHandler} required></input>
             </div>
 
             <div>
-                <input type="text" placeholder="Username"name="username" onChange={changeHandler} required></input>
+                <input className='form-inputs' type="text" placeholder="Username"name="username" onChange={changeHandler} required></input>
             </div>
 
             <div>
-                <input type="text" placeholder="Email Address"name="emailAddress" onChange={changeHandler} required></input>
+                <input className='form-inputs' type="text" placeholder="Email Address"name="emailAddress" onChange={changeHandler} required></input>
             </div>
             <div>
-                <input type="password" placeholder="Password" name="password" minlength="6" onChange={changeHandler} required></input>
+                <input className='form-inputs' type="password" placeholder="Password" name="password" minlength="6" onChange={changeHandler} required></input>
             </div>
 
             <div>
-                <input type="file" accept=".png, .jpg, .jpeg" name="profileImage" onChange={photoHandler}/>
+                <label className='form-file-upload'>
+                    <p><img src='/img/upload.png'></img> Upload your picture</p>
+                    <input className='form-inputs' id='form-input-file' type="file" accept=".png, .jpg, .jpeg" name="gallery" onChange={photoHandler}/>
+                </label>
             </div>
+
             <br></br>
+            
             <div>
-                <input type="submit" value="Register"></input>
+                <input className='submit-button' type="submit" value="Register"></input>
             </div>
         </form>
     </div>
