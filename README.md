@@ -4,13 +4,13 @@
 
 ### Table of Contents
 - Project Overview
-- Team Members
+    - Team Members
 - Goal
-- Technologies Used
+    - Technologies Used
 - Approach Taken
 - Challenges and Wins
-- Bugs
-- Key Learnings
+    - Bugs
+    - Key Learnings
 - Future Enhancements 
 
 ---
