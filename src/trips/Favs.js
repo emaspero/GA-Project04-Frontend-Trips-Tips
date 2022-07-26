@@ -84,7 +84,7 @@ export default function Favs(props) {
 
   return (
     <div>
-      <h1>MY Favs</h1>
+      <h1>MY FAVS</h1>
       {favsTrips}
 
     </div>

@@ -4,8 +4,6 @@ import TripEditForm from './TripEditForm';
 export default function Trip(props) {
     const [countries, setCountries] = useState(props.countriesList);
     const [cities, setCities] = useState([]);
-    console.log("COUNTRIES TRIPS", countries)
-    console.log("COUNTRY LIST TRIPS", props.countriesList)
 
     useEffect(() => {
         loadTripCities();
