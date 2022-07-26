@@ -70,7 +70,9 @@ export default function TripCreateForm(props) {
       <h1>ADD A TRIP</h1>
       <form onSubmit={handleSubmit} encType='multipart/form-data'>
         <div>
+
           <input className='form-inputs' type="text" name="title" placeholder="Trip title*" onChange={handleChange}></input>
+
         </div>
 
         <div className='select'>
@@ -88,11 +90,13 @@ export default function TripCreateForm(props) {
         </div>
 
         <div>
+
           <textarea className='form-inputs' name="summary" placeholder="Description*" rows="4" cols="50" onChange={handleChange} />
         </div>
 
         <div>
           <input className='form-inputs' type="text" name="rating" placeholder="Rating 0-5" onChange={handleChange}></input>
+
         </div>
 
         <div>
