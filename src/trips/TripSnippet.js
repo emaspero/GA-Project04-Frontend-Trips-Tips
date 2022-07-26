@@ -14,22 +14,10 @@ export default function TripSnippet(props) {
               <h4>{props.title}</h4>
               <div className="by-username"> {"  "} by @{props.createdBy.username}</div>
             </div>
-
-            <div className="trip-container-right">
-              <div className="trip-container-right-img">
-              {(props.image)
-                  ?
-                  <img alt="tripimage" className="trip-img" src={props.image}></img>
-                  :
-                  <img src="./img/paris.jpg" alt="paris" className="trip-img"></img>
-              }
-              </div>
-
             <div className="trip-container-title-right">
               <img src={`./img/${props.rating}-star.png`} alt='star' className='rating-star'></img>
               <img src="/img/heart_full.png" alt="full heart" id="heartPic"></img>
               <div className="favs-number">{props.favs.length}</div>
-
             </div>
           </div>
           <br />
@@ -54,4 +42,3 @@ export default function TripSnippet(props) {
     </>
   );
 }
-
