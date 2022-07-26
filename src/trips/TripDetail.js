@@ -14,6 +14,7 @@ export default function TripDetail(props) {
     const [currentUser, setCurrentUser] = useState(props.user.user);
     let navigate = useNavigate();
 
+
     const routeChange = () => {
       let path = `/mytrips`;
       navigate(path);
