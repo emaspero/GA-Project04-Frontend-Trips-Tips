@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 // import {Container, Form, Button} from 'react-bootstrap'
 
 
@@ -6,6 +7,12 @@ import React, { useState } from 'react'
 export default function Signup(props) {
 
     const [newUser, setNewUser] = useState({});
+    let navigate = useNavigate();
+
+    const routeChange = () => {
+        let path = `/signin`;
+        navigate(path);
+      }
     
     const changeHandler = (e) => {
         const user = {...newUser};
@@ -18,7 +25,8 @@ export default function Signup(props) {
         setNewUser({...newUser, profileImage: e.target.files[0]})
     }
 
-    const registerHandler = () => {
+    const registerHandler = (event) => {
+        event.preventDefault();
         const formData = new FormData()
         formData.set('firstName', newUser.firstName)
         formData.set('lastName', newUser.lastName)
@@ -27,6 +35,7 @@ export default function Signup(props) {
         formData.set('password', newUser.password)
         formData.set('profileImage', newUser.profileImage)
         props.register(formData)
+        routeChange()
     }
 
   return (
@@ -36,22 +45,22 @@ export default function Signup(props) {
         <form onSubmit={registerHandler} encType='multipart/form-data'>
 
             <div>
-                <input type="text" placeholder="First Name" name="firstName" onChange={changeHandler}></input>
+                <input type="text" placeholder="First Name" name="firstName" onChange={changeHandler} required></input>
             </div>
 
             <div>
-                <input type="text" placeholder="Last Name" name="lastName" onChange={changeHandler}></input>
+                <input type="text" placeholder="Last Name" name="lastName" onChange={changeHandler} required></input>
             </div>
 
             <div>
-                <input type="text" placeholder="Username"name="username" onChange={changeHandler}></input>
+                <input type="text" placeholder="Username"name="username" onChange={changeHandler} required></input>
             </div>
 
             <div>
-                <input type="text" placeholder="Email Address"name="emailAddress" onChange={changeHandler}></input>
+                <input type="text" placeholder="Email Address"name="emailAddress" onChange={changeHandler} required></input>
             </div>
             <div>
-                <input type="password" placeholder="Password" name="password" onChange={changeHandler}></input>
+                <input type="password" placeholder="Password" name="password" minlength="6" onChange={changeHandler} required></input>
             </div>
 
             <div>

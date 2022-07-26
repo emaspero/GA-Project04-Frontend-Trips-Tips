@@ -110,11 +110,18 @@
 
 .alert{
   height: 3rem;
-  background-color: #66BFBF;
   color: white;
   width: 40%;
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.alert.success {
+  background-color: #66BFBF;
+}
+
+.alert.error {
+  background-color: #FF0063;
 }

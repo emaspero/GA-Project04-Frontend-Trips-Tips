@@ -32,11 +32,12 @@ export default function Profile(props) {
             console.log("Updated Password!")
             setIsPwdEdit(false)
             navigate('/profile')
-
+            props.popupHandler({"type": "success", "message": "Updated password!"})
         })
         .catch(error => {
             console.log("Error Updating password !!!");
             console.log(error);
+            props.popupHandler({"type": "error", "message": "Error Updating password - please try again"})
         })
     }
 
@@ -47,11 +48,14 @@ export default function Profile(props) {
     .then(response => {
         console.log("Updated User Information!")
         setIsEdit(false)
-        window.location.reload()
+        navigate('/profile')
+        props.popupHandler({"type": "success", "message": "Updated profile information!"})
+        // window.location.reload()
         })
     .catch(error => {
         console.log("Error Updating User Information !!!");
         console.log(error);
+        props.popupHandler({"type": "error", "message": "Error Updating User Information - please try again"})
     })
 }
 

@@ -60,10 +60,12 @@ export default function App() {
   const registerHandler = (user) => {
     Axios.post("auth/signup", user)
       .then((response) => {
-        console.log(response);
+        console.log("RESPONSE: ", response);
+        popupHandler({"type": "success", "message": "Successfully signed up!"});
       })
       .catch((error) => {
-        console.log(error);
+        console.log("ERROR: ", error);
+        popupHandler({"type": "error", "message": "Error signing up. Please try again"});
       });
   };
 
@@ -84,6 +86,7 @@ export default function App() {
       .catch((error) => {
         console.log(error);
         setIsAuth(false);
+        popupHandler({"type": "error", "message": "Error logging in. Please try again"});
       });
   };
 
@@ -109,8 +112,8 @@ export default function App() {
     })
     .catch((error) => {
         console.log("Error adding Trip. Please try again later.");
-        popupHandler({"type": "error", "message": "Error adding Trip. Please try again later!"});
         console.log(error);
+        popupHandler({"type": "error", "message": "Error adding Trip. Please try again later!"});
     })
   }
 
@@ -207,13 +210,13 @@ export default function App() {
           }
           <Routes>
             <Route path="/" element={<TopTen />} ></Route>
-            <Route path="/profile" element={<Profile currentUser={currentUser} isAuth={isAuth} onLogoutHandler={onLogoutHandler} profileHandler={profileHandler}/>}></Route>
+            <Route path="/profile" element={<Profile currentUser={currentUser} isAuth={isAuth} onLogoutHandler={onLogoutHandler} profileHandler={profileHandler} popupHandler={popupHandler}/>}></Route>
             <Route path="/signup" element={<Signup register={registerHandler}/>}></Route>
             <Route path="/signin" element={ isAuth ? <Navigate to="/" /> : <Signin login={loginHandler} />}></Route>
             <Route path="/logout" element={<TopTen />} ></Route>
             <Route path="/topten" element={<TopTen />}></Route>
             <Route path="/browse" profileHandler={profileHandler} element={<BrowseTrips user={user} currentUser={currentUser}/>}></Route>
-            <Route path="/mytrips" element={<MyTrips user={user} currentUser={currentUser} />}></Route>
+            <Route path="/mytrips" element={<MyTrips user={user} currentUser={currentUser} profileHandler={profileHandler}/>}></Route>
             <Route path="/favs" element={<Favs user={user} currentUser={currentUser}/>}></Route>
             <Route path="/addtrip" element={<TripCreateForm currentUser={currentUser} allCountries={allCountries} addTrip={addTrip}/>}></Route>
             <Route path="/trip/detail/:id" profileHandler={profileHandler} popupHandler={popupHandler} element={<TripDetail isAuth={isAuth} user={user} currentUser={currentUser} />}/>
