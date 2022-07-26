@@ -33,8 +33,13 @@ button{
 .profile-container{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    width: 100%;
 }
 .profile-container-mytrips-item{
     margin-left: 100px;
+}
+
+.user-info{
+    color: #66BFBF;
+    padding: 20px 0;
 }

@@ -17,10 +17,14 @@ export default function Profile(props) {
 
     const editView = () => {
         setIsEdit(true)
+        setIsPwdEdit(false)
+
     }
 
     const editPwdView = () => {
         setIsPwdEdit(true)
+        setIsEdit(false)
+
     }
 
     const editPwd = (currentUser) => {
@@ -66,7 +70,7 @@ export default function Profile(props) {
 
         <div className='profile-container'>
             
-            <div>
+            <div className='profile-container-left-item'>
                 {(props.currentUser.profileImage)
                 ?
                 <img alt="profile" width={"100px"} src={props.currentUser.profileImage}></img>
@@ -75,14 +79,15 @@ export default function Profile(props) {
                 }
                 
                 {(!isEdit)?
-                    <div>
-                    <p>@{props.currentUser.username}</p>
-                    <p>{props.currentUser.firstName} {props.currentUser.lastName}</p>
-                    <p>{props.currentUser.emailAddress}</p>
+                    <div className='user-info'>
+                    <div>@{props.currentUser.username}</div> <br></br>
+                    <div>{props.currentUser.firstName} {props.currentUser.lastName}</div><br></br>
+                    <div>{props.currentUser.emailAddress}</div><br></br>
                     <button onClick={() =>{editView()}}>EDIT</button>
                     </div>
                 :
                 <div><UserEditForm editUser={editUser} currentUser={props.currentUser}/></div>
+                
                 }
                 <br></br>
                 {(!isPwdEdit)?
