@@ -84,7 +84,7 @@ export default function TripCreateForm(props) {
         </div>
 
         <div className='select'>
-            <select defaultValue={'DEFAULT'} id="city" name="city" onChange={handleChange} required>
+            <select defaultValue={'DEFAULT'} id="city" name="city" onChange={handleChange}>
                 <option value="DEFAULT" disabled hidden>Choose a City</option>
                 {selectedCountryCities}
             </select>
