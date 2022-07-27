@@ -178,7 +178,7 @@ export default function App() {
   return (
     <Router>
       <div className="app-all-containers">
-        <nav className="nav">
+        <nav>
           <div className="nav-top-auth-container">
             {isAuth ? (
               <div>

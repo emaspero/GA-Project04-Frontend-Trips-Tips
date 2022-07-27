@@ -50,7 +50,6 @@
   background-color: rgba(255, 255, 255, 0.9);
   width: 80%;
   padding-bottom: 20px;
-
 }
 
 .nav-top-auth-items-link{
@@ -66,6 +65,7 @@
   position: fixed;
   top: 300px;
   left: 0;
+  z-index: -2;
 }
 
 
@@ -74,7 +74,6 @@
   text-decoration: none;
   margin-left: 50px;
   margin-top: 20px;
-  
 }
 
 .nav-logo{
@@ -84,10 +83,8 @@
   position: fixed;
   top:0px;
   left:0px;
-  z-index: -2;
+  z-index: 1;
 }
-
-
 
 .nav-add-trip{
   width: 100px;
@@ -115,11 +112,6 @@
   width: auto;
 }
 
-/* .alert-hidden {
-  opacity: 0;
-  transition: all 250ms linear 2s;
-} */
-
 .alert{
   height: 3rem;
   color: white;
@@ -142,7 +134,6 @@
   display: flex;
   justify-content:right;
   justify-content: space-evenly;
-
 }
 
 .element-container{
@@ -153,5 +144,4 @@
   top: 100px;
   left: 300px;
   z-index: -1;
-
 }
