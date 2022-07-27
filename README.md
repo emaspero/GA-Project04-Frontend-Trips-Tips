@@ -21,7 +21,7 @@
 
 # Project Overview
 TripTips is a MERN-Stack community application which guides User into finding their next travel experience. As a visitor the functionality is limited to viewing the Top 10 most-liked trips and browsing the existing ones, but as a registered User you can add your own travel experiences and like existing ones which will, subsequently, be stored in your "favs" page, making it easy and convenient to find them again. This is a built-from-scratch full stack project which was developed and delivered over two weeks by a group of three junior devs.
-#### Link to the deployed app: 
+### Link to the deployed app: 
 
 ## Team Members
 - Alexandra Gauthier Point - [GitHub](https://github.com/GPAlexa) | [LinkedIn](https://www.linkedin.com/in/alexandragp/)
@@ -55,23 +55,89 @@ Communication has been a focal point throughout the process. We started each day
 ![Trello board screenshot](/public/img/readme/Trello%20Board.png)
 #### ERDs
 ![ERDs screenshot](/public/img/readme/ERDs.png)
-#### WireFrames
+#### WireFrames - [Click Here](https://xd.adobe.com/view/b6d3a46f-e6ee-494f-8e91-6089478e287a-e380/)
 ![WireFrames All](/public/img/readme/WireFrames%20All.png)
 ![WireFrames Home](/public/img/readme/WireFrames%20Home.png)
 ![WireFrames Profile](/public/img/readme/WireFrames%20Profile.png)
 
 ## Back-end
+Each one of us started working on a different model and the related controllers and routes. Alex took charge of the User model and the authentication process, Elisabetta of the Trip model and Marc of the Country model as when a User adds a new experience he/she can pick a Country/City from a dropdown menu. 
+
+The Trip model has referenced data within itself:
+```
+const tripSchema = mongoose.Schema({
+    title: String,
+    country: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Country'
+        },
+    city: String,
+    summary: String, 
+    rating: {
+        type: Number,
+        min: 0,
+        max: 5,
+    },
+    favs: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    image: String
+});
+```
+
+The below code snippet shows the change password functionality which uses bcrypt:
+```
+exports.auth_password_put = (req, res, next) => {
+  let currentUser = {}
+  User.findById(req.body.id)
+  .then(user => {
+    currentUser = user
+    if (!bcrypt.compareSync(req.body.currentPassword, currentUser.password)) {
+        res.status(401).send({"type": "error", "message": "Current password is incorrect"})
+    } else if (req.body.newPassword !== req.body.newPasswordConfirm) {
+        res.status(401).send({"type": "error", "message": "New password and password confirmation don't match"})
+    } else {
+        let hashedPassword = bcrypt.hashSync(req.body.newPassword, salt);
+        currentUser.password = hashedPassword;
+        User.findByIdAndUpdate(req.body.id, currentUser)
+        .then(() => {
+          res.send({"type": "success", "message": "Your password has been updated"}).status(200);
+        })
+        .catch((error) => {
+            console.log(error);
+            res.send({"type": "error", "message": "Sorry there was an error"}).status(400);
+        })
+    }
+  })
+  .catch(error => {
+    console.log(error);
+    res.body("Sorry there was an error").status(400);
+  })
+};
+```
 
 ## Front-end
+As a consequence of how we initially divided the workload, we each started working on the relatively front-end. 
+- Alex started from creating the User profile page which displays all of the experiences created by that specific User, she then proceeded to work on the My Trips and Favs page. As part of the authorization field, she also worked on the log-in/out pages and functionality.
+- Elisabetta first step was to display the created experiences on the Browse Trips page and to create the detail page for each Trip which allows the User to access a edit/delete button (only if the User is the same one who created that specific experience). Subsequently she worked on the "like" functionality which encourages the User to like specific experiences and stores them in the Favs page and as a last step she worked on the Top Ten page which displays only the 10 top liked experiences.
+- Marc first task was to create the Countries and Cities dataset in the database and to link that to the "add trip" functionality. When a User picks a specific Country from the dropdown menu, only the related cities show in the next menu. He also worked on the option that, in case a city is missing, enables the User to create a new one and adds it to the database. He later researched imaged-upload using Multer middleware and successfully implemented this feature both on the User's profile page and "add trip" form.The images were initially stored in the front-end local storage, but he worked on uploading them to Cloudinary via API.
+
+
 
 # Challenges and Wins
+dsadsadsa
 
-## Challenges
+## Challenges
 
 ## Wins
-
+- Team-Work: Every single day the whole team participated with enthusiasm during the morning stand-ups. The constructive environment encouraged us to share our blockers and bugs and we all made a conscious effort towards solving each obstacle along the way.
 ## Bugs
-- After editing an existing trip the success pop-up message does not display on the screen.
+- After editing an existing trip the success pop-up message does not display on the screen. - FIXED
 ## Key Learnings
 This project helped each member of the Team to gain a stronger understanding of React and its unidirectional flow. While putting our theoretical knowledge into practice, we realized the importance of sketching and thinking through an application before starting to write the code. 
 # Future Enhancements 
