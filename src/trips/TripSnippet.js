@@ -36,7 +36,7 @@ export default function TripSnippet(props) {
           </div>
         </div>
       </div>
-    ) :null}
+    ) :(<div><img src='/img/loading.gif'/></div>)}
 
       <hr/>
     </>
