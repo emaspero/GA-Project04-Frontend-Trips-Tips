@@ -194,8 +194,13 @@ The below snippet shows how only the trips that have been liked by the current U
 # Challenges and Wins
 ## Challenges
 - One of the biggest challenges was understanding how the loading and rendering of the data works in React. On occasions we got stuck as the program was not able to find and read some data (eg. the current User id).
+- The earliest challenged that we faced was figuring out how the data is passed between back-end and front-end and how the whole app communicates.
+- Working with different components respecting the hierarchy. 
+- As much as possible we tried to overcome each obstacle and error by ourselves, doing a lot of Google researches and liaising with the React community trying to understand how other devs implemented effective solutions, rather than copying and pasting. 
 ## Wins
 - Team-Work: Every single day the whole team participated with enthusiasm during the morning stand-ups. The constructive environment encouraged us to share our blockers and bugs and we all made a conscious effort towards solving each obstacle along the way.
+- Implemented features such as the like functionality and the filtering option.
+- Image uploads successfully works and images get sent to a cloud-storage rather than to a local storage.
 ## Bugs
 - After editing an existing trip the success pop-up message does not display on the screen. - FIXED
 ## Key Learnings

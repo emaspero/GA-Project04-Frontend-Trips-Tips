@@ -165,7 +165,21 @@ export default function TripDetail(props) {
                   </div>
                   <div className="trip-container-title-right">
                     <img src={`/img/${currentTrip.rating}-star.png`} alt='star' className='rating-star'></img>
-                    <img src="/img/heart_full.png" alt="full heart" id="heartPic"></img>
+                    {(currentTrip.favs.includes(`${currentUser?.id}`)) ? (
+                        <img
+                          src="/img/heart_full.png"
+                          alt="full heart"
+                          id="heartPic"
+                          onClick={handleLikeChange}
+                        ></img>
+                      ) : (
+                        <img
+                          src="/img/heart_empty.png"
+                          alt="empty heart"
+                          id="emptyHeart"
+                          onClick={handleLikeChange}
+                        ></img>
+                      )}                    
                     <div className="favs-number">{currentTrip.favs.length}</div>
                   </div>
                 </div>
