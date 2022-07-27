@@ -61,7 +61,7 @@ Communication has been a focal point throughout the process. We started each day
 ![WireFrames Profile](/public/img/readme/WireFrames%20Profile.png)
 
 ## Back-end
-Each one of us started working on a different model and the related controllers and routes. Alex took charge of the User model and the authentication process, Elisabetta of the Trip model and Marc of the Country model as when a User adds a new experience he/she can pick a Country/City from a dropdown menu. 
+Each one of us started working on a different model and the related controllers and routes. Alex took charge of the User model and the authentication process, Elisabetta of the Trip model and Marc of the Country model as when a User adds a new experience he/she can pick a Country/City from a dropdown menu and he added the feature that uploads every added image to Cloudinary via API.
 
 The Trip model has referenced data within itself:
 ```
@@ -92,7 +92,6 @@ const tripSchema = mongoose.Schema({
 
 The below code snippet shows the change password functionality which uses bcrypt:
 ```
-exports.auth_password_put = (req, res, next) => {
   let currentUser = {}
   User.findById(req.body.id)
   .then(user => {
@@ -118,7 +117,28 @@ exports.auth_password_put = (req, res, next) => {
     console.log(error);
     res.body("Sorry there was an error").status(400);
   })
-};
+```
+
+The below snipped displays how cloudinary was configured and subsequently exports it as parser:
+```
+cloudinary.config({
+    cloud_name: CLOUDINARY_HOST,
+    api_key: CLOUDINARY_APY_KEY,
+    api_secret: CLOUDINARY_API_SECRET,
+});
+
+const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: 'triptips',
+        format: async () => "png",
+        public_id: (req, file) => req.body.username + uniqueSuffix + path.extname(file.originalname)
+    },
+});
+
+const parser = multer({storage: storage})
 ```
 
 ## Front-end
@@ -127,13 +147,53 @@ As a consequence of how we initially divided the workload, we each started worki
 - Elisabetta first step was to display the created experiences on the Browse Trips page and to create the detail page for each Trip which allows the User to access a edit/delete button (only if the User is the same one who created that specific experience). Subsequently she worked on the "like" functionality which encourages the User to like specific experiences and stores them in the Favs page and as a last step she worked on the Top Ten page which displays only the 10 top liked experiences.
 - Marc first task was to create the Countries and Cities dataset in the database and to link that to the "add trip" functionality. When a User picks a specific Country from the dropdown menu, only the related cities show in the next menu. He also worked on the option that, in case a city is missing, enables the User to create a new one and adds it to the database. He later researched imaged-upload using Multer middleware and successfully implemented this feature both on the User's profile page and "add trip" form.The images were initially stored in the front-end local storage, but he worked on uploading them to Cloudinary via API.
 
+The below snippet displays how, within the Trip Create Form, the data in the dropdowns is correctly displayed:
+```
+  // CREATE DROPDOWN OPTIONS FOR ALL COUNTRIES IN DB
+  const allCountries = props.allCountries.sort((a, b) => (a.name > b.name ? 1 : ((b.name > a.name) ? -1 : 0))).map((country, index) => {
+    return <option key={index} value={country._id}>{country.name}</option>
+  })
 
+  // CREATE DROPDOWN OPTIONS FROM CITIES ARRAY OF SELECTED COUNTRY
+  const selectedCountryCities = currentCities.sort().map((city, index) => {
+    return <option key={index} value={city}>{city}</option>
+  })
+  ```
+
+The below snippet displays how only the top ten liked experiences are displayed on the related page:
+```
+  const topTenTrips = trips.slice(0, 10).sort((a, b) => b.favs.length - a.favs.length).map((trip, index) => (
+    <div key={index}>
+      <TripSnippet {...trip} trips={trips} />
+    </div>
+  ))
+  ```
+
+The below snippet shows how only the trips that have been liked by the current User are gathered in the favs page:
+```
+  const loadTripList = () => {
+      Axios.get("trip/index")
+      .then((response) => {
+          for (const trip of response.data.trips) {
+            for (let fav of trip.favs) {
+              if (fav === props.currentUser.id){
+                allMyTrips.push(trip);
+              }
+            }
+          }
+          setTrips(allMyTrips)
+      })
+      .catch((error) => {
+          console.log(error)
+      })
+  };
+  ```
+
+  Throughout the process we have done several debugging session via pair-programming as a Team as, in most cases, a fresh point of view would help the member who was dealing with a blocker. Debugging together also ensured that all of the members shared an equal level of understanding of the whole code.  
 
 # Challenges and Wins
-dsadsadsa
-
 ## Challenges
-
+- One of the biggest challenges was understanding how the loading and rendering of the data works in React. On occasions we got stuck as the program was not able to find and read some data (eg. the current User id).
 ## Wins
 - Team-Work: Every single day the whole team participated with enthusiasm during the morning stand-ups. The constructive environment encouraged us to share our blockers and bugs and we all made a conscious effort towards solving each obstacle along the way.
 ## Bugs
@@ -146,3 +206,4 @@ This project helped each member of the Team to gain a stronger understanding of 
 - Implement filters in order to make it easier for Users' to find relevant experiences tailored to their interests and needs.
 - While registering, a User can add a home country that would also display the local currency.
 - Have different levels of Users, implementing an Admin tier that can deleted Users and edit/delete all User's experience to maintain a level of quality within the experiences. 
+ 
