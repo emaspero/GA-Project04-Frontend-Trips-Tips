@@ -137,7 +137,7 @@ export default function App() {
   const onLogoutHandler = (e) => {
     localStorage.removeItem("token");
     setIsAuth(false);
-    setUser(null);
+    setUser("");
     popupHandler({"type": "success", "message": "User logged out successfully!"});
     setCurrentUser(null);
     setIsSignedUp(false);
