@@ -8,9 +8,6 @@ export default function BrowseTrips(props) {
   const [trips, setTrips] = useState([]);
   const [currentTrip, setCurrentTrip] = useState("");
 
-  // EDIT STATE TO RESET FILTER
-  const [isEdit, setIsEdit] = useState(false);
-
   // COUNTRY FILTER STATES
   const [isFilter, setIsFilter] = useState(false)
   const [filteredTripList, setFilteredTripList] = useState([]);
