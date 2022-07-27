@@ -70,8 +70,8 @@ export default function TripDetail(props) {
         .then((response) => {
           console.log("Updated trip information")
           setIsEdit(false);
-          props.popupHandler({"type": "success", "message": "Updated trip information!"});
           loadTripDetails(id);
+          props.popupHandler({"type": "success", "message": "Updated trip information!"});
         })
         .catch((error) => {
           console.log("Error updating trip information")
