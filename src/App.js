@@ -187,13 +187,13 @@ export default function App() {
             <div className="menu">
               {isAuth ? (
                 <div>
-                  <Link to="/profile" className="nav-mobile-link">PROFILE</Link>{"   "}
-                  <Link to="/" className="nav-mobile-link" onClick={onLogoutHandler}>LOGOUT</Link>{"  "}
                   <Link to="/topten" className="nav-mobile-link">TOP 10 TRIPS</Link> {"  "}
                   <Link to="/browse" className="nav-mobile-link">BROWSE TRIPS</Link> {"  "}
                   <Link to="/mytrips" className="nav-mobile-link">MY TRIPS</Link>{" "}
                   <Link to="/favs" className="nav-mobile-link">FAVS</Link>{" "}
                   <Link to="/addtrip" className="nav-mobile-link " >ADD A TRIP</Link> {" "}
+                  <Link to="/profile" className="nav-mobile-link">PROFILE</Link>{"   "}
+                  <Link to="/" className="nav-mobile-link" onClick={onLogoutHandler}>LOGOUT</Link>{"  "}
                 </div>
               ) : (
                 <div className="nav-top-auth-items">
@@ -226,7 +226,7 @@ export default function App() {
           </div>
 
           <div>
-            <img src="/img/TripTips-logo.png" className="nav-logo"/>
+            <a href="/"><img src="/img/TripTips-logo.png" className="nav-logo"/></a>
           </div>
          
           <div >
