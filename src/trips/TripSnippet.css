@@ -99,3 +99,11 @@ hr{
     height: 50px;
 }
 
+@media only screen and (max-width: 800px) {
+    
+.trip-container {
+    display: flex;
+    flex-direction: column;
+}
+
+}

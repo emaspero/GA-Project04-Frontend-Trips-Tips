@@ -178,16 +178,48 @@ export default function App() {
     <Router>
       <div className="app-all-containers">
         <nav>
+
+          {/*  */}
+          <div className="nav">
+            <label for="toggle">&#9776;</label>
+            <input type="checkbox" id="toggle"></input>
+            <div className="menu">
+              {isAuth ? (
+                <div>
+                  <Link to="/profile" className="nav-mobile-link">PROFILE</Link>{"   "}
+                  <Link to="/" className="nav-mobile-link" onClick={onLogoutHandler}>LOGOUT</Link>{"  "}
+                  <Link to="/topten" className="nav-mobile-link">TOP 10 TRIPS</Link> {"  "}
+                  <Link to="/browse" className="nav-mobile-link">BROWSE TRIPS</Link> {"  "}
+                  <Link to="/mytrips" className="nav-mobile-link">MY TRIPS</Link>{" "}
+                  <Link to="/favs" className="nav-mobile-link">FAVS</Link>{" "}
+                  <Link to="/addtrip" className="nav-mobile-link " >ADD A TRIP</Link> {" "}
+                </div>
+              ) : (
+                <div className="nav-top-auth-items">
+                  <Link to="/signup" className="nav-mobile-link">SIGN UP</Link>{"  "}
+                  <Link to="/signin" className="nav-mobile-link">SIGN IN</Link>{"  "}
+                  <Link to="/topten" className="nav-mobile-link">TOP 10 TRIPS</Link>
+                  <Link to="/browse" className="nav-mobile-link">BROWSE TRIPS</Link>
+                </div>
+              )}
+            </div>
+          </div>
+          {/*  */}
+
+
+
           <div className="nav-top-auth-container">
             {isAuth ? (
               <div>
                 <Link to="/profile" className="nav-top-auth-items-link">PROFILE</Link>{"   "}
                 <Link to="/" className="nav-top-auth-items-link" onClick={onLogoutHandler}>LOGOUT</Link>{"  "}
+ 
               </div>
             ) : (
               <div className="nav-top-auth-items">
                 <Link to="/signup">SIGN UP</Link>{"  "}
                 <Link to="/signin">SIGN IN</Link>{"  "}
+
               </div>
             )}
           </div>
