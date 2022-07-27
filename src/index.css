@@ -26,3 +26,12 @@ h3{
   color: #66BFBF;
   font-weight: 400;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+#page-wrap {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
