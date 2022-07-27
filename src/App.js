@@ -235,8 +235,7 @@ export default function App() {
             <Route path="/mytrips" element={<MyTrips user={user} currentUser={currentUser} profileHandler={profileHandler}/>}></Route>
             <Route path="/favs" element={<Favs user={user} currentUser={currentUser}/>}></Route>
             <Route path="/addtrip" element={<TripCreateForm currentUser={currentUser} allCountries={allCountries} addTrip={addTrip} profileHandler={profileHandler}/>}></Route>
-            <Route path="/trip/detail/:id" profileHandler={profileHandler} popupHandler={popupHandler} element={<TripDetail isAuth={isAuth} user={user} currentUser={currentUser} />}/>
-
+            <Route path="/trip/detail/:id" element={<TripDetail isAuth={isAuth} user={user} currentUser={currentUser} profileHandler={profileHandler} popupHandler={popupHandler} />}/>
           </Routes>
         </div>
 
