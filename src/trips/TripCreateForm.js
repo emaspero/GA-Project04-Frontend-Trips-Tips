@@ -44,6 +44,7 @@ export default function TripCreateForm(props) {
     formData.set('title', newTrip.title)
     formData.set('country', newTrip.country)
     formData.set('city', newTrip.city)
+    formData.set('city2', newTrip.city2)
     formData.set('summary', newTrip.summary)
     formData.set('rating', newTrip.rating)
     formData.set('image', newTrip.image)
@@ -71,7 +72,7 @@ export default function TripCreateForm(props) {
       <form onSubmit={handleSubmit} encType='multipart/form-data'>
         <div>
 
-          <input className='form-inputs' type="text" name="title" placeholder="Trip title*" onChange={handleChange}></input>
+          <input className='form-inputs' type="text" name="title" placeholder="Trip title*" onChange={handleChange} required></input>
 
         </div>
 
@@ -91,11 +92,17 @@ export default function TripCreateForm(props) {
 
         <div>
 
-          <textarea className='form-inputs' name="summary" placeholder="Description*" rows="4" cols="50" onChange={handleChange} />
+          <input className='form-inputs' type="text" name="city2" placeholder="Can't find your destination? Add it here." onChange={handleChange}></input>
+
         </div>
 
         <div>
-          <input className='form-inputs' type="number" name="rating" placeholder="Rating 0-5" min="0" max="5" onChange={handleChange}></input>
+
+          <textarea className='form-inputs' name="summary" placeholder="Description*" rows="4" cols="50" onChange={handleChange} required/>
+        </div>
+
+        <div>
+          <input className='form-inputs' type="number" name="rating" placeholder="Rating 0-5" min="0" max="5" onChange={handleChange} required></input>
 
         </div>
 
