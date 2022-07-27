@@ -167,7 +167,6 @@ export default function App() {
         "profileImage" : response.data.user.profileImage,
         
       })
-      // console.log(currentUser)
     })
     .catch((error) => {
       console.log(error);
@@ -178,8 +177,8 @@ export default function App() {
 
   return (
     <Router>
-      <div>
-        <nav>
+      <div className="app-all-containers">
+        <nav className="nav">
           <div className="nav-top-auth-container">
             {isAuth ? (
               <div>
@@ -199,7 +198,6 @@ export default function App() {
           </div>
          
           <div >
-            
             {isAuth ? (
               <div className="nav-left-container">
                 <Link to="/topten" className="nav-left-items-link">TOP 10 TRIPS</Link> {"  "}
@@ -229,7 +227,6 @@ export default function App() {
             <Route path="/profile" element={<Profile currentUser={currentUser} isAuth={isAuth} onLogoutHandler={onLogoutHandler} profileHandler={profileHandler} popupHandler={popupHandler}/>}></Route>
             <Route path="/signup" element={ isSignedUp ? <Navigate to="/signin" /> : <Signup register={registerHandler}/> }></Route>
             <Route path="/signin" element={ isAuth ? <Navigate to="/" /> : <Signin login={loginHandler} />}></Route>
-            <Route path="/logout" element={<TopTen />} ></Route>
             <Route path="/topten" element={<TopTen />}></Route>
             <Route path="/browse" profileHandler={profileHandler} element={<BrowseTrips user={user} currentUser={currentUser}/>}></Route>
             <Route path="/mytrips" element={<MyTrips user={user} currentUser={currentUser} profileHandler={profileHandler}/>}></Route>
