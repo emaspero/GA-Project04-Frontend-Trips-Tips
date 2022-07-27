@@ -3,10 +3,10 @@ import './../Forms.css';
 
 
 export default function UserEditForm(props) {
-
+    // USER STATE
     const [newUser, setNewUser] = useState(props.currentUser)
 
-
+    // EDIT FUNCTIONS
     const handleChange = (event) =>{
         const attributeToChange = event.target.name
         const newValue = event.target.value
@@ -32,7 +32,6 @@ export default function UserEditForm(props) {
         formData.set('emailAddress', newUser.emailAddress)
         formData.set('id', newUser.id)
         formData.set('profileImage', newUser.profileImage)
-        // props.editUser(newUser);
         props.editUser(formData);
         event.target.reset();
     }
