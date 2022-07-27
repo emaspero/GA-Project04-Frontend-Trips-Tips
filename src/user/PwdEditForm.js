@@ -3,10 +3,10 @@ import './../Forms.css';
 
 
 export default function UserEditForm(props) {
-
+    // SET USER STATE
     const [newUser, setNewUser] = useState(props.currentUser)
 
-
+    // PW CHANGE FUNCTIONS
     const handleChange = (event) =>{
         const attributeToChange = event.target.name
         const newValue = event.target.value

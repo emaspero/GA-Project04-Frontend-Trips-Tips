@@ -6,7 +6,6 @@ import Signin from "./user/Signin";
 import Profile from "./user/Profile";
 import Axios from "axios";
 import jwt_decode from "jwt-decode";
-// import {Alert} from 'react-bootstrap';
 import BrowseTrips from "./trips/BrowseTrips";
 import MyTrips from "./trips/MyTrips";
 import Favs from "./trips/Favs";
@@ -15,24 +14,23 @@ import TripDetail from "./trips/TripDetail";
 import TripCreateForm from "./trips/TripCreateForm";
 import $ from "jquery"
 import Popup from './Popup'
-// import { useNavigate } from 'react-router-dom';
 
 
 export default function App() {
+  // AUTH STATES
   const [isAuth, setIsAuth] = useState(false);
   const [user, setUser] = useState({});
-  const [popup, setPopup] = useState({});
-  const [showPopup, setShowPopup] = useState(false)
   const [userId, setUserId] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
-  const [allCountries, setAllCountries] = useState([])
   const [isSignedUp, setIsSignedUp] = useState(false)
-  // let navigate = useNavigate();
 
-  // const routeChange = () => {
-  //     let path = `/signin`;
-  //     navigate(path);
-  //   }
+  // POPUP STATES
+  const [popup, setPopup] = useState({});
+  const [showPopup, setShowPopup] = useState(false)
+
+  // COUNTRIES LIST STATE
+  const [allCountries, setAllCountries] = useState([])
+
 
   useEffect(() => {
     let token = localStorage.getItem("token");
@@ -57,18 +55,16 @@ export default function App() {
 
     loadCountryList();
 
-    console.log("POPUP: ", popup);
-
-    console.log("Show Popup: ", showPopup)
-
     $('.alert').fadeOut(3000);
+
   }, [userId, isAuth, popup, showPopup]);
+
+  // AUTH FUNCTIONS
 
   const registerHandler = (user) => {
     Axios.post("auth/signup", user)
       .then((response) => {
         console.log("RESPONSE: ", response);
-        // popupHandler({"type": "success", "message": "Successfully signed up!"});
         popupHandler({"type": `${response.data.type}`, "message": `${response.data.message}`});
         if (response.data.type === "success") {
           setIsSignedUp(true)
@@ -86,7 +82,6 @@ export default function App() {
         console.log(response)
         console.log(response.data.token);
         if (response.data.token) {
-          // console.log("token")
           localStorage.setItem("token", response.data.token);
           let user = jwt_decode(response.data.token);
           setIsAuth(true);
@@ -104,56 +99,6 @@ export default function App() {
         popupHandler({"type": "error", "message": "Error logging in. Please try again"});
       });
   };
-
-  const loadCountryList = () => {
-    Axios.get("../../country/index")
-      .then((response) => {
-        setAllCountries(response.data.countries)
-      })
-      .catch((error) => {
-          console.log(error)
-      })
-  }
-
-  const addTrip = (trip) => {
-    Axios.post("trip/add", trip, {
-        headers: {
-            "Authorization": "Bearer " + localStorage.getItem("token")
-        }
-    })
-    .then((response) => {
-        console.log("Trip added successfully!")
-        console.log("RESPONSE: ", response)
-        popupHandler({"type": "success", "message": "Trip added successfully!"});
-    })
-    .catch((error) => {
-        console.log("Error adding Trip. Please try again later.");
-        console.log(error);
-        popupHandler({"type": "error", "message": "Error adding Trip. Please try again later!"});
-    })
-  }
-
-
-  const onLogoutHandler = (e) => {
-    localStorage.removeItem("token");
-    setIsAuth(false);
-    setUser("");
-    popupHandler({"type": "success", "message": "User logged out successfully!"});
-    setCurrentUser(null);
-    setIsSignedUp(false);
-  };
-
-  
-  const delay = (ms) => new Promise(
-    resolve => setTimeout(resolve, ms)
-  );
-
-  const popupHandler = async (obj) => {
-    setPopup(obj)
-    setShowPopup(true);
-    await delay(3000);
-    setShowPopup(false);
-  }
 
   const profileHandler = (userId) => {
     Axios.get(`auth/profile?id=${userId}`)
@@ -173,6 +118,60 @@ export default function App() {
     });
   }
 
+  const onLogoutHandler = (e) => {
+    localStorage.removeItem("token");
+    setIsAuth(false);
+    setUser("");
+    popupHandler({"type": "success", "message": "User logged out successfully!"});
+    setCurrentUser(null);
+    setIsSignedUp(false);
+  };
+
+
+  // POPUP FUNCTIONS
+    const delay = (ms) => new Promise(
+      resolve => setTimeout(resolve, ms)
+    );
+
+
+    const popupHandler = async (obj) => {
+      setPopup(obj)
+      setShowPopup(true);
+      await delay(3000);
+      setShowPopup(false);
+    }
+
+
+  // MISC APP FUNCTIONS
+
+  const loadCountryList = () => {
+    Axios.get("../../country/index")
+      .then((response) => {
+        setAllCountries(response.data.countries)
+      })
+      .catch((error) => {
+          console.log(error)
+      })
+  }
+
+  
+  const addTrip = (trip) => {
+    Axios.post("trip/add", trip, {
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        }
+    })
+    .then((response) => {
+        console.log("Trip added successfully!")
+        console.log("RESPONSE: ", response)
+        popupHandler({"type": "success", "message": "Trip added successfully!"});
+    })
+    .catch((error) => {
+        console.log("Error adding Trip. Please try again later.");
+        console.log(error);
+        popupHandler({"type": "error", "message": "Error adding Trip. Please try again later!"});
+    })
+  }
 
 
   return (
