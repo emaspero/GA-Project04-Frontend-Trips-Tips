@@ -12,7 +12,6 @@ export default function TopTen() {
   const loadTripList = () => {
     Axios.get("trip/index")
     .then((response) => {
-      // console.log("RESPONSE DATA FOR TRIP INDEX: ", response);
       setTrips(response.data.trips)
     })
     .catch((error) => {
