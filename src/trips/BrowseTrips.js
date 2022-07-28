@@ -4,10 +4,11 @@ import TripSnippet from './TripSnippet';
 import './../Forms.css';
 
 export default function BrowseTrips(props) {
+  // All/CURRENT TRIP STATES
   const [trips, setTrips] = useState([]);
   const [currentTrip, setCurrentTrip] = useState("");
-  const [isEdit, setIsEdit] = useState(false);
-  // LIST OF COUNTRIES MATCHING FILTER
+
+  // COUNTRY FILTER STATES
   const [isFilter, setIsFilter] = useState(false)
   const [filteredTripList, setFilteredTripList] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -18,6 +19,7 @@ export default function BrowseTrips(props) {
     setFilteredTripList(filteredData)
   }, [selectedCountry]);
 
+  // LOAD ALL/SINGLE TRIPS FUNCTIONS
   const loadTripList = () => {
     Axios.get("trip/index")
     .then((response) => {
@@ -42,23 +44,10 @@ export default function BrowseTrips(props) {
     .catch((error) => {
       console.log("Error loading trip information")
       console.log(error)
-  })
-  }
-
-  const editView = (id) => {
-    Axios.get(`trip/edit?id=${id}`)
-    .then((response) => {
-      console.log("Loaded trip information for editing", response.data.trip)
-      var trip = response.data.trip
-      setIsEdit(true)
-      setCurrentTrip(trip)
-    })
-    .catch((error) => {
-      console.log("Error loading trip information for editing")
-      console.log(error)
     })
   }
 
+  // EDIT TRIP FUNCTION
   const editTrip = (trip) => {
     Axios.put("trip/update", trip)
     .then((response) => {
@@ -70,13 +59,12 @@ export default function BrowseTrips(props) {
     })
   }
   
+  // FILTER FUNCTIONS & VARIABLES
   const filterByCountry = (filteredData) => {
-    // if (selectedCountry === "All") {
     if (!selectedCountry) {
       return filteredData;
     }
     const filteredTrips = filteredData.filter(
-      // (trip) => trip.country.indexOf(selectedCountry) !== -1
       (trip) => trip.country.name === selectedCountry
     );
     console.log("FILTERED TRIPS: ", filteredTrips)
@@ -86,7 +74,6 @@ export default function BrowseTrips(props) {
 
   const handleCountryChange = (event) => {
     setSelectedCountry(event.target.value)
-    // filterByCountry(event.target.value)
     if (event.target.value === "All") {
       setIsFilter(false)
     } else {

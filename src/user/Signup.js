@@ -1,21 +1,14 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
 import './../Forms.css';
-
-// import {Container, Form, Button} from 'react-bootstrap'
 
 
 
 export default function Signup(props) {
 
+    // USER STATE
     const [newUser, setNewUser] = useState({});
-    // let navigate = useNavigate();
-
-    // const routeChange = () => {
-    //     let path = `/signin`;
-    //     navigate(path);
-    //   }
     
+    // FORM FUNCTIONS
     const changeHandler = (e) => {
         const user = {...newUser};
         user[e.target.name] = e.target.value;
@@ -38,7 +31,6 @@ export default function Signup(props) {
         formData.set('profileImage', newUser.profileImage)
         props.register(formData)
         event.target.reset();
-        // routeChange()
     }
 
   return (

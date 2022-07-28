@@ -13,7 +13,6 @@ export default function TripEditForm(props) {
     trip[attributeToChange] = newValue
     console.log(trip)
     console.log("Current User", props.currentUser)
-
     setNewTrip(trip)
 
     // IF A COUNTRY WAS SELECTED IN THE DROPDOWN, UPDATE ARRAY OF CITIES

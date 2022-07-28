@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Trip from './Trip';
 import { useNavigate } from 'react-router-dom';
 
@@ -35,8 +35,6 @@ export default function TripDetail(props) {
         .then((response) => {
           let trip = response.data.trip
           setCurrentTrip(trip)
-          // props.popupHandler({"type": "success", "message": "Updated trip information!"});
-
         })
         .catch((error) => {
             console.log(error)
@@ -112,7 +110,6 @@ export default function TripDetail(props) {
     }
 
     // LIKE FUNCTIONALITY
-
     const updateLike = (trip) => {
     console.log("UPDATE LIKE TRIP ARG", trip)
     Axios.put("../../trip/updateLike", trip, {
