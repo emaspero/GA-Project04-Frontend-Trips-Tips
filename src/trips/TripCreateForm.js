@@ -90,7 +90,7 @@ export default function TripCreateForm(props) {
 
         <div>
 
-          <input className='form-inputs' type="text" name="city2" placeholder="Can't find your destination? Add it here." onChange={handleChange}></input>
+          <textarea className='form-inputs' name="city2" placeholder="Can't find your destination? Add it here." rows="2" cols="50" onChange={handleChange} />
 
         </div>
 
