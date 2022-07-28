@@ -21,7 +21,10 @@
 
 # Project Overview
 TripTips is a MERN-Stack community application which guides User into finding their next travel experience. As a visitor the functionality is limited to viewing the Top 10 most-liked trips and browsing the existing ones, but as a registered User you can add your own travel experiences and like existing ones which will, subsequently, be stored in your "favs" page, making it easy and convenient to find them again. This is a built-from-scratch full stack project which was developed and delivered over two weeks by a group of three junior devs.
-### Link to the deployed app: 
+### Link to the deployed app: [TripTips](https://gatriptips.herokuapp.com/)
+![Homepage](/public/img/readme/Homepage.png)
+![Browse](/public/img/readme/Browse.png)
+![Profile](/public/img/readme/Profile.png)
 
 ## Team Members
 - Alexandra Gauthier Point - [GitHub](https://github.com/GPAlexa) | [LinkedIn](https://www.linkedin.com/in/alexandragp/)
