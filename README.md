@@ -26,7 +26,7 @@ TripTips is a MERN-Stack community application which guides User into finding th
 ## Team Members
 - Alexandra Gauthier Point - [GitHub](https://github.com/GPAlexa) | [LinkedIn](https://www.linkedin.com/in/alexandragp/)
 - Elisabetta Maspero - [GitHub](https://github.com/emaspero) | [LinkedIn](https://www.linkedin.com/in/elisabetta-maspero/)
-- March Usher - [GitHub](https://github.com/MarcUsher/) | [LinkedIn](https://www.linkedin.com/in/marcusher/)
+- Marc Usher - [GitHub](https://github.com/MarcUsher/) | [LinkedIn](https://www.linkedin.com/in/marcusher/)
 
 # Goal
 A working full-stack, single-page application hosted on Heroku that incorporates the technologies of the MERN-stack. The app should have a well-styled interactive front-end, should communicate with the Express back-end via AJAX, implement a token-based authentication (including the ability of a User to sign-up, log-in and log-out) and authorization by restricting the functionality to authenticated Users. The navigation also responds to the login status. Full-CRUD data operations to be implemented as well. 
