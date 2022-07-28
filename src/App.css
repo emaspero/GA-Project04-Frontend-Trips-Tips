@@ -79,9 +79,11 @@
 }
 
 .nav-logo{
-  margin: -100px;
+  /* margin: -100px;
   margin-top: -100px;
-  margin-bottom: -50px;
+  margin-bottom: -50px; */
+  height: 250px;
+  width: 250px;
   position: fixed;
   top:0px;
   left:0px;
@@ -178,10 +180,10 @@ label{
       top:0px;
       left:0px;
       z-index: 1;
-      width: 200px !important;
-      height: 200px !important;
-      margin-top: -30px;
-      margin-left: -50px; 
+      width: 100px !important;
+      height: 100px !important;
+      /* margin-top: -30px;
+      margin-left: -50px;  */
       background-color: white;
   }
 

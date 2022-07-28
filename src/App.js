@@ -225,7 +225,7 @@ export default function App() {
           </div>
 
           <div>
-            <a href="/"><img src="/img/TripTips-logo.png" className="nav-logo"/></a>
+            <a href="/"><img src="/img/triptips-logo-2.png" className="nav-logo"/></a>
           </div>
          
           <div >
