@@ -217,8 +217,8 @@ export default function App() {
               </div>
             ) : (
               <div className="nav-top-auth-items">
-                <Link to="/signup">SIGN UP</Link>{"  "}
-                <Link to="/signin">SIGN IN</Link>{"  "}
+                <Link to="/signup" className="nav-top-auth-items-link">SIGN UP</Link>{"  "}
+                <Link to="/signin" className="nav-top-auth-items-link">SIGN IN</Link>{"  "}
 
               </div>
             )}
