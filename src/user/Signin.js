@@ -26,12 +26,12 @@ export default function Signin(props) {
         <Container>
 
             <Form.Group>
-                <Form.Label>Email Address</Form.Label>
+                {/* <Form.Label>Email Address</Form.Label> */}
                 <Form.Control className='form-inputs' name="emailAddress" onChange={changeHandler}></Form.Control>
             </Form.Group>
 
             <Form.Group>
-                <Form.Label>Password</Form.Label>
+                {/* <Form.Label>Password</Form.Label> */}
                 <Form.Control className='form-inputs' name="password" type="password" onChange={changeHandler}></Form.Control>
             </Form.Group>
 
