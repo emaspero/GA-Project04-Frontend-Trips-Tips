@@ -55,16 +55,19 @@ A working full-stack, single-page application hosted on Heroku that incorporates
 Planning is of paramount importance when facing a project, especially as a Group working remotely. As a first step, upon finding and agreeing on an idea that would match our interests, we set up a Trello board and straight away started developing the wireframes, User stories and ERDs (Entity Relationship Diagrams). 
 Communication has been a focal point throughout the process. We started each day with stand-up discussions where we would evaluate the daily tasks, set an objective and shared any blockers. We often ended-up debugging collectively as a Team while screen-sharing on Zoom. The work-load has been equally shared between the members and several times a day we would regroup and push/pull the code on our dev branches on Git/GitHub.
 #### Trello Board - [Click Here](https://trello.com/b/5k9nLgX6/ga-project-4-alex-elisabetta-marc)
+We used this powerful tool on a daily basis as it helped the whole team to keep track of the outstanding tasks and of who was working on what. The Icebox columns contained all the different additional features that we wanted to add to the app, while Current/MVP contained all of the minimum requirements that we needed to work on. 
 ![Trello board screenshot](/public/img/readme/Trello%20Board.png)
 #### ERDs
+The Entity Relationships Diagrams below show all of the different Models (User, Trip) and the relations that link them together. For example, one User can have different Trip experiences.
 ![ERDs screenshot](/public/img/readme/ERDs.png)
 #### WireFrames - [Click Here](https://xd.adobe.com/view/b6d3a46f-e6ee-494f-8e91-6089478e287a-e380/)
+This time, instead of using Figma, we worked on the WireFrames using Adobe XD. This allowed us to decide an initial layout for the project, a color scheme and how the pages would be linked to each other. 
 ![WireFrames All](/public/img/readme/WireFrames%20All.png)
 ![WireFrames Home](/public/img/readme/WireFrames%20Home.png)
 ![WireFrames Profile](/public/img/readme/WireFrames%20Profile.png)
 
 ## Back-end
-Each one of us started working on a different model and the related controllers and routes. Alex took charge of the User model and the authentication process, Elisabetta of the Trip model and Marc of the Country model as when a User adds a new experience he/she can pick a Country/City from a dropdown menu and he added the feature that uploads every added image to Cloudinary via API.
+Each one of us started working on a different model and the related controllers and routes. Alex took charge of the User model and the authentication process, I started working on the Trip model and Marc on the Country model as when a User adds a new experience he/she can pick a Country/City from a dropdown menu and he added the feature that uploads every added image to Cloudinary via API.
 
 The Trip model has referenced data within itself:
 ```
@@ -147,7 +150,10 @@ const parser = multer({storage: storage})
 ## Front-end
 As a consequence of how we initially divided the workload, we each started working on the relatively front-end. 
 - Alex started from creating the User profile page which displays all of the experiences created by that specific User, she then proceeded to work on the My Trips and Favs page. As part of the authorization field, she also worked on the log-in/out pages and functionality. Alex has also developed the vast majority of the CSS styling. Her help was crucial as her input played a huge part in solving the "like" functionality related issues.
-- Elisabetta first step was to display the created experiences on the Browse Trips page and to create the detail page for each Trip which allows the User to access a edit/delete button (only if the User is the same one who created that specific experience). Subsequently she worked on the "like" functionality which encourages the User to like specific experiences and stores them in the Favs page and as a last step she worked on the Top Ten page which displays only the 10 top liked experiences.
+- My first step was to display the created experiences on the Browse Trips page and to create the detail page for each Trip which allows the User to access a edit/delete button (only if the User is the same one who created that specific experience). 
+In order to achieve so, I have created a constant called allTrips which maps every single trip and its index and displays each trip as a div element whose key is the above mentioned index. In this div, the TripSnippet element is called and it allows the page to display each trip’s individual details such as the title, the username of the User who created it, the rating, the city/country and a short summary.
+Subsequently I worked on the "like" functionality which encourages the User to like specific experiences and stores them in the Favs page. The like functionality takes into account the id of the currently logged in User, therefore when the like button is clicked, the User’s id is saved in a list. By using this method I was able to keep track of the number of likes received by a single experience and also to display on the Favs page all the experiences liked by the User by filtering the favs list by users’ ids. 
+As a last step, I developed  the Top Ten page which displays only the 10 top liked experiences. I created a new constant called topTenTrips which splices the Trips list showing only ten elements on the page, subsequently I used “.sort” to display the experiences with the highest amount of likes first and, as a last step, I used “.map” to display each Trip element by calling TripSnipped again. 
 - Marc first task was to create the Countries and Cities dataset in the database and to link that to the "add trip" functionality. When a User picks a specific Country from the dropdown menu, only the related cities show in the next menu. He also worked on the option that, in case a city is missing, enables the User to create a new one and adds it to the database. He later researched imaged-upload using Multer middleware and successfully implemented this feature both on the User's profile page and "add trip" form.The images were initially stored in the front-end local storage, but he worked on uploading them to Cloudinary via API.
 
 The below snippet displays how, within the Trip Create Form, the data in the dropdowns is correctly displayed:
@@ -196,22 +202,24 @@ The below snippet shows how only the trips that have been liked by the current U
 
 # Challenges and Wins
 ## Challenges
-- One of the biggest challenges was understanding how the loading and rendering of the data works in React. On occasions we got stuck as the program was not able to find and read some data (eg. the current User id).
-- The earliest challenged that we faced was figuring out how the data is passed between back-end and front-end and how the whole app communicates.
-- Working with different components respecting the hierarchy. 
-- As much as possible we tried to overcome each obstacle and error by ourselves, doing a lot of Google researches and liaising with the React community trying to understand how other devs implemented effective solutions, rather than copying and pasting. 
+- One of the biggest challenges was understanding how the loading and rendering of the data works in React. On occasions we got stuck as the program was not able to find and read some data (eg. the current User id) before rendering the page.
+- The earliest challenge that we faced was figuring out how the data is passed between back-end and front-end and how the whole app communicates.
+- Working with different components respecting the hierarchy.
+- As much as possible we tried to overcome each obstacle and error by ourselves, doing a lot of Google research and liaising with the React community trying to understand how other devs implemented effective solutions, rather than copying and pasting.
 ## Wins
 - Team-Work: Every single day the whole team participated with enthusiasm during the morning stand-ups. The constructive environment encouraged us to share our blockers and bugs and we all made a conscious effort towards solving each obstacle along the way.
 - Implemented features such as the like functionality and the filtering option.
 - Image uploads successfully works and images get sent to a cloud-storage rather than to a local storage.
 ## Bugs
-- After editing an existing trip the success pop-up message does not display on the screen. - FIXED
+- A newly uploaded image sometimes appears as the image for an existing trip.
 ## Key Learnings
-This project helped each member of the Team to gain a stronger understanding of React and its unidirectional flow. While putting our theoretical knowledge into practice, we realized the importance of sketching and thinking through an application before starting to write the code. 
+This project helped each member of the Team to gain a stronger understanding of React and its unidirectional flow. While putting our theoretical knowledge into practice, we realized the importance of sketching and thinking through an application before starting to write the code.
+This was my first experience with React, understanding how the loading and rendering of the data works took several trial-and-error attempts and a considerable amount of time was spent Googling and researching. While developing the app, we often ended up having to move certain elements (eg. functions) up the hierarchy as the unidirectional flow would not allow us to pass them upwards. I personally did underestimate the amount that should be spent thinking through the element’s hierarchy and I will not make that mistake again.
+One of my key-learnings is how helpful explaining your bug and blockers to your teammate is. Sometimes putting the problem into words and presenting it to someone else allowed me to see the whole issue from a completely different perspective and enabled me to find different approaches. Also, from a listener perspective, carefully listening to my teammates explaining their obstacles allowed me to gather a deeper understanding about their code and how that flowed into the application. 
+My favorite part of this project has been attending our daily stand-ups and debugging sessions. I was extremely lucky with my teammates as we worked flawlessly together. I felt confident and at ease while explaining my blockers as, often, either Marc or Alex would point me towards a different direction and would allow me to spend time researching and trying different paths, rather than just solving the problems. Communicating regularly really was the key to overcoming and winning our challenges. 
 # Future Enhancements 
 - Add additional sections to the initial "add a Trip" form allowing the User to share recommendations, warnings and expenses.
 - Allow Users to add comments to the existing travel experiences to start a conversation and interact with the community.
 - Implement filters in order to make it easier for Users' to find relevant experiences tailored to their interests and needs.
 - While registering, a User can add a home country that would also display the local currency.
 - Have different levels of Users, implementing an Admin tier that can deleted Users and edit/delete all User's experience to maintain a level of quality within the experiences. 
- 
